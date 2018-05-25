@@ -1,0 +1,11 @@
+
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+header, form {
+  border: 3px solid pink;
+}

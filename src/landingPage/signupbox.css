@@ -1,0 +1,14 @@
+form {
+    margin: 0 5%;
+    border: 5px solid pink;
+    display: flex;
+    flex-direction: column;
+}
+
+h2 {
+    text-align: center;
+}
+
+input[type=text] {
+    margin: 3%;
+}
