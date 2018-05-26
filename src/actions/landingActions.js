@@ -2,8 +2,8 @@ export const CHANGE_LANDING = 'CHANGE_LANDING';
 
 export const SUBMIT_REGISTRATION = 'SUBMIT_REGISTRATION';
 
-export const LOGIN_USER = 'LOGIN_USER';
-
+export const SUBMIT_LOGIN = 'SUBMIT_LOGIN';
+export const SET_LOGIN_STATUS = 'SET_LOGIN_STATUS';
 
 export const changeLanding = (displayType) => ({
   type: CHANGE_LANDING,
@@ -15,7 +15,12 @@ export const submitRegistration = (newUserObj) => ({
   newUserObj
 });
 
-export const loginUser = (loginObj) => ({
-  type: LOGIN_USER,
+export const submitLogin = (loginObj) => ({
+  type: SUBMIT_LOGIN,
   loginObj
+});
+
+export const setLoginStatus = (loginStatus) => ({
+  type: SET_LOGIN_STATUS,
+  loginStatus
 });

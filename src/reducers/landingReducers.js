@@ -1,4 +1,4 @@
-import { CHANGE_LANDING, SUBMIT_REGISTRATION, LOGIN_USER } from '../actions/landingActions'
+import { CHANGE_LANDING, SUBMIT_LOGIN, SET_LOGIN_STATUS, SUBMIT_REGISTRATION, LOGIN_USER } from '../actions/landingActions'
 
 const initialState = {
     display: 'landing',
@@ -15,8 +15,11 @@ export const mainReducer = (state=initialState, action) => {
         case SUBMIT_REGISTRATION:
         console.log('submitting')
             return 'foobar'
-        case LOGIN_USER:
+        case SUBMIT_LOGIN:
             return 'barfoo';
+        case SET_LOGIN_STATUS:
+        console.log('Iassign', action.loginStatus)
+            return Object.assign({}, state, {login:action.loginStatus})
     }
 
 return state;

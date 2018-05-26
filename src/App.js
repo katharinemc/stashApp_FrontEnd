@@ -1,19 +1,28 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import { Provider } from 'react-redux';
-import store from './store'
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 import './App.css';
-import LandingPage from './landingPage/LandingPage'
-
+import {connect} from 'react-redux';
+import LandingPage from './landingPage/LandingPage';
+import UserDash from './userDash/UserDash';
 
 class App extends Component {
   render() {
-    return (
-      <Provider store={store}>
-<LandingPage />
-</Provider>
-    );
-  }
-}
 
-export default App;
+    return (
+      <Router>
+        <div>    
+        <Route exact path="/" component={LandingPage} />
+        <Route exact path="/UserDash" component={UserDash} />
+        </div>
+      </Router>
+      
+    )
+    }
+  }
+
+const mapStateToProps = state => ({
+  display: state.display,
+  login: state.login
+});
+
+export default connect(mapStateToProps)(App);

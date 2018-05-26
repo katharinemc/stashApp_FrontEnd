@@ -6,7 +6,6 @@ import { changeLanding } from '../actions/landingActions'
 export class Footer extends React.Component {
 
 changeDisplay(value){
-    console.log('button pressed', value)
     this.props.dispatch(changeLanding(value))
 }
 

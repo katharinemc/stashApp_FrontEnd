@@ -1,21 +1,11 @@
 import React from 'react';
 import Footer from './Footer'
 import HeroText from './HeroText'
+import {BrowserRouter as Route, Redirect} from 'react-router-dom'
+import UserDash from '../userDash/UserDash'
+import {connect} from 'react-redux'
 
-export  default class LandingPage extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            display: 'landing',
-                   }
-    }
-
-setEditing(displayType) {
-    console.log("button fires", displayType)
-    this.setState({
-            display: displayType
-        });
-    }
+export  class LandingPage extends React.Component {
 
   render() {
 
@@ -23,11 +13,15 @@ setEditing(displayType) {
     
     return (
       <div className="App">
-      <HeroText  display={this.state.display} />
-<Footer onClick={(value) => this.setEditing(value)} />
+      <HeroText />
+<Footer  />
 
       </div>
     );
   }
 }
 
+const mapStateToProps = state => ({
+  login: state.login
+});
+export default connect(mapStateToProps)(LandingPage);
