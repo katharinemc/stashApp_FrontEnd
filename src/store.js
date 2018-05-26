@@ -1,5 +1,7 @@
-import {createStore} from 'redux'
+import {createStore, applyMiddleware} from 'redux'
+import thunk from 'redux-thunk';
 
 import {mainReducer} from './reducers/landingReducers';
 
-export default createStore(mainReducer);
+export default createStore(mainReducer,
+    applyMiddleware(thunk));

@@ -1,18 +1,33 @@
 import React from 'react';
 import {connect} from 'react-redux'
 import './collapsableul.css'
+import {fetchProducts} from '../actions/landingActions'
+
+
+
 export  class CollapsableUL extends React.Component {
 
 
-  render() {
+componentWillMount() {
+  this.props.dispatch(fetchProducts())
+}
+
+  render()  {
+    console.log(this.props.products[0])
+
+    const products = this.props.products.map((product, index) => (
+      <li key={index}>
+       {product.brand} {product.category} {product.shade}
+    </li>
+    ));
+
     return (
       <div className="collapsable">
-      <ul>
-      <li>Maybelline Lipstick</li>
-      <li>Revlon Blush</li>
-      <li>Fancy Mascara</li>
       
-                      </ul>
+      <ul>
+      {products}
+
+        </ul>
       </div>
 
     );
@@ -20,7 +35,8 @@ export  class CollapsableUL extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  expandFooter: state.expandFooter
+  expandFooter: state.expandFooter,
+  products: state.products
 })
 
 export default connect (mapStateToProps)(CollapsableUL)
