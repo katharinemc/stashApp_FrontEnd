@@ -6,6 +6,8 @@ footer  {
     height: 10%;
     display: flex;
     justify-content: space-evenly;
+    background-color: #503047;
+    color: oldlace;
   }
   
   footer nav {
@@ -23,10 +25,7 @@ footer  {
      list-style-type: none;
      margin: 5%;
   }
-  
-  footer {
-    background-color: #838383;
-  }
+
   
   footer a {
     color: black;
@@ -35,12 +34,14 @@ footer  {
   button {
   margin: 2% auto;
   display: inline;
-  border-radius: 13px;
-  border: 1px solid black;
+    letter-spacing: .2em;
   padding: 3%;
-  font-size: inherit;
-  background-color: #428bca;
+  font-size: 1.1em;
+  font-family: inherit;
+  font-weight: bold;
+  background-color: transparent;
   color: white;
+  border: transparent;
 }
 
 .projectName {

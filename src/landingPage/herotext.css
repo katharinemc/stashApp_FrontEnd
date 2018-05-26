@@ -1,7 +1,19 @@
+
 h1 {
     text-align: center;
+    font-size: 3em;
+    margin: 5% 0;
+}
+p {
+    margin: 0 5%;
 }
 
-p {
+.HeroText{
+    background-color: #FF8977;
+    padding: 5% 1%;
+    padding-bottom: 10%;
     margin: 0 10%;
+    border: 5px solid  #DB2B39;
+    border-radius: 10px;
+   
 }

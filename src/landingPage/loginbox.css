@@ -1,0 +1,36 @@
+form{
+    background-color: #FF8977;
+    padding: 5% 1%;
+    margin: 0 10%;
+    border: 5px solid  #DB2B39;
+    border-radius: 10px;
+
+}
+
+input[type=text] {
+    margin: 3%;
+    padding: 2%;
+    border-radius: 5px;
+    font-size: .75em
+
+}
+
+.login {
+
+}
+.login button:hover {
+    background-color: #DB2B39;
+}
+.login button  {
+    margin: 5% auto;
+    margin-top: 10%;
+    display: inline;
+    letter-spacing: .2em;
+    padding: 5% 7%;
+    font-size: 1.1em;
+    font-family: inherit;
+    font-weight: bold;
+    background-color: transparent;
+    color: white;
+    border: transparent;
+}
