@@ -1,0 +1,25 @@
+.collapsable ul {
+    margin: 0;
+    padding: 0;
+    flex-direction: column;
+    display: flex;
+
+}  
+
+.collapsable li {
+ list-style-type: none;
+ background-color: #FF8977;
+ width: 100%;
+ margin: 0;
+ padding: 5%;
+ color: black;
+ font-weight: bold;
+ border: 0.5px solid black;
+}
+
+.collapsable h4 {
+    padding: 5%;
+    margin: 0;
+    width: 100%;
+    border: 1px solid black;
+}

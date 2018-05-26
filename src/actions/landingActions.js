@@ -1,9 +1,9 @@
 export const CHANGE_LANDING = 'CHANGE_LANDING';
-
 export const SUBMIT_REGISTRATION = 'SUBMIT_REGISTRATION';
-
 export const SUBMIT_LOGIN = 'SUBMIT_LOGIN';
 export const SET_LOGIN_STATUS = 'SET_LOGIN_STATUS';
+export const SET_FOOTER_EXPAND = 'SET_FOOTER_EXPAND'
+
 
 export const changeLanding = (displayType) => ({
   type: CHANGE_LANDING,
@@ -23,4 +23,9 @@ export const submitLogin = (loginObj) => ({
 export const setLoginStatus = (loginStatus) => ({
   type: SET_LOGIN_STATUS,
   loginStatus
+});
+
+export const setFooterExpand = (expandStatus) => ({
+  type: SET_FOOTER_EXPAND,
+  expandStatus
 });

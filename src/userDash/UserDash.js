@@ -1,21 +1,27 @@
 import React from 'react';
 import Footer from './Footer'
-import DashContent from './DashContent'
+import {connect} from 'react-redux'
+import CollapsableUL from './CollapsableUL'
+import './userdash.css'
 
-
-export  default class UserDash extends React.Component {
+export  class UserDash extends React.Component {
 
 
   render() {
-
-
     return (
-      <div className="App">
-      <DashContent />
-<Footer onClick={(value) => this.setEditing(value)} />
+      <div className="Dash">
+            <h4>Collapsable Header</h4>
+
+      <CollapsableUL />
+      <Footer/>
 
       </div>
     );
   }
 }
 
+const mapStateToProps = state => ({
+  expandFooter: state.expandFooter
+})
+
+export default connect (mapStateToProps)(UserDash)

@@ -4,6 +4,7 @@ import HeroText from './HeroText'
 import {BrowserRouter as Route, Redirect} from 'react-router-dom'
 import UserDash from '../userDash/UserDash'
 import {connect} from 'react-redux'
+import './landingpage.css'
 
 export  class LandingPage extends React.Component {
 
@@ -12,7 +13,7 @@ export  class LandingPage extends React.Component {
 
     
     return (
-      <div className="App">
+      <div className="landingPage">
       <HeroText />
 <Footer  />
 

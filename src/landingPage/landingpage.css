@@ -1,0 +1,11 @@
+.landingPage{
+    background-image: url('../images/brushes.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  
+}
+

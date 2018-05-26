@@ -1,4 +1,5 @@
-footer  {
+
+ footer.landing  {
     position: fixed;
     bottom: 0;
     font-size: .75em;
@@ -10,7 +11,7 @@ footer  {
     color: oldlace;
   }
   
-  footer nav {
+  footer.landing nav {
     margin: 0 auto;
   }
   
@@ -47,4 +48,9 @@ footer  {
 .projectName {
   margin: 5% 0;
   font-size: 1.5em;
+}
+
+.expandFooter {
+  flex-direction: column;
+  height: 45%;
 }

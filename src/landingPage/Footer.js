@@ -11,7 +11,7 @@ changeDisplay(value){
 
 render () {
     return (
-        <footer>
+        <footer className="landing">
             
         <button type="button" onClick={(e) => this.changeDisplay('login') }>Login</button>
         <span className="projectName" onClick={(e) => this.changeDisplay('landing')}>|</span>

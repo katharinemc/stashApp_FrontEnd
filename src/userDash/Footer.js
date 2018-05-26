@@ -2,17 +2,32 @@
 import React from 'react'
 import '../landingPage/footer.css';
 import { connect } from 'react-redux';
+import ExpandedFooter from './ExpandedFooter'
+import MainFooter from './MainFooter'
+import './expandedfooter.css'
 
+import {setFooterExpand} from '../actions/landingActions'
 export class Footer extends React.Component {
-
+    changeDisplay(){
+        this.props.dispatch(setFooterExpand(!this.props.expandFooter))
+    }
 
 render () {
+if (this.props.expandFooter===true){
     return (
-        <footer>
-            
-        <button type="button" onClick={(e) => this.changeDisplay('products') }>Products</button>
-        <span className="projectName" onClick={(e) => this.changeDisplay('dash')}>|</span>
-        <button type="button" onClick={(e) => this.changeDisplay('looks')}>Looks</button> 
+        <footer className="expanded">
+      <ExpandedFooter /> 
+    <MainFooter />
+      </footer>     
+    );
+
+}
+
+
+    return (
+        <footer className="dash"> 
+    <MainFooter />
+
       </footer>     
     );
 }
@@ -20,7 +35,8 @@ render () {
 }
 
 const mapStateToProps = state => ({
-    display: state.display
+    display: state.display,
+    expandFooter: state.expandFooter
 });
   
   export default connect(mapStateToProps)(Footer);
