@@ -1,14 +1,23 @@
 import React from 'react'
 import './herotext.css';
 import SignUpBox from './SignUpBox'
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
+import {BrowserRouter as Route, Redirect} from 'react-router-dom'
+;
 import ReduxLogin from './ReduxLogin'
 import LogInBox from './LogInBox'
 
 export  class HeroText extends React.Component{
 
 render () {
-    if(this.props.display==='landing') {
+
+
+    if(this.props.currentUser != null) {
+      console.log('hi there sailor')
+      return <Redirect to={"/UserDash"} />;
+  }
+
+   else if(this.props.display==='landing') {
         return (
             <div className="HeroText">
      <h1>Stash App</h1>
@@ -28,7 +37,8 @@ const mapStateToProps = main =>
 
  {
 return     ({
-        display: main.main.display
+        display: main.main.display,
+        currentUser: main.main.currentUser
     });
     
  }
