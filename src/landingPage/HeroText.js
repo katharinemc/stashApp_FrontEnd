@@ -8,7 +8,6 @@ import LogInBox from './LogInBox'
 export  class HeroText extends React.Component{
 
 render () {
-    console.log('i a box!', this.props)
     if(this.props.display==='landing') {
         return (
             <div className="HeroText">
@@ -28,7 +27,6 @@ render () {
 const mapStateToProps = main => 
 
  {
-     console.log(main)
 return     ({
         display: main.main.display
     });

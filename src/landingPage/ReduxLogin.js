@@ -1,21 +1,21 @@
 import React from 'react'
 import './loginbox.css';
 import { Redirect} from 'react-router';
-import { submitLogin, setLoginStatus } from '../actions/landingActions';
+import { submitLogin, login_sequence, setLoginStatus } from '../actions/landingActions';
 import { Field, reduxForm } from 'redux-form'
 
 export class ReduxLogin extends React.Component {
 onSubmit(values) {
-
-    console.log(values)
-this.props.dispatch(setLoginStatus(true))
+this.props.dispatch(login_sequence(values))
 
 }
 
 render () {
-    console.log(this.props);
-   
-    
+    if(this.props.authToken != null) {
+        console.log('hi there sailor')
+        return <Redirect to={"/UserDash"} />;
+    }
+  
     return (
         <form className="login" onSubmit={this.props.handleSubmit(values =>
             this.onSubmit(values))} >
