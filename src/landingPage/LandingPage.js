@@ -9,6 +9,10 @@ import './landingpage.css'
 export  class LandingPage extends React.Component {
 
   render() {
+    if(this.props.login === true) {
+      console.log('hi there sailor')
+      return <Redirect to={"/UserDash"} />;
+  }
 
 
     

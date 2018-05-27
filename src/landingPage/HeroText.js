@@ -2,7 +2,7 @@ import React from 'react'
 import './herotext.css';
 import SignUpBox from './SignUpBox'
 import { connect } from 'react-redux';
-
+import ReduxLogin from './ReduxLogin'
 import LogInBox from './LogInBox'
 
 export  class HeroText extends React.Component{
@@ -17,18 +17,22 @@ render () {
           </div>
         );
     } else if (this.props.display==='login'){
-        return <LogInBox />
+        return <ReduxLogin />
     } else if (this.props.display==='register'){
         return <SignUpBox />
     }
-
 }    
-
 }
 
 
-const mapStateToProps = state => ({
-    display: state.display
-});
+const mapStateToProps = main => 
+
+ {
+     console.log(main)
+return     ({
+        display: main.main.display
+    });
+    
+ }
   
   export default connect(mapStateToProps)(HeroText);
