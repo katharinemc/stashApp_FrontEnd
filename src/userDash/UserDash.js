@@ -5,12 +5,12 @@ import CollapsableUL from './CollapsableUL'
 import './userdash.css'
 import DetailView from './DetailView'
 import AddProduct  from './AddProduct';
+import { loadCurrentUser } from '../local-storage';
+import {authSuccess} from '../actions/auth'
 
 export class UserDash extends React.Component {
-
   render() {
-    console.log('userdash', this.props.auth, this.props.currentUser, 'dashtoken', this.props.authToken)
-
+    console.log('userDash, currentUser', this.props.currentUser, 'authToken', this.props.authToken)
     if (this.props.editing === true) {
       return (
         <div>

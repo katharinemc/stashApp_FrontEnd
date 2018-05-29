@@ -22,9 +22,9 @@ export const showDetail = (key) => ({
 
 
 
-  export const sendNewProduct = (values, authToken, currentUser) => dispatch => {
+  export const sendNewProduct = (values, currentUser, authToken) => dispatch => {
  const {brand, category, name, shade} = values
-console.log('sending', currentUser,)
+console.log('sending user', currentUser, 'and token', authToken)
 
 let newObj = {
    brand,
@@ -33,6 +33,7 @@ let newObj = {
    shade, 
   username: currentUser
 }
+console.log( newObj)
 
     fetch(`${API_BASE_URL}/api/products/`, {
         method: 'post',

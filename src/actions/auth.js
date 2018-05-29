@@ -12,6 +12,7 @@ export const SET_AUTH_TOKEN = 'SET_AUTH_TOKEN';
 export const setAuthToken = authToken => ({type: SET_AUTH_TOKEN, authToken});
 
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
+
 export const authSuccess = currentUser => ({type: AUTH_SUCCESS, currentUser});
 
 export const submitRegistration = (newUserObj) => ({type: SUBMIT_REGISTRATION, newUserObj});
@@ -25,7 +26,7 @@ const storeAuthInfo = (authToken, dispatch, username) => {
 
   const decodedToken = jwtDecode(authToken);
   dispatch(setAuthToken(authToken));
-  dispatch(authSuccess(decodedToken.user));
+  dispatch(authSuccess(decodedToken.user.username));
   saveAuthToken(authToken);
   saveCurrentUser(username)
 };

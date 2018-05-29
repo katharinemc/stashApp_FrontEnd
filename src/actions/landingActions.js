@@ -27,6 +27,7 @@ export const fetchProductsRequest = (status) => ({
 })
 
 export const fetchProducts = (authToken) => dispatch => {
+  console.log('inside fetchProducts get token with token', authToken)
   fetch(`${API_BASE_URL}/api/products/`, {
       method: 'get',
       headers: {

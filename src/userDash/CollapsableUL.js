@@ -1,27 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux'
 import './collapsableul.css'
-import {fetchProducts} from '../actions/landingActions'
 import { loadAuthToken } from './../local-storage.js'
 import {setAuthToken} from '../actions/auth'
 
 export class CollapsableUL extends React.Component {
 
-componentWillMount (){
-  const authToken = loadAuthToken();
-  if (authToken) {
-      const token = authToken;
-      this.props.dispatch(setAuthToken(token));
-      // store.dispatch(refreshAuthToken());
-  }
-}
-
   render() {
  
-    // const kind = this.props.type;
-
-// console.log( this.props[kind])
-
 const results = this.props.results.map((product, index) => (
         <dl>
           <dt key={index}>

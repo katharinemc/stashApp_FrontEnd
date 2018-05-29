@@ -3,6 +3,11 @@ export const loadAuthToken = () => {
     return localStorage.getItem('authToken');
 };
 
+export const loadCurrentUser = () => {
+    console.log('hello! load current user')
+    return localStorage.getItem('currentUser');
+};
+
 export const saveAuthToken = authToken => {
     try {
         localStorage.setItem('authToken', authToken);
