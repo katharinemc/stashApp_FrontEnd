@@ -11,8 +11,7 @@ export class ReduxLogin extends React.Component {
   }
 
   render() {
-
-    return (
+   return (
       <form
         className="login"
         onSubmit={this

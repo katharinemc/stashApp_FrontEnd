@@ -24,11 +24,9 @@ export const fetchProductsSuccess = (products) => ({
 export const fetchProductsRequest = (status) => ({
   type:FETCH_PRODUCTS_REQUEST,
   status
-
 })
 
 export const fetchProducts = (authToken) => dispatch => {
-  console.log('about to request')
   fetch(`${API_BASE_URL}/api/products/`, {
       method: 'get',
       headers: {

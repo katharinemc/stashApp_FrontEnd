@@ -1,14 +1,25 @@
 import React  from 'react';
 import './expandedfooter.css'
-export  default class ExpandedFooter extends React.Component {
+import {connect} from 'react-redux'
+import { setEditing } from '../actions/dashActions';
+
+export  class ExpandedFooter extends React.Component {
+
+  changeDisplay(status) {
+    this
+      .props
+      .dispatch(setEditing(status))
+  }
+
+
 
     render() {
-  
+
       return (
         <div>
             
             <ul>
-<li>Add Product</li>
+<li onClick={()=>this.changeDisplay(!this.props.editing) } >Add Product</li>
 <li>Add Look</li>
 <li>Log Out</li>
 
@@ -20,3 +31,9 @@ export  default class ExpandedFooter extends React.Component {
     }
   }
   
+
+  const mapStateToProps = main => ({
+    editing: main.dash.editing, 
+})
+
+export default connect(mapStateToProps)(ExpandedFooter)

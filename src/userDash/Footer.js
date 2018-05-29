@@ -14,8 +14,6 @@ export class Footer extends React.Component {
   }
 
   render() {
-    console.log('footerjs', this.props)
-
     if (this.props.expandFooter === true) {
       return (
         <footer className="expanded">

@@ -10,8 +10,6 @@ export class HeroText extends React.Component {
 
   render() {
 
-    console.log('herotext props', this.props)
-
     if (this.props.loading === 'true') {
 
       this
@@ -42,7 +40,6 @@ export class HeroText extends React.Component {
 
 const mapStateToProps = (main, auth) => {
 
-console.log(main)
   return (
     {display: main.main.display,
        authToken: main.auth.authToken,

@@ -15,10 +15,8 @@ export const mainReducer = (state=initialState, action) => {
         case SET_FOOTER_EXPAND:
             return Object.assign({}, state, {expandFooter: action.expandStatus})
         case FETCH_PRODUCTS_REQUEST:
-            console.log('lets get somestuff')
             return Object.assign({}, state, {loading: 'true'})
         case FETCH_PRODUCTS_SUCCESS: 
-            console.log('a success is made!', action.products)
             return Object.assign({}, state, {products: [...action.products]}, {loading: 'complete'}, {display: 'dash'})
     }
 
