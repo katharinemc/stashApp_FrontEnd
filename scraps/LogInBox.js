@@ -1,7 +1,7 @@
 import React from 'react'
 import './loginbox.css';
 import { Redirect} from 'react-router';
-import { submitLogin, setLoginStatus } from '../actions/landingActions';
+import { submitLogin, setLoginStatus, fetchProducts } from '../actions/landingActions';
 import {connect} from 'react-redux'
 
 export class LogInBox extends React.Component {
@@ -13,15 +13,9 @@ this.props.dispatch(setLoginStatus(true))
 
 render () {
     if(this.props.login === true) {
-        console.log('hi there sailor')
-        return <Redirect to={"/UserDash"} />;
+        this.props.dispatch(fetchProducts(this.props.authToken, this.props.currentUser))
     }
-  
-
-
-    console.log(this.props);
-   
-    
+      
     return (
         <form className="login" onSubmit={ (e)=> this.submitButton(e)}>
             <h1>Welcome Back!</h1>
@@ -36,7 +30,9 @@ render () {
 }
 }
 
-const mapStateToProps = state => ({
-    login: state.login
+const mapStateToProps = main => ({
+    login: main.main.login,
+    authToken: main.main.authToken,
+    currentUser: main.main.currentUser
   });
   export default connect(mapStateToProps)(LogInBox);

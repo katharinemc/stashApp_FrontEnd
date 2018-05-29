@@ -9,11 +9,13 @@ export const SET_LOGIN_STATUS = 'SET_LOGIN_STATUS';
 export const SET_FOOTER_EXPAND = 'SET_FOOTER_EXPAND'
 export const FETCH_PRODUCTS_SUCCESS = 'FETCH_PRODUCTS_SUCCESS'
 export const SET_AUTH_TOKEN = 'SET_AUTH_TOKEN';
+export const FETCH_PRODUCTS_REQUEST = 'FETCH_PRODUCTS_REQUEST'
 
 export const setAuthToken = authToken => ({
     type: SET_AUTH_TOKEN,
     authToken
 });
+
 
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 export const authSuccess = currentUser => ({
@@ -52,21 +54,29 @@ export const fetchProductsSuccess = (products) => ({
   products
 })
 
+export const fetchProductsRequest = (status) => ({
+  type:FETCH_PRODUCTS_REQUEST,
+  status
 
-export const fetchProducts = () => dispatch => {
+})
+
+export const fetchProducts = (authToken) => dispatch => {
+  console.log('about to request')
   fetch(`${API_BASE_URL}/api/products/`, {
-      method: 'get'
+      method: 'get',
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${authToken}`  
+      }
   })
   .then(res => {
       if (!res.ok){
           return Promise.reject(res.statusText)
       }
-      console.log('i am a res', res.json)
-      return res.json();
+      return res.json()
   }) 
-
   .then (products => dispatch(fetchProductsSuccess(products)))
-  // .catch(err => fetchCheeseError(err));
+  .catch(err => console.log(err));
 };
 
 const storeAuthInfo = (authToken, dispatch) => {
@@ -88,5 +98,11 @@ export const login_sequence = (values) => dispatch => {
     } })
     .then(res => res.json())
     .then ( ({authToken}) => storeAuthInfo(authToken, dispatch))
+    .then ( () => {
       
-  })}
+      dispatch(fetchProductsRequest('true'))
+    }
+    
+)
+    })
+  }

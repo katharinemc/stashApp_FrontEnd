@@ -22,9 +22,9 @@ render () {
  
 }
 
-const mapStateToProps = state => ({
-    display: state.display,
-    expandFooter: state.expandFooter
+const mapStateToProps = main => ({
+    display: main.main.display,
+    expandFooter: main.main.expandFooter
 });
   
   export default connect(mapStateToProps)(MainFooter);

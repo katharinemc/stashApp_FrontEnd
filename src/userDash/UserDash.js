@@ -4,24 +4,21 @@ import {connect} from 'react-redux'
 import CollapsableUL from './CollapsableUL'
 import './userdash.css'
 
-export  class UserDash extends React.Component {
-
+export class UserDash extends React.Component {
 
   render() {
     return (
       <div className="Dash">
-            <h4>Collapsable Header</h4>
+        <h4>Collapsable Header</h4>
 
-      <CollapsableUL />
-      <Footer/>
+        <CollapsableUL/>
+        <Footer/>
 
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  expandFooter: state.expandFooter
-})
+const mapStateToProps = main => ({expandFooter: main.main.expandFooter})
 
-export default connect (mapStateToProps)(UserDash)
+export default connect(mapStateToProps)(UserDash)
