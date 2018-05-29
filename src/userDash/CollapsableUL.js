@@ -6,9 +6,13 @@ import {setAuthToken} from '../actions/auth'
 
 export class CollapsableUL extends React.Component {
 
+componentWillReceiveProps(nextProps) {
+console.log('these are the next props', nextProps)
+
+}
+
   render() {
- 
-const results = this.props.results.map((product, index) => (
+ const results = this.props.results.map((product, index) => (
         <dl>
           <dt key={index}>
             {product.brand} {product.category}
@@ -36,6 +40,7 @@ const results = this.props.results.map((product, index) => (
 
 const mapStateToProps = (main, ownProps) => ({currentUser: main.main.currentUser,
    authToken: main.main.authToken,
+   editing: main.main.editing,
     results: main.main[ownProps.type]})
 
 export default connect(mapStateToProps)(CollapsableUL)

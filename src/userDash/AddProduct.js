@@ -6,8 +6,6 @@ import {setEditing, sendNewProduct} from '../actions/dashActions'
 export class AddProduct extends React.Component {
   
   onSubmit(values) {
-    console.log('inside add product with user', this.props.currentUser, ' token', this.props.authToken)
-    
     const authToken = this.props.authToken
     const currentUser = this.props.currentUser;
     console.log('adding a product', currentUser);

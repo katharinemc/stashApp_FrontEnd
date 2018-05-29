@@ -10,12 +10,12 @@ import {authSuccess} from '../actions/auth'
 
 export class UserDash extends React.Component {
   render() {
-    console.log('userDash, currentUser', this.props.currentUser, 'authToken', this.props.authToken)
+
+    console.log('here are products', this.props.products);
     if (this.props.editing === true) {
       return (
         <div>
-       <AddProduct currentUser={this.props.currentUser} authToken={this.props.authToken}/>
-  
+           <AddProduct currentUser={this.props.currentUser} authToken={this.props.authToken}/>
           <Footer/>
         </div>
       )
@@ -33,6 +33,8 @@ export class UserDash extends React.Component {
     }
     
   }
+
+
 }
 
 const mapStateToProps = main => (
@@ -40,6 +42,7 @@ const mapStateToProps = main => (
   {expandFooter: main.main.expandFooter, 
   editing: main.dash.editing,
   auth: main.auth,
+  products: main.main.products,
   currentUser: main.auth.currentUser,
 authToken: main.auth.authToken})
 

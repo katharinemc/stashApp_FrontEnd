@@ -1,4 +1,5 @@
-import {API_BASE_URL} from '../config'
+import {API_BASE_URL} from '../config';
+import {fetchProductsRequest} from './landingActions'
 
 export const SHOW_DETAIL = 'SHOW_DETAIL';
 export const SET_EDITING = 'SET_EDITING';
@@ -31,10 +32,7 @@ let newObj = {
    category,
    name,
    shade, 
-  username: currentUser
 }
-console.log( newObj)
-
     fetch(`${API_BASE_URL}/api/products/`, {
         method: 'post',
         body: JSON.stringify(newObj),
@@ -47,11 +45,19 @@ console.log( newObj)
         if (!res.ok){
             return Promise.reject(res.statusText)
         }
-        console.log('post res', res)
+        console.log('post res', )
         return res.json()
     }) 
-    // .then (products => dispatch(fetchProductsSuccess(products)))
-    .catch(err => console.log(err));
-  };
+    .then ( (res) => {
+
+      //make clean object to pass to newProductSuccess
+      console.log('response after fetch', res)
+    dispatch(newProductSuccess(res)) }) 
+.then (() => dispatch(setEditing('false')))     
+    
+    }
+    
+    // .catch(err => console.log(err));
+  
   
   
