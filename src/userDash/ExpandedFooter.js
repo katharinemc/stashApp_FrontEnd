@@ -2,14 +2,16 @@ import React  from 'react';
 import './expandedfooter.css'
 import {connect} from 'react-redux'
 import { setEditing } from '../actions/dashActions';
-
+import {setFooterExpand} from '../actions/landingActions'
 export  class ExpandedFooter extends React.Component {
 
   changeDisplay(status) {
     this
       .props
       .dispatch(setEditing(status))
-  }
+
+    this.props.dispatch(setFooterExpand('false'))
+    }
 
 
 
