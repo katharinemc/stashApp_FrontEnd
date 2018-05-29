@@ -41,8 +41,8 @@
   font-family: inherit;
   font-weight: bold;
   background-color: transparent;
-  color: white;
-  border: transparent;
+  /* color: white;
+  border: transparent; */
 }
 
 .projectName {

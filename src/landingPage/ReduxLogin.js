@@ -1,5 +1,5 @@
 import React from 'react'
-import './loginbox.css';
+// import './loginbox.css';
 import {submitLogin, login_sequence, setLoginStatus} from '../actions/auth';
 import {Field, reduxForm} from 'redux-form'
 

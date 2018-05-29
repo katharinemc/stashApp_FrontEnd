@@ -59,7 +59,7 @@ export class AddProduct extends React.Component {
 
         <button type="submit">
           Add Product</button>
-        <button onClick={() => this.props.changeDisplay('false')}>
+        <button onClick={() => this.changeDisplay('false')}>
           Cancel</button>
       </form>
     );

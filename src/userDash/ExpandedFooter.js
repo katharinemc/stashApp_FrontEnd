@@ -18,9 +18,9 @@ export  class ExpandedFooter extends React.Component {
     render() {
 
       return (
-        <div>
+        <div >
             
-            <ul>
+            <ul >
 <li onClick={()=>this.changeDisplay(!this.props.editing) } >Add Product</li>
 <li>Add Look</li>
 <li>Log Out</li>

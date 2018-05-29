@@ -12,7 +12,7 @@ export class MainFooter extends React.Component {
 render () {
     return (
 
-        <span className="main">     
+        <span className="main ">     
         <button type="button" onClick={(e) => this.changeDisplay('products') }>Products</button>
         <button className="projectName" onClick={(e) => this.changeDisplay()}>^</button>
         <button type="button" onClick={(e) => this.changeDisplay('looks')}>Looks</button> 

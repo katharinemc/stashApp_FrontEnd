@@ -6,10 +6,6 @@ import {setAuthToken} from '../actions/auth'
 
 export class CollapsableUL extends React.Component {
 
-componentWillReceiveProps(nextProps) {
-console.log('these are the next props', nextProps)
-
-}
 
   render() {
  const results = this.props.results.map((product, index) => (
