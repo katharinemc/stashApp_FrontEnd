@@ -21,9 +21,9 @@ export  class LandingPage extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  login: state.login,
-  authToken: state.authToken,
-  currentUser: state.currentUser
+const mapStateToProps = (auth) => ({
+  login: auth.auth.login,
+  authToken: auth.auth.authToken,
+  currentUser: auth.auth.currentUser
 });
 export default connect(mapStateToProps)(LandingPage);

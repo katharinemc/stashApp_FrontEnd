@@ -24,6 +24,6 @@ export class Footer extends React.Component {
 
 }
 
-const mapStateToProps = state => ({display: state.display});
+const mapStateToProps = main => ({display: main.main.display});
 
 export default connect(mapStateToProps)(Footer);

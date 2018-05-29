@@ -40,8 +40,15 @@ export class HeroText extends React.Component {
   }
 }
 
-const mapStateToProps = main => {
-  return ({display: main.main.display, authToken: main.main.authToken, currentUser: main.main.currentUser, products: main.main.products, loading: main.main.loading});
+const mapStateToProps = (main, auth) => {
+
+console.log(main)
+  return (
+    {display: main.main.display,
+       authToken: main.auth.authToken,
+        currentUser: main.auth.currentUser, 
+        products: main.main.products,
+         loading: main.main.loading});
 
 }
 
