@@ -11,6 +11,7 @@ export const dashReducer = (state=initialState, action) => {
             return Object.assign( {}, state, {detailView: action.key})
             case SET_EDITING:
             return Object.assign( {}, state, {editing: action.status})
+
         }
 
 return state;

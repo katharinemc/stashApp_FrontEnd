@@ -1,6 +1,6 @@
 import { FETCH_PRODUCTS_REQUEST, FETCH_LOOKS_SUCCESS, CHANGE_LANDING, FETCH_PRODUCTS_SUCCESS, SET_FOOTER_EXPAND, } from '../actions/landingActions'
 import { LOG_OUT_STORE } from '../actions/auth'
-import { NEW_PRODUCT_SUCCESS } from '../actions/dashActions'
+import { NEW_PRODUCT_SUCCESS, PRODUCT_DELETE_SUCCESS } from '../actions/dashActions'
 
 const initialState = {
     display: 'landing',
@@ -28,7 +28,9 @@ export const mainReducer = (state=initialState, action) => {
             return Object.assign({}, state, {products: [...state.products, action.values]})
         case FETCH_LOOKS_SUCCESS:
         console.log('fetch looks success', action)
-            return Object.assign({}, state, {looks: [...action.looks]} )
+            return Object.assign({}, state, {looks: [...action.looks]},{loading: 'complete'} )
+        case  PRODUCT_DELETE_SUCCESS:
+            return Object.assign({}, state, {products: state.products.filter(product => product.id!=action.itemId ) })
     }
 
 return state;

@@ -13,7 +13,7 @@ export class HeroText extends React.Component {
 console.log(this.props)
     if (this.props.loading === 'true') {
 
-      // this.props.dispatch(fetchProducts(this.props.authToken, this.props.currentUser))
+      this.props.dispatch(fetchProducts(this.props.authToken))
       this.props.dispatch(fetchLooks(this.props.authToken))
       return <h1>Here's some stuff, loading</h1>
 

@@ -23,7 +23,6 @@ if (authToken) {
     console.log('store getting info')
     const token = authToken;
     store.dispatch(setAuthToken(token));
-    // store.dispatch(refreshAuthToken());
     store.dispatch(fetchProducts(token))
     store.dispatch(fetchLooks(token))
 
