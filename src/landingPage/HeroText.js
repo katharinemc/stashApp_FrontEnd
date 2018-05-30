@@ -5,11 +5,12 @@ import {connect} from 'react-redux'
 import {BrowserRouter as Route, Redirect} from 'react-router-dom'
 import {fetchProducts} from '../actions/landingActions'
 import ReduxLogin from './ReduxLogin'
+import ReduxRegister  from './ReduxRegister';
 
 export class HeroText extends React.Component {
 
   render() {
-
+console.log(this.props)
     if (this.props.loading === 'true') {
 
       this
@@ -17,10 +18,14 @@ export class HeroText extends React.Component {
         .dispatch(fetchProducts(this.props.authToken, this.props.currentUser))
       return <h1>Here's some stuff, loading</h1>
 
-    } else if (this.props.loading === 'complete' || this.props.display === 'dash') {
+    } else if (this.props.loading === 'complete' && this.props.authToken != null) {
       return <Redirect to={"/UserDash"}/>;
 
-    } else if (this.props.display === 'landing') {
+    } else if (this.props.display === 'login') {
+      return <ReduxLogin/>
+    } else if (this.props.display === 'register') {
+      return <ReduxRegister/>
+    } else  {
       return (
         <div className="HeroText">
           <h1>Stash App</h1>
@@ -30,11 +35,7 @@ export class HeroText extends React.Component {
           </p>
         </div>
       );
-    } else if (this.props.display === 'login') {
-      return <ReduxLogin/>
-    } else if (this.props.display === 'register') {
-      return <SignUpBox/>
-    }
+    } 
   }
 }
 

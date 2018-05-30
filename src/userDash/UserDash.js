@@ -5,13 +5,19 @@ import CollapsableUL from './CollapsableUL'
 import './userdash.css'
 import DetailView from './DetailView'
 import AddProduct  from './AddProduct';
+import {BrowserRouter as Route, Redirect} from 'react-router-dom'
+
 import { loadCurrentUser } from '../local-storage';
 import {authSuccess} from '../actions/auth'
 
 export class UserDash extends React.Component {
   render() {
+console.log(this.props.authToken)
+    if (this.props.authToken === null) {
+      return <Redirect to={"/"}/>;
 
-    console.log('here are products', this.props.products);
+    }
+
     if (this.props.editing === true) {
       return (
         <div>

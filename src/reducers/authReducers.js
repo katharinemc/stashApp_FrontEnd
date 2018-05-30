@@ -5,7 +5,8 @@ import {
   SET_LOGIN_STATUS,
   SUBMIT_REGISTRATION,
   LOGIN_USER,
-  CLEAR_AUTH
+  CLEAR_AUTH,
+  LOG_OUT_STORE
 } from '../actions/auth'
 
 const initialState = {
@@ -16,7 +17,7 @@ const initialState = {
 
 export const authReducer = (state = initialState, action) => {
   switch (action.type) {
-    case CLEAR_AUTH:
+    case LOG_OUT_STORE:
       return Object.assign({}, state, { authToken: null, currentUser: null});
     case SUBMIT_REGISTRATION:
       return 'foobar'

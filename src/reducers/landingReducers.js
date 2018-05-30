@@ -19,7 +19,7 @@ export const mainReducer = (state=initialState, action) => {
         case FETCH_PRODUCTS_REQUEST:
             return Object.assign({}, state, {loading: 'true'})
         case FETCH_PRODUCTS_SUCCESS: 
-            return Object.assign({}, state, {products: [...action.products]}, {loading: 'complete'}, {display: 'dash'})
+            return Object.assign({}, state, {products: [...action.products]}, {loading: 'complete'})
             case NEW_PRODUCT_SUCCESS: 
             console.log('product success!', action.values)
             return Object.assign({}, state, {products: [...state.products, action.values]})

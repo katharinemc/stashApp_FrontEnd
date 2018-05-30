@@ -9,23 +9,23 @@ export class CollapsableUL extends React.Component {
 
   render() {
  const results = this.props.results.map((product, index) => (
-        <dl>
-          <dt key={index}>
+        <div key={index}>
+          <dt >
             {product.brand} {product.category}
 
           </dt>
           <dd> 
             {product.shade}
           </dd>
-        </dl>
+</div>
       ));
 
     return (
       <div className="collapsable">
       <h4>Collapsable Header</h4>
-
+      <dl>
         {results}
-
+        </dl>
       </div>
 
     );

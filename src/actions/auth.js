@@ -1,6 +1,6 @@
 import {API_BASE_URL} from '../config'
 import jwtDecode from 'jwt-decode';
-import {saveAuthToken, clearAuthToken, saveCurrentUser} from '../local-storage';
+import {saveAuthToken, clearAuthToken, saveCurrentUser, clearCurrentUser} from '../local-storage';
 import {fetchProductsRequest} from './landingActions'
 
 
@@ -8,12 +8,7 @@ export const SUBMIT_REGISTRATION = 'SUBMIT_REGISTRATION';
 export const SUBMIT_LOGIN = 'SUBMIT_LOGIN';
 export const SET_LOGIN_STATUS = 'SET_LOGIN_STATUS';
 export const SET_AUTH_TOKEN = 'SET_AUTH_TOKEN';
-
-export const CLEAR_AUTH = 'CLEAR_AUTH';
-
-export const clearAuth = () => ({
-    type: CLEAR_AUTH
-});
+export const LOG_OUT_STORE = 'LOG_OUT_STORE'
 
 
 export const setAuthToken = authToken => ({type: SET_AUTH_TOKEN, authToken});
@@ -28,15 +23,14 @@ export const submitLogin = (loginObj) => ({type: SUBMIT_LOGIN, loginObj});
 
 export const setLoginStatus = (loginStatus) => ({type: SET_LOGIN_STATUS, loginStatus});
 
-const storeAuthInfo = (authToken, dispatch, username) => {
-  console.log('sAI user', username)
+export const logOutStore = () => ({type: LOG_OUT_STORE})
 
+const storeAuthInfo = (authToken, dispatch, username) => {
   const decodedToken = jwtDecode(authToken);
   dispatch(setAuthToken(authToken));
   dispatch(authSuccess(decodedToken.user.username));
   saveAuthToken(authToken);
-  saveCurrentUser(username)
-};
+  };
 
 export const login_sequence = (values) => dispatch => {
 const {username} = values;
@@ -56,4 +50,24 @@ const {username} = values;
         dispatch(fetchProductsRequest('true'))
       })
   })
+}
+
+export const registerSequence = (values) => dispatch => {
+  const {username, password, userEmail} = values
+  console.log('register sequence')
+  new Promise((resolve, reject) => {
+    fetch(`http://localhost:8080/api/users/`, {
+      method: 'post',
+      body: JSON.stringify(values),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+      .then(res => res.json())
+      .then (res => console.log(res))
+      })
+  }
+export const logOutSequence = () => (dispatch) => {
+  localStorage.clear()
+  dispatch(logOutStore());
 }
