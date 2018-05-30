@@ -4,7 +4,6 @@ import React from 'react';
 import Footer from './Footer'
 import {connect} from 'react-redux'
 import CollapsableUL from './CollapsableUL'
-import TestAccordion from './TestAccordion'
 import './userdash.css'
 import DetailView from './DetailView'
 import AddProduct  from './AddProduct';
@@ -48,10 +47,9 @@ export class UserDash extends React.Component {
     } else  {
       return (
 <div className="Dash">
-<AccordionLibrary />
-    {/* <TestAccordion type="products" /> */}
-          {/* <CollapsableUL type="products"/>
-          <CollapsableUL type="looks"/> */}
+<AccordionLibrary type='products' />
+<AccordionLibrary type='looks' />
+
           <Footer/>
   
         </div>

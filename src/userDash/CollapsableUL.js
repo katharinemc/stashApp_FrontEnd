@@ -8,11 +8,11 @@ import { fetchProducts, fetchLooks} from  '../actions/landingActions'
 export class CollapsableUL extends React.Component {
 
   render() {
-    if (this.props.products === []) {
+    // if (this.props.products === []) {
 
-      // this.props.dispatch(fetchProducts(this.props.authToken, this.props.currentUser))
-      this.props.dispatch(fetchLooks(this.props.authToken))  
-    }
+    //   // this.props.dispatch(fetchProducts(this.props.authToken, this.props.currentUser))
+    //   this.props.dispatch(fetchLooks(this.props.authToken))  
+    // }
   
 
     console.log('i am a collapsable ul', this.props.results)
