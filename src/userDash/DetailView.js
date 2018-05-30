@@ -7,15 +7,14 @@ import {setAuthToken} from '../actions/auth'
 
 export class DetailView extends React.Component {
 
-componentWillMount (){
-  const authToken = loadAuthToken();
-  console.log(authToken)
-  if (authToken) {
-      const token = authToken;
-      this.props.dispatch(setAuthToken(token));
-      // store.dispatch(refreshAuthToken());
-  }
-}
+// componentWillMount (){
+//   const authToken = loadAuthToken();
+//   if (authToken) {
+//       const token = authToken;
+//       this.props.dispatch(setAuthToken(token));
+//       // store.dispatch(refreshAuthToken());
+//   }
+// }
 
   render() {
 

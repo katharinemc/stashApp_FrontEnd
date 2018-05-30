@@ -21,8 +21,6 @@ export class AddLook extends React.Component {
 
 
   render() {
-
-    console.log('add look props', this.props)
     return (
 
             <form  className="addLook" onSubmit={this

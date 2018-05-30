@@ -44,8 +44,6 @@ export const sendNewProduct = (values, currentUser, authToken) => dispatch => {
 }
 
 export const deleteProduct = (itemId, authToken) => dispatch => {
-
-console.log(itemId, authToken)
   fetch(`${API_BASE_URL}/api/products/${itemId}`, {
     method: 'DELETE',
     headers: {
@@ -53,13 +51,11 @@ console.log(itemId, authToken)
       Authorization: `Bearer ${authToken}`
     }
   }).then(res => {
-    console.log(res.status, res.response);
     if (!res.ok) {
       return Promise.reject(res.statusText)
     }
 
     else if(res.status ===204) {
-      console.log('deleted')
       dispatch(productDeleteSuccess(itemId))
     }
 

@@ -17,33 +17,36 @@ import { deleteProduct } from "../actions/dashActions";
 class AccordionLibrary extends React.Component {
 
 onClick (values) {
-    console.log('values come in', values)
     const authToken = this.props.authToken
-    console.log('button fires',authToken)
-
     this.props.dispatch(deleteProduct(values, authToken))
 }
     
     render() {
-        console.log('i am an accordion', this.props.authToken)
-        const results = this.props.results.map((item, index) => (
+        const results = this.props.results.map((item, index) =>{
+            let productList;
+            if(this.props.type==='looks'){
+                productList = item.products.map( product => {
+                    return `${product.brand}, ${product.category}, ${product.name}, ${product.shade}` 
+               })
+            }
+           return (
 
-               <AccordionItem key={index}>
-                 <AccordionItemTitle > 
-{ this.props.type === 'products' ? `${item.brand} ${item.category} ${item.shade}` : item.name }
-       
-                 </AccordionItemTitle>
-                 <AccordionItemBody> 
-                 { this.props.type === 'products' ? `Full Product Name: ${item.name}` : `Items used: ${item.products}` }
-
-                 <button onClick={() => this.onClick(`${item.id}`)}>Delete</button> <button>Edit</button>
-                 </AccordionItemBody>
-                 </AccordionItem>
-
-             ));
-
-console.log(results)
+                <AccordionItem key={index}>
+                  <AccordionItemTitle > 
+ { this.props.type === 'products' ? `${item.brand} ${item.category} ${item.shade}` : item.name }
         
+                  </AccordionItemTitle>
+                  <AccordionItemBody> 
+ 
+                  { this.props.type === 'products' ? `Full Product Name: ${item.name}` : `Items used: ${productList}` }
+ 
+                  <button onClick={() => this.onClick(`${item.id}`)}>Delete</button> <button>Edit</button>
+                  </AccordionItemBody>
+                  </AccordionItem>
+ 
+              )
+
+        } );        
         return (
 
             <Accordion>

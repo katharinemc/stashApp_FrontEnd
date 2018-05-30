@@ -64,7 +64,6 @@ export const registerSequence = (values) => dispatch => {
       })
       .then(res => res.json())
       .then (({authToken}) => {
-        console.log(authToken);
         storeAuthInfo(authToken, dispatch)
       }) 
       })

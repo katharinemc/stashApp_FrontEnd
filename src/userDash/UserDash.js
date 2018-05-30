@@ -22,7 +22,6 @@ import AccordionLibrary from './AccordionLibrary';
 
 export class UserDash extends React.Component {
   render() {
-    console.log('DASH, products and looks', this.props.products, this.props.looks)
     if (this.props.authToken === null) {
       return <Redirect to={"/"}/>;
 

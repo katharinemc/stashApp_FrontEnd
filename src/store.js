@@ -20,7 +20,6 @@ main: mainReducer,
 
     const authToken = loadAuthToken();
 if (authToken) {
-    console.log('store getting info')
     const token = authToken;
     store.dispatch(setAuthToken(token));
     store.dispatch(fetchProducts(token))

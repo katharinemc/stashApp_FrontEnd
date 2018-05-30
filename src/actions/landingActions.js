@@ -56,7 +56,6 @@ export const fetchProducts = (authToken) => dispatch => {
 };
 
 export const fetchLooks = (authToken) => dispatch => {
-  console.log('inside fetchLooks get token with token', authToken)
   fetch(`${API_BASE_URL}/api/looks/`, {
       method: 'get',
       headers: {
@@ -71,7 +70,6 @@ export const fetchLooks = (authToken) => dispatch => {
       return res.json()
   }) 
   .then (looks =>  {
-    console.log('these looks about to leave actions')
     dispatch(fetchLooksSuccess(looks))})
   .catch(err => console.log(err));
 };
