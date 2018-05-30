@@ -3,19 +3,27 @@ import {connect} from 'react-redux'
 import './collapsableul.css'
 import { loadAuthToken } from './../local-storage.js'
 import {setAuthToken} from '../actions/auth'
+import { fetchProducts, fetchLooks} from  '../actions/landingActions'
 
 export class CollapsableUL extends React.Component {
 
-
   render() {
- const results = this.props.results.map((product, index) => (
+    if (this.props.products === []) {
+
+      // this.props.dispatch(fetchProducts(this.props.authToken, this.props.currentUser))
+      this.props.dispatch(fetchLooks(this.props.authToken))  
+    }
+  
+
+    console.log('i am a collapsable ul', this.props.results)
+ const results = this.props.results.map((item, index) => (
         <div key={index}>
           <dt >
-            {product.brand} {product.category}
+            {item.brand} {item.category} {item.name}
 
           </dt>
           <dd> 
-            {product.shade}
+            {item.shade}
           </dd>
 </div>
       ));

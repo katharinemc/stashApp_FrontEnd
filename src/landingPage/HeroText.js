@@ -3,7 +3,7 @@ import './herotext.css';
 import SignUpBox from './SignUpBox'
 import {connect} from 'react-redux'
 import {BrowserRouter as Route, Redirect} from 'react-router-dom'
-import {fetchProducts} from '../actions/landingActions'
+import {fetchProducts, fetchLooks} from '../actions/landingActions'
 import ReduxLogin from './ReduxLogin'
 import ReduxRegister  from './ReduxRegister';
 
@@ -13,9 +13,8 @@ export class HeroText extends React.Component {
 console.log(this.props)
     if (this.props.loading === 'true') {
 
-      this
-        .props
-        .dispatch(fetchProducts(this.props.authToken, this.props.currentUser))
+      // this.props.dispatch(fetchProducts(this.props.authToken, this.props.currentUser))
+      this.props.dispatch(fetchLooks(this.props.authToken))
       return <h1>Here's some stuff, loading</h1>
 
     } else if (this.props.loading === 'complete' && this.props.authToken != null) {
@@ -46,6 +45,7 @@ const mapStateToProps = (main, auth) => {
        authToken: main.auth.authToken,
         currentUser: main.auth.currentUser, 
         products: main.main.products,
+        looks: main.main.looks,
          loading: main.main.loading});
 
 }

@@ -33,7 +33,6 @@ const storeAuthInfo = (authToken, dispatch, username) => {
   };
 
 export const login_sequence = (values) => dispatch => {
-  console.log(values)
 const {username} = values;
   new Promise((resolve, reject) => {
     fetch(`http://localhost:8080/api/login/`, {
@@ -45,11 +44,9 @@ const {username} = values;
       })
       .then(res => res.json())
       .then(({authToken}) => {
-        console.log('no braces', authToken, 'braces', {authToken})
         storeAuthInfo(authToken, dispatch)})
       .then((username) => authSuccess(username))
       .then(() => {
-
         dispatch(fetchProductsRequest('true'))
       })
   })
@@ -57,7 +54,6 @@ const {username} = values;
 
 export const registerSequence = (values) => dispatch => {
   const {username, password, userEmail} = values
-  console.log('register sequence')
   new Promise((resolve, reject) => {
     fetch(`http://localhost:8080/api/users/`, {
       method: 'post',

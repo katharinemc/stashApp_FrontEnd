@@ -5,7 +5,6 @@ import {Field, reduxForm} from 'redux-form'
 
 export class ReduxRegister extends React.Component {
   onSubmit(values) {
-      console.log('register fires')
     this
       .props
       .dispatch(registerSequence(values))

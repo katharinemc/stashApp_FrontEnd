@@ -8,13 +8,11 @@ export class AddProduct extends React.Component {
   onSubmit(values) {
     const authToken = this.props.authToken
     const currentUser = this.props.currentUser;
-    console.log('adding a product', currentUser);
     this.props.dispatch(sendNewProduct(values, currentUser, authToken))
 
   }
 
   changeDisplay(status) {
-    console.log('fire the button!', status)
     this
       .props
       .dispatch(setEditing(status))

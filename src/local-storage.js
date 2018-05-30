@@ -21,7 +21,6 @@ export const saveCurrentUser = currentUser => {
 
 
 export const clearAuthToken = () => {
-    debugger
     try {
         localStorage.removeItem('authToken');
         return 'done';
@@ -29,12 +28,3 @@ export const clearAuthToken = () => {
 };
 
 
-export const clearCurrentUser = () => {
-    debugger
-    console.log('lets clear')
-    try {
-        console.log('what next?')
-        localStorage.clear();
-        return 'done'
-    } catch (e) {}
-};

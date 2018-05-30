@@ -12,7 +12,7 @@ import {authSuccess} from '../actions/auth'
 
 export class UserDash extends React.Component {
   render() {
-console.log(this.props.authToken)
+    console.log('DASH, products and looks', this.props.products, this.props.looks)
     if (this.props.authToken === null) {
       return <Redirect to={"/"}/>;
 
@@ -29,9 +29,8 @@ console.log(this.props.authToken)
       return (
         <div className="Dash">
   
-          {/* <DetailView /> */}
           <CollapsableUL type="products"/>
-          {/* <CollapsableUL type="looks"/> */}
+          <CollapsableUL type="looks"/>
           <Footer/>
   
         </div>
@@ -48,6 +47,7 @@ const mapStateToProps = main => (
   {expandFooter: main.main.expandFooter, 
   editing: main.dash.editing,
   auth: main.auth,
+  looks: main.main.looks,
   products: main.main.products,
   currentUser: main.auth.currentUser,
 authToken: main.auth.authToken})

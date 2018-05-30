@@ -25,7 +25,6 @@ export const showDetail = (key) => ({
 
   export const sendNewProduct = (values, currentUser, authToken) => dispatch => {
  const {brand, category, name, shade} = values
-console.log('sending user', currentUser, 'and token', authToken)
 
 let newObj = {
    brand,
@@ -45,13 +44,11 @@ let newObj = {
         if (!res.ok){
             return Promise.reject(res.statusText)
         }
-        console.log('post res', )
         return res.json()
     }) 
     .then ( (res) => {
 
-      //make clean object to pass to newProductSuccess
-      console.log('response after fetch', res)
+      //KRM make clean object to pass to newProductSuccess
     dispatch(newProductSuccess(res)) }) 
 .then (() => dispatch(setEditing('false')))     
     
