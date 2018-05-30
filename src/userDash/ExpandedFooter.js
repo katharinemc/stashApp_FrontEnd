@@ -6,7 +6,7 @@ import {setFooterExpand} from '../actions/landingActions'
 import { logOutSequence } from '../actions/auth';
 export  class ExpandedFooter extends React.Component {
 
-  addProduct(status) {
+  addNew(status) {
     this
       .props
       .dispatch(setEditing(status))
@@ -25,8 +25,8 @@ logOut() {
         <div >
             
             <ul >
-<li onClick={()=>this.addProduct(!this.props.editing) } >Add Product</li>
-<li>Add Look</li>
+<li onClick={()=>this.addNew('addProduct') } >Add Product</li>
+<li onClick={()=>this.addNew('addLook') } >Add Look</li>
 <li onClick={()=>this.logOut() }>Log Out  </li>
 
                 </ul>

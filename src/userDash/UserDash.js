@@ -1,14 +1,25 @@
+import "babel-polyfill";
 import React from 'react';
+
 import Footer from './Footer'
 import {connect} from 'react-redux'
 import CollapsableUL from './CollapsableUL'
+import TestAccordion from './TestAccordion'
 import './userdash.css'
 import DetailView from './DetailView'
 import AddProduct  from './AddProduct';
+import AddLook from './AddLook'
 import {BrowserRouter as Route, Redirect} from 'react-router-dom'
+import {
+  Accordion,
+  AccordionItem,
+  AccordionItemTitle,
+  AccordionItemBody,
+} from 'react-accessible-accordion';
 
 import { loadCurrentUser } from '../local-storage';
 import {authSuccess} from '../actions/auth'
+import AccordionLibrary from './AccordionLibrary';
 
 export class UserDash extends React.Component {
   render() {
@@ -18,19 +29,29 @@ export class UserDash extends React.Component {
 
     }
 
-    if (this.props.editing === true) {
+    if (this.props.editing === 'addProduct') {
       return (
         <div>
            <AddProduct currentUser={this.props.currentUser} authToken={this.props.authToken}/>
           <Footer/>
         </div>
       )
+    } else if (this.props.editing === 'addLook') {
+      return (
+        <div>
+        <AddLook currentUser={this.props.currentUser} authToken={this.props.authToken}/>
+       <Footer/>
+     </div>
+  
+      )
+
     } else  {
       return (
-        <div className="Dash">
-  
-          <CollapsableUL type="products"/>
-          <CollapsableUL type="looks"/>
+<div className="Dash">
+<AccordionLibrary />
+    {/* <TestAccordion type="products" /> */}
+          {/* <CollapsableUL type="products"/>
+          <CollapsableUL type="looks"/> */}
           <Footer/>
   
         </div>
