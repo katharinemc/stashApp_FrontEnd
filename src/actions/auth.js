@@ -9,6 +9,13 @@ export const SUBMIT_LOGIN = 'SUBMIT_LOGIN';
 export const SET_LOGIN_STATUS = 'SET_LOGIN_STATUS';
 export const SET_AUTH_TOKEN = 'SET_AUTH_TOKEN';
 
+export const CLEAR_AUTH = 'CLEAR_AUTH';
+
+export const clearAuth = () => ({
+    type: CLEAR_AUTH
+});
+
+
 export const setAuthToken = authToken => ({type: SET_AUTH_TOKEN, authToken});
 
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
