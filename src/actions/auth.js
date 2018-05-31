@@ -16,7 +16,6 @@ export const setAuthToken = authToken => ({type: SET_AUTH_TOKEN, authToken});
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 
 export const caughtError = (error) => ({type: CAUGHT_ERROR, error})
-
  
 export const authSuccess = currentUser => ({type: AUTH_SUCCESS, currentUser});
 
@@ -29,31 +28,37 @@ export const setLoginStatus = (loginStatus) => ({type: SET_LOGIN_STATUS, loginSt
 export const logOutStore = () => ({type: LOG_OUT_STORE})
 
 const storeAuthInfo = (authToken, dispatch, username) => {
+  console.log('SAI',authToken, dispatch, username )
   const decodedToken = jwtDecode(authToken);
   dispatch(setAuthToken(authToken));
   dispatch(authSuccess(decodedToken.user.username));
   saveAuthToken(authToken);
   };
 
-export const login_sequence = (values) => dispatch => {
+export const login_sequence = (values) => async dispatch => {
 const {username} = values;
-  new Promise((resolve, reject) => {
-    fetch(`http://localhost:8080/api/login/`, {
+const res = await fetch(`http://localhost:8080/api/login/`, {
       method: 'post',
       body: JSON.stringify(values),
         headers: {
           "Content-Type": "application/json"
         }
       })
-      .then(res => res.json())
-      .then(({authToken}) => {
-        storeAuthInfo(authToken, dispatch)})
-      .then((username) => authSuccess(username))
-      .then(() => {
+      console.log('login first res', res)
+      const data = await res.json()
+      // if('foobar'){
+      //   console.log('errors go here')
+      // } else {
+
+        const {authToken} = data
+        console.log('sucessful login', username, authToken)
+        const storeAuth = await storeAuthInfo(authToken, dispatch, username )
+        console.log('did that help?', storeAuth)
+        authSuccess(username)
         dispatch(fetchProductsRequest('true'))
-      })
-  })
-}
+
+      // }
+  }
 
 export const registerSequence = (values) => async dispatch => {
   const {username, password, userEmail} = values
