@@ -1,11 +1,20 @@
 import React from 'react'
 // import './loginbox.css';
 import {Field, reduxForm} from 'redux-form'
-import {setEditing} from '../actions/dashActions'
+import {setEditing, addToLookSearch} from '../actions/dashActions'
 import { connect } from 'react-redux';
 
+
 export class AddLook extends React.Component {
-  
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      resultProducts: []
+    }
+  }
+
+
   onSubmit(values) {
     const authToken = this.props.authToken
     const currentUser = this.props.currentUser;
@@ -19,8 +28,28 @@ export class AddLook extends React.Component {
       .dispatch(setEditing(status))
   }
 
+  onChange(event){
+    if(event.target.value != '')
+    {
+      console.log('hi there')
+      let resultProducts = this.props.products.filter(product => {
+        return product.brand.match(event.target.value) || product.name.match(event.target.value)
+
+        }) 
+
+        console.log(resultProducts)
+        this.setState({
+          resultProducts
+       })
+    } else {
+      this.setState({
+        resultProducts: []
+      })
+    }  
+  }
 
   render() {
+    console.log('addlook form', this.props)
     return (
 
             <form  className="addLook" onSubmit={this
@@ -43,8 +72,12 @@ export class AddLook extends React.Component {
           type="text"
           name="productSearch"
           id="productSearch"
+          onChange={(values) => this.onChange(values)}
           placeholder="Nars HeatWave"/>
 
+              <h3>Product Search Results</h3>
+
+              {this.state.resultProducts.map(product => `${product.brand}, ${product.name}`)}
                 {/* KRM SearchResultsGoHere */}
 
         <button type="submit">
@@ -57,8 +90,8 @@ export class AddLook extends React.Component {
 }
 
 const mapStateToProps = (main) => ({
-    products: main.main.products
-    // ...
+    products: main.main.products,
+        // ...
 });
 
 AddLook = connect(

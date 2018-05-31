@@ -5,7 +5,9 @@ export const SHOW_DETAIL = 'SHOW_DETAIL';
 export const SET_EDITING = 'SET_EDITING';
 export const NEW_PRODUCT_SUCCESS = 'NEW_PRODUCT_SUCCESS';
 export const  PRODUCT_DELETE_SUCCESS = ' PRODUCT_DELETE_SUCCESS';
+export const ADD_TO_LOOK_SEARCH='ADD_TO_LOOK_SEARCH'
 
+export const addToLookSearch = (values) => ({type: ADD_TO_LOOK_SEARCH, values})
 export const showDetail = (key) => ({type: SHOW_DETAIL, key})
 
 export const setEditing = (status) => ({type: SET_EDITING, status})

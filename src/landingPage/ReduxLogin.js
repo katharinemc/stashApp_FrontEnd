@@ -3,7 +3,7 @@ import React from 'react'
 import {submitLogin, login_sequence, setLoginStatus} from '../actions/auth';
 import {Field, reduxForm} from 'redux-form'
 import Input from '../Input.js'
-import {required, nonEmpty} from '../validators'
+import {required, passwordsMatch, nonEmpty} from '../validators'
 
 export class ReduxLogin extends React.Component {
   onSubmit(values) {
@@ -31,7 +31,7 @@ export class ReduxLogin extends React.Component {
         <Field
           component={Input}
           name='password'
-          validate={[required, nonEmpty]} />
+          validate={[passwordsMatch, required, nonEmpty]} />
 
         <button disabled={this.props.pristine || this.props.submitting} type="submit">Log In</button>
       </form>

@@ -2,7 +2,8 @@ import React from 'react'
 import './loginbox.css';
 import { registerSequence } from '../actions/auth';
 import {Field, reduxForm} from 'redux-form'
-
+import Input from '../Input'
+import {required, isEmail, nonEmpty, passwordLength, passwordsMatch} from '../validators'
 export class ReduxRegister extends React.Component {
   onSubmit(values) {
     this
@@ -20,23 +21,23 @@ export class ReduxRegister extends React.Component {
         <label htmlFor="username">UserName</label>
         <Field component="input" type="text" name="username" id="username"/>
         <label htmlFor="userEmail">Email</label>
-        <Field component="input" type="text" name="userEmail" id="userEmail"/>
+
+        <Field
+          component={Input}
+          name='Email' placeholder="user@user.com"
+          validate={[isEmail, required, nonEmpty]} />
  
         <label htmlFor="password">Password</label>
         <Field
-          component="input"
-          type="text"
-          name="password"
-          id="password"
-          placeholder="MySecretPhrase"/>
+          component={Input} placeholder="MySecretWord"
+          name='password'
+          validate={[passwordLength, required, nonEmpty]} />
 
-        <label htmlFor="passwordConfirm">Password</label>
+        <label htmlFor="passwordconfirm">Confirm Password</label>
         <Field
-          component="input"
-          type="text"
-          name="passwordConfirm"
-          id="passwordConfirm"
-          placeholder="MySecretPhrase"/>
+          component={Input} placeholder="MySecretWord"
+          name='passwordconfirm'
+          validate={[passwordsMatch, passwordLength, required, nonEmpty]} />
 
         <button type="submit">Log In</button>
       </form>
