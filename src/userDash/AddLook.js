@@ -52,6 +52,14 @@ export class AddLook extends React.Component {
       currentProducts: [...this.state.currentProducts, product]
     })
   }
+
+  removeFromLook(item) {
+    console.log('remove fires')
+    this.setState({
+      currentProducts: this.state.currentProducts.filter(product => product != item )
+    })
+  }
+
   render() {
     console.log('current products', this.state.currentProducts)  
     return (
@@ -71,8 +79,9 @@ export class AddLook extends React.Component {
           <h3>Current Products</h3>
           {/* //added products go here */}
           {this.state.currentProducts.map(product =>{
-            return (`${product.brand}, ${product.category}`) })}
-          <label htmlFor="productSearch">Choose your products</label>
+return (<li onClick={() => this.removeFromLook(product)}> `{product.brand}, {product.category}, {product.name}, {product.shade} `</li>)
+          })}
+<label htmlFor="productSearch">Choose your products</label>
           <Field
           component="input"
           type="text"
