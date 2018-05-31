@@ -26,7 +26,7 @@ onClick (values) {
             let productList;
             if(this.props.type==='looks'){
                 productList = item.products.map( product => {
-                    return `${product.brand}, ${product.category}, ${product.name}, ${product.shade}` 
+                    return `${product.brand} ${product.category}, ${product.name}, ${product.shade}`
                })
             }
            return (

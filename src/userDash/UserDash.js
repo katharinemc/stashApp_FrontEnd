@@ -3,9 +3,7 @@ import React from 'react';
 
 import Footer from './Footer'
 import {connect} from 'react-redux'
-import CollapsableUL from './CollapsableUL'
 import './userdash.css'
-import DetailView from './DetailView'
 import AddProduct  from './AddProduct';
 import AddLook from './AddLook'
 import {BrowserRouter as Route, Redirect} from 'react-router-dom'

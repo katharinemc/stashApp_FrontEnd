@@ -2,6 +2,8 @@ import React from 'react'
 // import './loginbox.css';
 import {submitLogin, login_sequence, setLoginStatus} from '../actions/auth';
 import {Field, reduxForm} from 'redux-form'
+import Input from '../Input.js'
+import {required, nonEmpty} from '../validators'
 
 export class ReduxLogin extends React.Component {
   onSubmit(values) {
@@ -11,7 +13,7 @@ export class ReduxLogin extends React.Component {
   }
 
   render() {
-   return (
+    return (
       <form
         className="login"
         onSubmit={this
@@ -19,21 +21,18 @@ export class ReduxLogin extends React.Component {
         .handleSubmit(values => this.onSubmit(values))}>
         <h1>Welcome Back!</h1>
         <label htmlFor="userName">UserName</label>
-        <Field component="input" type="text" name="username" id="username"/>
-        <label htmlFor="password">Password</label>
         <Field
-          component="input"
-          type="text"
-          name="password"
-          id="password"
-          placeholder="MySecretPhrase"/>
+          component={Input}
+          name='username'
+          validate={[required, nonEmpty]} />
+          <label 
+          htmlFor="password">Password</label>
 
-        <button type="submit">Log In</button>
+        <Field
+          component={Input}
+          name='password'
+          validate={[required, nonEmpty]} />
+
+        <button disabled={this.props.pristine || this.props.submitting} type="submit">Log In</button>
       </form>
-    );
-  }
-}
-
-export default reduxForm({
-  form: 'login' // a unique identifier for this form
-})(ReduxLogin)
+      ); } } export default reduxForm({form : 'login'})(ReduxLogin)
