@@ -42,8 +42,7 @@ if (data.error.code === 11000) {
   dispatch(caughtError('This product already exists in your collection!'))
 } else {
   dispatch(newProductSuccess(data))
-  dispatch(setEditing('false'))
-  
+  dispatch(setEditing('false'))  
 }
 }
   
@@ -67,26 +66,30 @@ export const deleteProduct = (itemId, authToken) => dispatch => {
   })    
 }
 
-export const sendNewLook = (values, products, authToken) => dispatch => {
+export const sendNewLook = (values, products, authToken) => async dispatch => {
   const name = values.name
 
   let newLook = {
     name,
     products
   }
-  fetch(`${API_BASE_URL}/api/looks/`, {
+ const res = await fetch(`${API_BASE_URL}/api/looks/`, {
     method: 'post',
     body: JSON.stringify(newLook),
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${authToken}`
     }
-  }).then(res => {
-    if (!res.ok) {
-      return Promise.reject(res.statusText)
-    }
-    return res.json()
-  }).then(res => {
-      dispatch(newLookSuccess(res))
-  }) .then(() => dispatch(setEditing('false')))
+  })
+  
+  const data = await res.json()
+ 
+ if(res.status === 200){
+   console.log('yaaay')
+   dispatch(newLookSuccess(res))
+   dispatch(setEditing('false'))
+ } else {
+  dispatch(caughtError('You already have a Look with this name'))
+}
+
 }

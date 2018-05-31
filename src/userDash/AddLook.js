@@ -64,6 +64,7 @@ export class AddLook extends React.Component {
               .props
               .handleSubmit(values => this.onSubmit(values, this.state.selectedProducts))}>
         <h1>Add a Look!</h1>
+        <span>{this.props.error} </span>
         <label htmlFor="name">Look Name</label>
         <Field
           component="input"
@@ -109,6 +110,7 @@ return (<li onClick={() => this.addProductToLook(product)}> `{product.brand}, {p
 
 const mapStateToProps = (main) => ({
     products: main.main.products,
+    error: main.auth.error
         // ...
 });
 
