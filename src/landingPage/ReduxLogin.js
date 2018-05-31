@@ -4,6 +4,7 @@ import {submitLogin, login_sequence, setLoginStatus} from '../actions/auth';
 import {Field, reduxForm} from 'redux-form'
 import Input from '../Input.js'
 import {required, passwordsMatch, nonEmpty} from '../validators'
+import { connect } from 'react-redux';
 
 export class ReduxLogin extends React.Component {
   onSubmit(values) {
@@ -20,6 +21,7 @@ export class ReduxLogin extends React.Component {
         .props
         .handleSubmit(values => this.onSubmit(values))}>
         <h1>Welcome Back!</h1>
+        <span>{this.props.error}</span>
         <label htmlFor="userName">UserName</label>
         <Field
           component={Input}
@@ -35,4 +37,19 @@ export class ReduxLogin extends React.Component {
 
         <button disabled={this.props.pristine || this.props.submitting} type="submit">Log In</button>
       </form>
-      ); } } export default reduxForm({form : 'login'})(ReduxLogin)
+      ); } } 
+      
+      
+      const mapStateToProps = (main) => ({
+        error: main.auth.error,
+            // ...
+      });
+      
+      ReduxLogin = connect(
+        mapStateToProps
+      )(ReduxLogin);
+      
+      
+      
+      
+      export default reduxForm({form : 'login'})(ReduxLogin)
