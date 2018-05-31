@@ -24,7 +24,7 @@ export class ReduxRegister extends React.Component {
 
         <Field
           component={Input}
-          name='Email' placeholder="user@user.com"
+          name='userEmail' placeholder="user@user.com"
           validate={[isEmail, required, nonEmpty]} />
  
         <label htmlFor="password">Password</label>

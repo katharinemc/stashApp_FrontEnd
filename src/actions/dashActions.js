@@ -83,9 +83,10 @@ export const sendNewLook = (values, products, authToken) => dispatch => {
     }
   }).then(res => {
     if (!res.ok) {
+      console.log('not okay', res)
       return Promise.reject(res.statusText)
     }
-    // console.log(res)
+    console.log(res)
     return res.json()
   }).then(res => {
     console.log(res)

@@ -54,20 +54,28 @@ const {username} = values;
 
 export const registerSequence = (values) => dispatch => {
   const {username, password, userEmail} = values
-  new Promise((resolve, reject) => {
-    fetch(`http://localhost:8080/api/users/`, {
+   return fetch(`http://localhost:8080/api/users/`, {
       method: 'post',
       body: JSON.stringify(values),
         headers: {
           "Content-Type": "application/json"
         }
       })
-      .then(res => res.json())
-      .then (({authToken}) => {
-        storeAuthInfo(authToken, dispatch)
-      }) 
-      })
-  }
+      .then(res => {
+        console.log('here is a fixed string', res);
+        return res.json()
+      })     
+       .then (res => {
+         
+        if(res.status === 422){
+          console.log('do something with this error')
+        } else {
+          storeAuthInfo(res, dispatch)
+        }
+        
+
+      }) }
+
 export const logOutSequence = () => (dispatch) => {
   localStorage.clear()
   dispatch(logOutStore());
