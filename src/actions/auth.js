@@ -52,29 +52,24 @@ const {username} = values;
   })
 }
 
-export const registerSequence = (values) => dispatch => {
+export const registerSequence = (values) => async dispatch => {
   const {username, password, userEmail} = values
-   return fetch(`http://localhost:8080/api/users/`, {
+
+  const res = await fetch(`http://localhost:8080/api/users/`, {
       method: 'post',
       body: JSON.stringify(values),
         headers: {
           "Content-Type": "application/json"
         }
-      })
-      .then(res => {
-        console.log('here is a fixed string', res);
-        return res.json()
-      })     
-       .then (res => {
-         
-        if(res.status === 422){
-          console.log('do something with this error')
-        } else {
-          storeAuthInfo(res, dispatch)
-        }
-        
-
-      }) }
+      });
+  console.log('here is a fixed string', res);
+  const data = await res.json()
+  if(res.status === 422){
+    console.log('do something with this error')
+  } else {
+    storeAuthInfo(data, dispatch)
+  }
+}
 
 export const logOutSequence = () => (dispatch) => {
   localStorage.clear()
