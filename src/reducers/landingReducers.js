@@ -26,14 +26,13 @@ export const mainReducer = (state=initialState, action) => {
             return Object.assign({}, state, {products: [...action.products]}, {loading: 'complete'})
         case NEW_PRODUCT_SUCCESS: 
             return Object.assign({}, state, {products: [...state.products, action.values]})
-            case NEW_LOOK_SUCCESS:
-            console.log('success reducer', action)
+        case NEW_LOOK_SUCCESS:
             return Object.assign({}, state, {looks: [... state.looks, action.values]})
         case FETCH_LOOKS_SUCCESS:
             return Object.assign({}, state, {looks: [...action.looks]},{loading: 'complete'} )
         case  PRODUCT_DELETE_SUCCESS:
             return Object.assign({}, state, {products: state.products.filter(product => product.id!=action.itemId ) })
-            case ADD_TO_LOOK_SEARCH:
+        case ADD_TO_LOOK_SEARCH:
             return Object.assign({}, state, {addToLookResults: state.products.filter(product => product === action.values)})
     }
 

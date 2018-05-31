@@ -20,7 +20,6 @@ const initialState = {
 export const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case CAUGHT_ERROR: 
-    console.log('hi', action)
       return Object.assign( {}, state, {error: action.error})
     case LOG_OUT_STORE:
       return Object.assign({}, state, { authToken: null, currentUser: null});

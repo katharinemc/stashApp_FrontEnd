@@ -28,7 +28,6 @@ export const setLoginStatus = (loginStatus) => ({type: SET_LOGIN_STATUS, loginSt
 export const logOutStore = () => ({type: LOG_OUT_STORE})
 
 const storeAuthInfo = (authToken, dispatch, username) => {
-  console.log('SAI',authToken, dispatch, username )
   const decodedToken = jwtDecode(authToken);
   dispatch(setAuthToken(authToken));
   dispatch(authSuccess(decodedToken.user.username));
@@ -44,24 +43,15 @@ const res = await fetch(`http://localhost:8080/api/login/`, {
           "Content-Type": "application/json"
         }
       })
-      console.log('login first res', res)
 const data = await res.json()
 if (res.status===200){
   const {authToken} = data
-  console.log('sucessful login', username, authToken)
   const storeAuth = await storeAuthInfo(authToken, dispatch, username )
-  console.log('did that help?', storeAuth)
   authSuccess(username)
   dispatch(fetchProductsRequest('true'))
 } else {
-  console.log('caught another one!', data, res)
   dispatch(caughtError(data.message))
-}
-     // if('foobar'){
-      //   console.log('errors go here')
-      // } else {
-      // }
-  }
+} }
 
 export const registerSequence = (values) => async dispatch => {
   const {username, password, userEmail} = values
@@ -73,10 +63,8 @@ export const registerSequence = (values) => async dispatch => {
           "Content-Type": "application/json"
         }
       });
-  console.log('here is a fixed string', res);
   const data = await res.json()
   if(res.status === 422){
-    console.log('you caught me!', data, res)
     dispatch(caughtError(data.message))
   } else {
     storeAuthInfo(data, dispatch)

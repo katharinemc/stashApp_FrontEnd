@@ -19,7 +19,6 @@ export class AddLook extends React.Component {
   onSubmit(values, products) {
     const authToken = this.props.authToken
     const productIds = products.map(product => product.id)
-    console.log('onsub', values, productIds, authToken)
     this.props.dispatch(sendNewLook(values, productIds, authToken))
 
   }
@@ -33,7 +32,6 @@ export class AddLook extends React.Component {
   onChange(event){
     if(event.target.value != '')
     {
-      console.log('hi there')
       let resultProducts = this.props.products.filter(product => {
         return product.brand.match(event.target.value) || product.name.match(event.target.value) || product.category.match(event.target.value)
 
@@ -55,17 +53,14 @@ export class AddLook extends React.Component {
   }
 
   removeFromLook(item) {
-    console.log('remove fires')
     this.setState({
       selectedProducts: this.state.selectedProducts.filter(product => product != item )
     })
   }
 
   render() {
-    console.log('current products', this.state.selectedProducts)  
     return (
-
-            <form  className="addLook" onSubmit={this
+      <form  className="addLook" onSubmit={this
               .props
               .handleSubmit(values => this.onSubmit(values, this.state.selectedProducts))}>
         <h1>Add a Look!</h1>
@@ -102,8 +97,6 @@ return (<li onClick={() => this.addProductToLook(product)}> `{product.brand}, {p
               } )}
   </ul>
 
-
-                {/* KRM SearchResultsGoHere */}
 
         <button type="submit">
           Add Look</button>

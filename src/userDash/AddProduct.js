@@ -1,6 +1,7 @@
 import React from 'react'
 // import './loginbox.css';
 import {Field, reduxForm} from 'redux-form'
+import { connect } from 'react-redux';
 import {setEditing, sendNewProduct} from '../actions/dashActions'
 
 export class AddProduct extends React.Component {
@@ -9,7 +10,6 @@ export class AddProduct extends React.Component {
     const authToken = this.props.authToken
     const currentUser = this.props.currentUser;
     this.props.dispatch(sendNewProduct(values, currentUser, authToken))
-
   }
 
   changeDisplay(status) {
@@ -26,6 +26,7 @@ export class AddProduct extends React.Component {
               .props
               .handleSubmit(values => this.onSubmit(values))}>
         <h1>Add a Product!</h1>
+        <span>{this.props.error}</span>
         <label htmlFor="category">Category</label>
         <Field
           component="input"
@@ -63,6 +64,16 @@ export class AddProduct extends React.Component {
     );
   }
 }
+
+const mapStateToProps = (main) => ({
+  error: main.auth.error,
+      // ...
+});
+
+AddProduct = connect(
+  mapStateToProps
+)(AddProduct);
+
 
 export default reduxForm({
   form: 'AddProduct' // a unique identifier for this form
