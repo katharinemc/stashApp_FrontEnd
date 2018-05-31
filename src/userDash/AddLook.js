@@ -1,7 +1,7 @@
 import React from 'react'
 // import './loginbox.css';
 import {Field, reduxForm} from 'redux-form'
-import {setEditing, addToLookSearch} from '../actions/dashActions'
+import {setEditing, addToLookSearch, sendNewLook} from '../actions/dashActions'
 import { connect } from 'react-redux';
 
 
@@ -11,15 +11,16 @@ export class AddLook extends React.Component {
 
     this.state = {
       resultProducts: [],
-      currentProducts: []
+      selectedProducts: []
     }
   }
 
 
-  onSubmit(values) {
+  onSubmit(values, products) {
     const authToken = this.props.authToken
-    const currentUser = this.props.currentUser;
-    // this.props.dispatch(sendNewProduct(values, currentUser, authToken))
+    const productIds = products.map(product => product.id)
+    console.log('onsub', values, productIds, authToken)
+    this.props.dispatch(sendNewLook(values, productIds, authToken))
 
   }
 
@@ -49,24 +50,24 @@ export class AddLook extends React.Component {
 
   addProductToLook(product) {
     this.setState({
-      currentProducts: [...this.state.currentProducts, product]
+      selectedProducts: [...this.state.selectedProducts, product]
     })
   }
 
   removeFromLook(item) {
     console.log('remove fires')
     this.setState({
-      currentProducts: this.state.currentProducts.filter(product => product != item )
+      selectedProducts: this.state.selectedProducts.filter(product => product != item )
     })
   }
 
   render() {
-    console.log('current products', this.state.currentProducts)  
+    console.log('current products', this.state.selectedProducts)  
     return (
 
             <form  className="addLook" onSubmit={this
               .props
-              .handleSubmit(values => this.onSubmit(values))}>
+              .handleSubmit(values => this.onSubmit(values, this.state.selectedProducts))}>
         <h1>Add a Look!</h1>
         <label htmlFor="name">Look Name</label>
         <Field
@@ -78,7 +79,7 @@ export class AddLook extends React.Component {
 
           <h3>Current Products</h3>
           {/* //added products go here */}
-          {this.state.currentProducts.map(product =>{
+          {this.state.selectedProducts.map(product =>{
 return (<li onClick={() => this.removeFromLook(product)}> `{product.brand}, {product.category}, {product.name}, {product.shade} `</li>)
           })}
 <label htmlFor="productSearch">Choose your products</label>
@@ -105,7 +106,7 @@ return (<li onClick={() => this.addProductToLook(product)}> `{product.brand}, {p
                 {/* KRM SearchResultsGoHere */}
 
         <button type="submit">
-          Add Product</button>
+          Add Look</button>
         <button onClick={() => this.changeDisplay('false')}>
           Cancel</button>
       </form>
