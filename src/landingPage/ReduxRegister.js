@@ -1,5 +1,7 @@
 import React from 'react'
 import './loginbox.css';
+import { connect } from 'react-redux';
+
 import { registerSequence } from '../actions/auth';
 import {Field, reduxForm} from 'redux-form'
 import Input from '../Input'
@@ -18,6 +20,9 @@ export class ReduxRegister extends React.Component {
         onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}
         >
         <h1>Welcome to Our Community!</h1>
+        <h2>{this.props.error != null ? this.props.error : ''}</h2>
+
+
         <label htmlFor="username">UserName</label>
         <Field component="input" type="text" name="username" id="username"/>
         <label htmlFor="userEmail">Email</label>
@@ -44,6 +49,16 @@ export class ReduxRegister extends React.Component {
     );
   }
 }
+
+const mapStateToProps = (main) => ({
+  error: main.auth.error,
+      // ...
+});
+
+ReduxRegister = connect(
+  mapStateToProps
+)(ReduxRegister);
+
 
 export default reduxForm({
   form: 'register' // a unique identifier for this form

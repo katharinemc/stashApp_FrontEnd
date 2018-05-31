@@ -8,13 +8,16 @@ export const SUBMIT_REGISTRATION = 'SUBMIT_REGISTRATION';
 export const SUBMIT_LOGIN = 'SUBMIT_LOGIN';
 export const SET_LOGIN_STATUS = 'SET_LOGIN_STATUS';
 export const SET_AUTH_TOKEN = 'SET_AUTH_TOKEN';
-export const LOG_OUT_STORE = 'LOG_OUT_STORE'
-
+export const LOG_OUT_STORE = 'LOG_OUT_STORE';
+export const  CAUGHT_ERROR = 'CAUGHT_ERROR';
 
 export const setAuthToken = authToken => ({type: SET_AUTH_TOKEN, authToken});
 
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 
+export const caughtError = (error) => ({type: CAUGHT_ERROR, error})
+
+ 
 export const authSuccess = currentUser => ({type: AUTH_SUCCESS, currentUser});
 
 export const submitRegistration = (newUserObj) => ({type: SUBMIT_REGISTRATION, newUserObj});
@@ -65,7 +68,8 @@ export const registerSequence = (values) => async dispatch => {
   console.log('here is a fixed string', res);
   const data = await res.json()
   if(res.status === 422){
-    console.log('do something with this error')
+    console.log('you caught me!', data, res)
+    dispatch(caughtError(data.message))
   } else {
     storeAuthInfo(data, dispatch)
   }
