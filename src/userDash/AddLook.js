@@ -10,7 +10,8 @@ export class AddLook extends React.Component {
     super(props);
 
     this.state = {
-      resultProducts: []
+      resultProducts: [],
+      currentProducts: []
     }
   }
 
@@ -33,11 +34,9 @@ export class AddLook extends React.Component {
     {
       console.log('hi there')
       let resultProducts = this.props.products.filter(product => {
-        return product.brand.match(event.target.value) || product.name.match(event.target.value)
+        return product.brand.match(event.target.value) || product.name.match(event.target.value) || product.category.match(event.target.value)
 
         }) 
-
-        console.log(resultProducts)
         this.setState({
           resultProducts
        })
@@ -48,8 +47,13 @@ export class AddLook extends React.Component {
     }  
   }
 
+  addProductToLook(product) {
+    this.setState({
+      currentProducts: [...this.state.currentProducts, product]
+    })
+  }
   render() {
-    console.log('addlook form', this.props)
+    console.log('current products', this.state.currentProducts)  
     return (
 
             <form  className="addLook" onSubmit={this
@@ -66,6 +70,8 @@ export class AddLook extends React.Component {
 
           <h3>Current Products</h3>
           {/* //added products go here */}
+          {this.state.currentProducts.map(product =>{
+            return (`${product.brand}, ${product.category}`) })}
           <label htmlFor="productSearch">Choose your products</label>
           <Field
           component="input"
@@ -77,7 +83,16 @@ export class AddLook extends React.Component {
 
               <h3>Product Search Results</h3>
 
-              {this.state.resultProducts.map(product => `${product.brand}, ${product.name}`)}
+      
+
+<ul>
+{this.state.resultProducts.map(product => {
+
+return (<li onClick={() => this.addProductToLook(product)}> `{product.brand}, {product.category}, {product.name}, {product.shade} `</li>)
+              } )}
+  </ul>
+
+
                 {/* KRM SearchResultsGoHere */}
 
         <button type="submit">
