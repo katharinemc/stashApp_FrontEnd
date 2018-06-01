@@ -2,12 +2,17 @@ import {API_BASE_URL} from '../config';
 import {fetchProductsRequest} from './landingActions'
 import {caughtError} from './auth'
 
+export const EDIT_ITEM ='EDIT_ITEM'
 export const SHOW_DETAIL = 'SHOW_DETAIL';
 export const SET_EDITING = 'SET_EDITING';
 export const NEW_PRODUCT_SUCCESS = 'NEW_PRODUCT_SUCCESS';
+
+//TODO MAKE SURE EXTRA SPACE AT 11 ISN'T PROBLEM
 export const  PRODUCT_DELETE_SUCCESS = ' PRODUCT_DELETE_SUCCESS';
 export const ADD_TO_LOOK_SEARCH='ADD_TO_LOOK_SEARCH';
 export const NEW_LOOK_SUCCESS='NEW_LOOK_SUCCESS'
+
+export const editItem = (number, kind) => ({type:EDIT_ITEM, number, kind})
 
 export const addToLookSearch = (values) => ({type: ADD_TO_LOOK_SEARCH, values})
 export const showDetail = (key) => ({type: SHOW_DETAIL, key})
@@ -46,6 +51,7 @@ if (data.error.code === 11000) {
 }
 }
   
+
 export const deleteProduct = (itemId, authToken) => dispatch => {
   fetch(`${API_BASE_URL}/api/products/${itemId}`, {
     method: 'DELETE',
@@ -91,5 +97,4 @@ export const sendNewLook = (values, products, authToken) => async dispatch => {
  } else {
   dispatch(caughtError('You already have a Look with this name'))
 }
-
 }

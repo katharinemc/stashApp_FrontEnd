@@ -20,12 +20,16 @@ export class AddProduct extends React.Component {
 
 
   render() {
-    return (
+    if(this.props.editNumber != null){
+      console.log(this.props.products)
+      this.props.products.filter( product => product.id === this.props.editNumber)
+    }
 
+    return (
             <form  className="addProduct" onSubmit={this
               .props
               .handleSubmit(values => this.onSubmit(values))}>
-        <h1>Add a Product!</h1>
+        <h1>{this.props.editNumber === null ? `Add a Product!` : `Edit Product`}</h1>
         <span>{this.props.error}</span>
         <label htmlFor="category">Category</label>
         <Field
@@ -67,7 +71,8 @@ export class AddProduct extends React.Component {
 
 const mapStateToProps = (main) => ({
   error: main.auth.error,
-      // ...
+  products: main.main.products,
+  editNumber: main.dash.editNumber    // ...
 });
 
 AddProduct = connect(

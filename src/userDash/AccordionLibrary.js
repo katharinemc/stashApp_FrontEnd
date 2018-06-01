@@ -1,6 +1,7 @@
 import "babel-polyfill";
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {editItem} from '../actions/dashActions'
 import {connect} from 'react-redux'
 import {
     Accordion,
@@ -11,14 +12,20 @@ import {
 
 // Demo styles, see 'Styles' section below for some notes on use.
 import 'react-accessible-accordion/dist/fancy-example.css';
-import { deleteProduct } from "../actions/dashActions";
+import { deleteProduct, setEditing } from "../actions/dashActions";
 
 
 class AccordionLibrary extends React.Component {
 
-onClick (values) {
+deleteButton (values) {
     const authToken = this.props.authToken
     this.props.dispatch(deleteProduct(values, authToken))
+}
+
+editButton(number, kind) {
+    console.log('commence edit', number, kind)
+    this.props.dispatch(setEditing('editItem'))
+    this.props.dispatch(editItem(number, kind))
 }
     
     render() {
@@ -40,7 +47,7 @@ onClick (values) {
  
                   { this.props.type === 'products' ? `Full Product Name: ${item.name}` : `Items used: ${productList}` }
  
-                  <button onClick={() => this.onClick(`${item.id}`)}>Delete</button> <button>Edit</button>
+                  <button onClick={() => this.deleteButton(`${item.id}`)}>Delete</button> <button onClick={() => this.editButton(`${item.id}`, `${this.props.type}`)}>Edit</button>
                   </AccordionItemBody>
                   </AccordionItem>
  

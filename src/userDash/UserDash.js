@@ -20,6 +20,7 @@ import AccordionLibrary from './AccordionLibrary';
 
 export class UserDash extends React.Component {
   render() {
+    console.log('UD', this.props)
     if (this.props.authToken === null) {
       return <Redirect to={"/"}/>;
 
@@ -32,7 +33,18 @@ export class UserDash extends React.Component {
           <Footer/>
         </div>
       )
-    } else if (this.props.editing === 'addLook') {
+    } else if (this.props.editing === 'editItem'){
+     if(this.props.editKind ==='products'){
+      return (
+        <div>
+        <AddProduct currentUser={this.props.currentUser} authToken={this.props.authToken}/>
+       <Footer/>
+     </div>
+  
+      )
+
+     } 
+    }else if (this.props.editing === 'addLook') {
       return (
         <div>
         <AddLook currentUser={this.props.currentUser} authToken={this.props.authToken}/>
@@ -65,6 +77,8 @@ const mapStateToProps = main => (
   auth: main.auth,
   looks: main.main.looks,
   products: main.main.products,
+  editNumber: main.dash.editNumber,
+editKind: main.dash.editKind,
   currentUser: main.auth.currentUser,
 authToken: main.auth.authToken})
 
