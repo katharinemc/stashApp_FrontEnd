@@ -2,7 +2,7 @@ import React from 'react'
 // import './loginbox.css';
 import {Field, reduxForm} from 'redux-form'
 import { connect } from 'react-redux';
-import {setEditing, sendNewProduct} from '../actions/dashActions'
+import {setEditing, updateProduct, sendNewProduct} from '../actions/dashActions'
 
 export class AddProduct extends React.Component {
   
@@ -11,8 +11,14 @@ export class AddProduct extends React.Component {
     console.log('AP1', values)
     const authToken = this.props.authToken
     const currentUser = this.props.currentUser;
-    console.log(authToken, currentUser)
-    this.props.dispatch(sendNewProduct(values, currentUser, authToken))
+  
+
+   if(this.props.editNumber ===  null) {
+    this.props.dispatch(sendNewProduct(values, authToken))
+   } else{
+    let number = this.props.editNumber
+     this.props.dispatch(updateProduct(values, authToken, number))
+   }
   }
 
   changeDisplay(status) {

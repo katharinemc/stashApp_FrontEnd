@@ -33,9 +33,33 @@ export const newLookSuccess = (values) =>
   return {type: NEW_LOOK_SUCCESS, values}
 }
 
-// ({type: NEW_LOOK_SUCCESS, values})
 
-export const sendNewProduct = (values, currentUser, authToken) => async dispatch => {
+export const updateProduct = (values, authToken, number) => async dispatch => {
+  const {brand, category, name, shade} = values
+  const itemId = number
+
+  let newObj = {
+    brand,
+    category,
+    name,
+    shade
+  }
+
+  const res= await  fetch(`${API_BASE_URL}/api/products/${itemId}`, {
+    method: 'put',
+    body: JSON.stringify(newObj),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${authToken}`
+    }
+  })
+  console.log('hi')
+  const data = await res.json()  
+console.log('uP', res, data)
+//KRM THE ABOVE WORKS. NEEDS REDUCER
+}
+
+export const sendNewProduct = (values, authToken) => async dispatch => {
   const {brand, category, name, shade} = values
 
   let newObj = {
@@ -52,9 +76,7 @@ const res= await  fetch(`${API_BASE_URL}/api/products/`, {
       Authorization: `Bearer ${authToken}`
     }
   })
-  console.log('hi')
   const data = await res.json()  
-console.log('sNP', res, data)
   if (res.error && res.error.code === 11000) {
   console.log('does this get used at all?', data.error.code )
   dispatch(caughtError('This product already exists in your collection!'))
