@@ -7,7 +7,6 @@ export const loadCurrentUser = () => {
 };
 
 export const saveAuthToken = authToken => {
-    debugger
     try {
         localStorage.setItem('authToken', authToken);
     } catch (e) {}

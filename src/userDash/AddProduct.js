@@ -7,7 +7,6 @@ import {setEditing, updateProduct, sendNewProduct} from '../actions/dashActions'
 export class AddProduct extends React.Component {
   
   onSubmit(values) {
-    //TODO dispatch different action based on update or create
     console.log('AP1', values)
     const authToken = this.props.authToken
     const currentUser = this.props.currentUser;
@@ -33,7 +32,7 @@ export class AddProduct extends React.Component {
     if(this.props.editNumber != null){
       console.log(this.props.products)
       chosenProduct = (this.props.products.filter( product => product.id === this.props.editNumber))[0]
-console.log('chosen', chosenProduct)
+      console.log('chosen', chosenProduct, 'initial', this.props.initialValues.name, 'props', this.props)
     }
 
     return (
@@ -48,6 +47,7 @@ console.log('chosen', chosenProduct)
           type="text"
           name="category"
           id="category"
+          value={this.props.initialValues.category}
           placeholder={this.props.editNumber === null ? `Lipstick` : `${chosenProduct.category}`} />
         <label htmlFor="brand">Brand</label>
         <Field
@@ -55,21 +55,21 @@ console.log('chosen', chosenProduct)
           type="text"
           name="brand"
           id="brand"
-          placeholder={this.props.editNumber === null ? `M.A.C` : `${chosenProduct.brand}`}/>
+          value={this.props.editNumber === null ? `M.A.C` : `${chosenProduct.brand}`}/>
         <label htmlFor="name">Name</label>
         <Field
           component="input"
           type="text"
-          name="name"
+          name={this.props.initialValues.name}
           id="name"
-          placeholder={this.props.editNumber === null ? `Matte Lipstick` : `${chosenProduct.name}`}/>
+          value={this.props.editNumber === null ? `Matte Lipstick` : `${chosenProduct.name}`}/>
         <label htmlFor="shade">Shade</label>
         <Field
           component="input"
           type="text"
           name="shade"
           id="shade"
-          placeholder={this.props.editNumber === null ? `Shade` : `${chosenProduct.shade}`}/>
+          value={this.props.editNumber === null ? `Shade` : `${chosenProduct.shade}`}/>
 
         <button type="submit">
           Add Product</button>
@@ -80,17 +80,34 @@ console.log('chosen', chosenProduct)
   }
 }
 
-const mapStateToProps = (main) => ({
+const mapStateToProps = (main) => {
+  
+
+return  ({
   error: main.auth.error,
   products: main.main.products,
   editNumber: main.dash.editNumber    // ...
-});
-
-AddProduct = connect(
-  mapStateToProps
-)(AddProduct);
+})};
 
 
-export default reduxForm({
+
+AddProduct = reduxForm({
   form: 'AddProduct' // a unique identifier for this form
 })(AddProduct)
+
+AddProduct = connect(mapStateToProps,
+  state =>
+  {
+    console.log('here is state', state, 'here is mSTP', mapStateToProps)
+    return ({
+      initialValues:{
+        name: 'foobar',
+        // category: [ownProps.editNumber]
+      }
+    })
+  }
+  
+  
+)(AddProduct)
+
+export default AddProduct

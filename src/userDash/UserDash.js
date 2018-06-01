@@ -46,7 +46,7 @@ export class UserDash extends React.Component {
     } else  {
       return (
 <div className="Dash">
-<AccordionLibrary kind='products' />
+<AccordionLibrary editNumber={this.props.editNumber} kind='products' />
 <AccordionLibrary kind='looks' />
 
           <Footer/>

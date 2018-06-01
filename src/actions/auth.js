@@ -45,6 +45,7 @@ const res = await fetch(`http://localhost:8080/api/login/`, {
       })
 const data = await res.json()
 if (res.status===200){
+  console.log(data, res)
   const {authToken} = data
   const storeAuth = await storeAuthInfo(authToken, dispatch, username )
   authSuccess(username)

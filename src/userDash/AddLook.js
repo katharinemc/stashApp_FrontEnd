@@ -9,6 +9,8 @@ export class AddLook extends React.Component {
   constructor(props) {
     super(props);
 
+//can creat echosen variable here KRM
+
     this.state = {
       resultProducts: [],     
 
@@ -85,6 +87,7 @@ export class AddLook extends React.Component {
           type="text"
           name="name"
           id="name"
+          
           placeholder={this.props.editNumber === null ? `Date Night` : `${this.state.chosenLook.name}`}
            />
 

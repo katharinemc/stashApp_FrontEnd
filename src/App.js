@@ -12,7 +12,7 @@ class App extends Component {
       <Router>
         <div>    
         <Route exact path="/" component={LandingPage} />
-        <Route exact path="/UserDash" component={UserDash} />
+        <Route path="/users/:userId" component={UserDash} />
         </div>
       </Router>
       

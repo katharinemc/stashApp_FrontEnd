@@ -16,7 +16,7 @@ export class HeroText extends React.Component {
       return <h1>Here's some stuff, loading</h1>
 
     } else if (this.props.loading === 'complete' && this.props.authToken != null) {
-      return <Redirect to={"/UserDash"}/>;
+      return <Redirect to="/users/:userId" />;
 
     } else if (this.props.display === 'login') {
       return <ReduxLogin/>

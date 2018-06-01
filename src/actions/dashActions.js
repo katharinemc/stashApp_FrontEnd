@@ -11,7 +11,9 @@ export const UPDATE_LOOK_SUCCESS = 'UPDATE_LOOK_SUCCESS'
 export const  ITEM_DELETE_SUCCESS = 'ITEM_DELETE_SUCCESS';
 export const ADD_TO_LOOK_SEARCH='ADD_TO_LOOK_SEARCH';
 export const NEW_LOOK_SUCCESS='NEW_LOOK_SUCCESS'
+export const UPDATE_PRODUCT_SUCCESS='UPDATE_PRODUCT_SUCCESS'
 
+export const updateProductSuccess = (values) => ({type: UPDATE_PRODUCT_SUCCESS, values})
 export const updateLookSuccess = (values) => ({type: UPDATE_LOOK_SUCCESS, values})
 export const editItem = (number, kind) => ({type:EDIT_ITEM, number, kind})
 
@@ -47,8 +49,12 @@ export const updateProduct = (values, authToken, number) => async dispatch => {
   })
   console.log('hi')
   const data = await res.json()  
-console.log('uP', res, data)
-//KRM THE ABOVE WORKS. NEEDS REDUCER
+  if(res.status === 200){
+    dispatch(updateProductSuccess(data))
+    dispatch(setEditing('false'))  
+  }
+
+
 }
 
 export const sendEditLook = (values, productIds, authToken, number) => async dispatch => {
@@ -72,6 +78,8 @@ if(res.status === 200){
   dispatch(updateLookSuccess(data))
   dispatch(setEditing('false'))  
 }
+
+//KRM NEEDS ERROR HANDLING
 
 }
 
