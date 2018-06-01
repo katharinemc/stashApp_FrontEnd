@@ -29,9 +29,11 @@ export const logOutStore = () => ({type: LOG_OUT_STORE})
 
 const storeAuthInfo = (authToken, dispatch, username) => {
   const decodedToken = jwtDecode(authToken);
+  console.log(decodedToken.user)
   dispatch(setAuthToken(authToken));
   dispatch(authSuccess(decodedToken.user.username));
   saveAuthToken(authToken);
+  saveCurrentUser(decodedToken.user.username)
   };
 
 export const login_sequence = (values) => async dispatch => {
@@ -45,7 +47,6 @@ const res = await fetch(`http://localhost:8080/api/login/`, {
       })
 const data = await res.json()
 if (res.status===200){
-  console.log(data, res)
   const {authToken} = data
   const storeAuth = await storeAuthInfo(authToken, dispatch, username )
   authSuccess(username)

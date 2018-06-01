@@ -1,14 +1,14 @@
 import {API_BASE_URL} from '../config'
 
 export const FETCH_LOOKS_SUCCESS='FETCH_LOOKS_SUCCESS'
-export const CHANGE_LANDING = 'CHANGE_LANDING';
+export const CHANGE_DISPLAY = 'CHANGE_DISPLAY';
 export const SET_FOOTER_EXPAND = 'SET_FOOTER_EXPAND'
 export const FETCH_PRODUCTS_SUCCESS = 'FETCH_PRODUCTS_SUCCESS'
 export const FETCH_PRODUCTS_REQUEST = 'FETCH_PRODUCTS_REQUEST'
 export const FETCH_LOOKS_REQUEST='FETCH_LOOKS_REQUEST'
 
-export const changeLanding = (displayType) => ({
-  type: CHANGE_LANDING,
+export const changeDisplay = (displayType) => ({
+  type: CHANGE_DISPLAY,
   displayType    
 });
 
@@ -37,21 +37,27 @@ export const fetchLooksSuccess = (looks) => ({
   looks
 })
 
-export const fetchProducts = (authToken) => dispatch => {
-  fetch(`${API_BASE_URL}/api/products/`, {
+export const fetchProducts = (user) => dispatch => {
+  
+  console.log('play fetch!', user)
+  fetch(`${API_BASE_URL}/api/products/${user}`, {
       method: 'get',
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${authToken}`  
       }
   })
   .then(res => {
       if (!res.ok){
           return Promise.reject(res.statusText)
       }
+      
+      console.log(res);
       return res.json()
   }) 
-  .then (products => dispatch(fetchProductsSuccess(products)))
+  .then (products => {
+    
+    console.log(products)
+    dispatch(fetchProductsSuccess(products))})
   .catch(err => console.log(err));
 };
 

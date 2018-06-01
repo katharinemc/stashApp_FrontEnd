@@ -1,4 +1,4 @@
-import { FETCH_PRODUCTS_REQUEST, FETCH_LOOKS_SUCCESS, CHANGE_LANDING, FETCH_PRODUCTS_SUCCESS, SET_FOOTER_EXPAND, } from '../actions/landingActions'
+import { FETCH_PRODUCTS_REQUEST, FETCH_LOOKS_SUCCESS, CHANGE_DISPLAY, FETCH_PRODUCTS_SUCCESS, SET_FOOTER_EXPAND, } from '../actions/landingActions'
 import { LOG_OUT_STORE } from '../actions/auth'
 import { ADD_TO_LOOK_SEARCH, UPDATE_PRODUCT_SUCCESS, NEW_LOOK_SUCCESS, NEW_PRODUCT_SUCCESS, PRODUCT_DELETE_SUCCESS, UPDATE_LOOK_SUCCESS, ITEM_DELETE_SUCCESS } from '../actions/dashActions'
 
@@ -23,7 +23,7 @@ export const mainReducer = (state=initialState, action) => {
             return Object.assign( {} , state, {looks: [... state.looks.filter(item => item.id != action.values.id), action.values] })
         case  LOG_OUT_STORE:
             return  Object.assign( {}, state, {products: []}, {looks: []})
-        case CHANGE_LANDING:
+        case CHANGE_DISPLAY:
             return Object.assign( {}, state, {display: action.displayType})
         case SET_FOOTER_EXPAND:
             return Object.assign({}, state, {expandFooter: action.expandStatus})

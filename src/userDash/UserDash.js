@@ -4,72 +4,36 @@ import React from 'react';
 import Footer from './Footer'
 import {connect} from 'react-redux'
 import './userdash.css'
-import AddProduct  from './AddProduct';
+import AddProduct from './AddProduct';
 import AddLook from './AddLook'
 import {BrowserRouter as Route, Redirect} from 'react-router-dom'
 
-import AccordionLibrary from './AccordionLibrary';
+import Authenticated from "./Authenticated";
 
 export class UserDash extends React.Component {
   render() {
-    if (this.props.authToken === null) {
-      return <Redirect to={"/"}/>;
-    } else if (this.props.editing === 'addProduct') {
-      return (
-        <div>
-           <AddProduct currentUser={this.props.currentUser} authToken={this.props.authToken}/>
-          <Footer/>
-        </div>
-      )
-    } else if (this.props.editing === 'editproducts'){
-      return (
-        <div>
-        <AddProduct currentUser={this.props.currentUser} authToken={this.props.authToken}/>
-       <Footer/>
-     </div>
-      )} else if (this.props.editing === 'editlooks'){
-        return (
-          <div>
-            <AddLook authToken = {this.props.authToken} />
-            <Footer />
-            </div>
-        )
-      } else if (this.props.editing === 'addLook') {
-      return (
-        <div>
-        <AddLook currentUser={this.props.currentUser} authToken={this.props.authToken}/>
-       <Footer/>
-     </div>
+
+    console.log(this.props.match.params.userId === this.props.currentUser )
+    // if (this.props.match.params.userId === this.props.currentUser) {
+    //   console.log('we have a match')
+    //   return (<Authenticated authenticated ='foobar'/>)
+    // } 
+  return    <Authenticated requestedUser={this.props.match.params.userId} authenticated = {(this.props.match.params.userId === this.props.currentUser)} />
+
+
   
-      )
-
-    } else  {
-      return (
-<div className="Dash">
-<AccordionLibrary editNumber={this.props.editNumber} kind='products' />
-<AccordionLibrary kind='looks' />
-
-          <Footer/>
-  
-        </div>
-      );
-    }
-    
-  }
-
-
+}
 }
 
-const mapStateToProps = main => (
-  
-  {expandFooter: main.main.expandFooter, 
+const mapStateToProps = main => ({
+  expandFooter: main.main.expandFooter,
   editing: main.dash.editing,
   auth: main.auth,
-  looks: main.main.looks,
-  products: main.main.products,
   editNumber: main.dash.editNumber,
-editKind: main.dash.editKind,
+  editKind: main.dash.editKind,
+  display: main.main.display,
   currentUser: main.auth.currentUser,
-authToken: main.auth.authToken})
+  authToken: main.auth.authToken
+})
 
 export default connect(mapStateToProps)(UserDash)

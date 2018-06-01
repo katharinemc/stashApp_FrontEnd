@@ -28,13 +28,11 @@ editButton(number, kind) {
 }
     
     render() {
-        console.log('AL', this.props)
+        console.log('AL', this.props.authenticated)
         const results = this.props.results.map((item, index) =>{
             let productList;
             if(this.props.kind==='looks'){
-                console.log('mapping looks', item)
                 productList = item.products.map( product => {
-                    console.log('products in looks mapping', product)
                     return `${product.brand} ${product.category}, ${product.name}, ${product.shade}`
                })
             }
@@ -50,7 +48,8 @@ editButton(number, kind) {
  
                   { this.props.kind === 'products' ? `Full Product Name: ${item.name}` : `Items used: ${productList}` }
  
-                  <button onClick={() => this.deleteButton(`${item.id}`, `${this.props.kind}`)}>Delete</button> <button onClick={() => this.editButton(`${item.id}`, `${this.props.kind}`)}>Edit</button>
+
+                {this.props.authenticated ? <span> <button onClick={() => this.deleteButton(`${item.id}`, `${this.props.kind}`)} >Delete</button> <button onClick={() => this.editButton(`${item.id}`, `${this.props.kind}`)}>Edit</button> </span> : ''}
                   </AccordionItemBody>
                   </AccordionItem>
  
@@ -67,9 +66,13 @@ editButton(number, kind) {
         )
     }
 }
-const mapStateToProps = (main, ownProps) => ({currentUser: main.main.currentUser,
+const mapStateToProps = (main, ownProps) => 
+     ({currentUser: main.main.currentUser,
     authToken: main.auth.authToken,
     editing: main.main.editing,
+    display: main.main.display,
+    loggedIn: main.main[ownProps.loggedIn],
+    products: main.main.products,
      results: main.main[ownProps.kind]})
  
 export default connect(mapStateToProps)(AccordionLibrary)

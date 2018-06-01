@@ -18,19 +18,23 @@ main: mainReducer,
   const store= createStore(rootReducer,
     applyMiddleware(thunk));
 
-    const authToken = loadAuthToken();
-if (authToken) {
-    const token = authToken;
-    store.dispatch(setAuthToken(token));
-    store.dispatch(fetchProducts(token))
-    store.dispatch(fetchLooks(token))
 
-}
-
-const currentUser = loadCurrentUser();
+    const currentUser = loadCurrentUser();
 if (currentUser) {
     const user = currentUser;
     store.dispatch(authSuccess(user));
 }
+
+
+    const authToken = loadAuthToken();
+if (authToken) {
+    const token = authToken;
+    store.dispatch(setAuthToken(token));
+    store.dispatch(fetchProducts(currentUser))
+    // store.dispatch(fetchLooks(currentUser))
+
+}
+
+
 
 export default store;

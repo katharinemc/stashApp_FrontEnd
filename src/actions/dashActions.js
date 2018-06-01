@@ -47,7 +47,7 @@ export const updateProduct = (values, authToken, number) => async dispatch => {
       Authorization: `Bearer ${authToken}`
     }
   })
-  console.log('hi')
+
   const data = await res.json()  
   if(res.status === 200){
     dispatch(updateProductSuccess(data))

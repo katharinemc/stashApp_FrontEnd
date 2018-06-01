@@ -1,14 +1,14 @@
 import React from 'react'
 import './footer.css';
 import {connect} from 'react-redux';
-import {changeLanding} from '../actions/landingActions'
+import {changeDisplay} from '../actions/landingActions'
 
 export class Footer extends React.Component {
 
   changeDisplay(value) {
     this
       .props
-      .dispatch(changeLanding(value))
+      .dispatch(changeDisplay(value))
   }
 
   render() {
