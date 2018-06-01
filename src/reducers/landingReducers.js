@@ -32,16 +32,8 @@ export const mainReducer = (state=initialState, action) => {
         case FETCH_LOOKS_SUCCESS:
             return Object.assign({}, state, {looks: [...action.looks]},{loading: 'complete'} )
         case  ITEM_DELETE_SUCCESS:
-        console.log(action)
         let kind = action.kind
-        return Object.assign({}, state, { [kind]: state[kind].filter(item => item.id!=action.number ) })
-
-        // if(action.kind === 'products') {
-        //     return Object.assign({}, state, { products: state.products.filter(product => product.id!=action.number ) })
-        // } else if (action.kind === 'looks'){
-        //     return Object.assign({}, state, { looks: state.looks.filter(product => product.id!=action.number ) })
-        // } 
-
+            return Object.assign({}, state, { [kind]: state[kind].filter(item => item.id!=action.number ) })
         case ADD_TO_LOOK_SEARCH:
             return Object.assign({}, state, {addToLookResults: state.products.filter(product => product === action.values)})
     }

@@ -30,6 +30,7 @@ export class AddLook extends React.Component {
   }
 
   onChange(event){
+    console.log('foobar')
     if(event.target.value != '')
     {
       let resultProducts = this.props.products.filter(product => {
@@ -48,7 +49,9 @@ export class AddLook extends React.Component {
 
   addProductToLook(product) {
     this.setState({
-      selectedProducts: [...this.state.selectedProducts, product]
+      selectedProducts: [...this.state.selectedProducts, product],
+      resultProducts: this.state.resultProducts.filter(item => item != product)
+
     })
   }
 
@@ -59,6 +62,7 @@ export class AddLook extends React.Component {
   }
 
   render() {
+    console.log('addlook')
     return (
       <form  className="addLook" onSubmit={this
               .props
