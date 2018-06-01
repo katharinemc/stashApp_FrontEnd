@@ -19,7 +19,12 @@ export const showDetail = (key) => ({type: SHOW_DETAIL, key})
 
 export const setEditing = (status) => ({type: SET_EDITING, status})
 
-export const newProductSuccess = (values) => ({type: NEW_PRODUCT_SUCCESS, values})
+export const newProductSuccess = (values) => {
+
+  console.log(values)
+  return {type: NEW_PRODUCT_SUCCESS, values}
+}
+//  ({type: NEW_PRODUCT_SUCCESS, values})
 
 export const productDeleteSuccess = (itemId) => ({type: PRODUCT_DELETE_SUCCESS, itemId})
 export const newLookSuccess = (values) => ({type: NEW_LOOK_SUCCESS, values})
@@ -41,11 +46,14 @@ const res= await  fetch(`${API_BASE_URL}/api/products/`, {
       Authorization: `Bearer ${authToken}`
     }
   })
+  console.log('hi')
   const data = await res.json()  
-if (data.error.code === 11000) {
+console.log('sNP', res, data)
+  if (res.error && res.error.code === 11000) {
   console.log('does this get used at all?', data.error.code )
   dispatch(caughtError('This product already exists in your collection!'))
 } else {
+  console.log('asuccess!', data)
   dispatch(newProductSuccess(data))
   dispatch(setEditing('false'))  
 }

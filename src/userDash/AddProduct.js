@@ -7,8 +7,10 @@ import {setEditing, sendNewProduct} from '../actions/dashActions'
 export class AddProduct extends React.Component {
   
   onSubmit(values) {
+    console.log('AP1', values)
     const authToken = this.props.authToken
     const currentUser = this.props.currentUser;
+    console.log(authToken, currentUser)
     this.props.dispatch(sendNewProduct(values, currentUser, authToken))
   }
 
@@ -20,6 +22,8 @@ export class AddProduct extends React.Component {
 
 
   render() {
+   CompositionEvent
+   
     if(this.props.editNumber != null){
       console.log(this.props.products)
       this.props.products.filter( product => product.id === this.props.editNumber)
