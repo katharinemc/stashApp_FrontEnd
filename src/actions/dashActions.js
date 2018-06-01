@@ -8,7 +8,7 @@ export const SET_EDITING = 'SET_EDITING';
 export const NEW_PRODUCT_SUCCESS = 'NEW_PRODUCT_SUCCESS';
 
 //TODO MAKE SURE EXTRA SPACE AT 11 ISN'T PROBLEM
-export const  PRODUCT_DELETE_SUCCESS = ' PRODUCT_DELETE_SUCCESS';
+export const  ITEM_DELETE_SUCCESS = 'ITEM_DELETE_SUCCESS';
 export const ADD_TO_LOOK_SEARCH='ADD_TO_LOOK_SEARCH';
 export const NEW_LOOK_SUCCESS='NEW_LOOK_SUCCESS'
 
@@ -26,7 +26,7 @@ export const newProductSuccess = (values) => {
 }
 //  ({type: NEW_PRODUCT_SUCCESS, values})
 
-export const productDeleteSuccess = (itemId) => ({type: PRODUCT_DELETE_SUCCESS, itemId})
+export const itemDeleteSuccess = (number, kind) => ({type: ITEM_DELETE_SUCCESS, number, kind})
 export const newLookSuccess = (values) =>
 {
   console.log('nLS', values)
@@ -66,8 +66,8 @@ console.log('sNP', res, data)
 }
   
 
-export const deleteProduct = (itemId, authToken) => dispatch => {
-  fetch(`${API_BASE_URL}/api/products/${itemId}`, {
+export const deleteItem = (number, kind, authToken) => dispatch => {
+  fetch(`${API_BASE_URL}/api/${kind}/${number}`, {
     method: 'DELETE',
     headers: {
       "Content-Type": "application/json",
@@ -79,7 +79,7 @@ export const deleteProduct = (itemId, authToken) => dispatch => {
     }
 
     else if(res.status ===204) {
-      dispatch(productDeleteSuccess(itemId))
+      dispatch(itemDeleteSuccess(number, kind))
     }
 
 

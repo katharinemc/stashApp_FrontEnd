@@ -1,6 +1,6 @@
 import { FETCH_PRODUCTS_REQUEST, FETCH_LOOKS_SUCCESS, CHANGE_LANDING, FETCH_PRODUCTS_SUCCESS, SET_FOOTER_EXPAND, } from '../actions/landingActions'
 import { LOG_OUT_STORE } from '../actions/auth'
-import { ADD_TO_LOOK_SEARCH, NEW_LOOK_SUCCESS, NEW_PRODUCT_SUCCESS, PRODUCT_DELETE_SUCCESS } from '../actions/dashActions'
+import { ADD_TO_LOOK_SEARCH, NEW_LOOK_SUCCESS, NEW_PRODUCT_SUCCESS, PRODUCT_DELETE_SUCCESS, ITEM_DELETE_SUCCESS } from '../actions/dashActions'
 
 const initialState = {
     display: 'landing',
@@ -31,8 +31,17 @@ export const mainReducer = (state=initialState, action) => {
             return Object.assign({}, state, {looks: [... state.looks, action.values]})
         case FETCH_LOOKS_SUCCESS:
             return Object.assign({}, state, {looks: [...action.looks]},{loading: 'complete'} )
-        case  PRODUCT_DELETE_SUCCESS:
-            return Object.assign({}, state, {products: state.products.filter(product => product.id!=action.itemId ) })
+        case  ITEM_DELETE_SUCCESS:
+        console.log(action)
+        let kind = action.kind
+        return Object.assign({}, state, { [kind]: state[kind].filter(item => item.id!=action.number ) })
+
+        // if(action.kind === 'products') {
+        //     return Object.assign({}, state, { products: state.products.filter(product => product.id!=action.number ) })
+        // } else if (action.kind === 'looks'){
+        //     return Object.assign({}, state, { looks: state.looks.filter(product => product.id!=action.number ) })
+        // } 
+
         case ADD_TO_LOOK_SEARCH:
             return Object.assign({}, state, {addToLookResults: state.products.filter(product => product === action.values)})
     }

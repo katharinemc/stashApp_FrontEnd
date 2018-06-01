@@ -1,7 +1,7 @@
 import "babel-polyfill";
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {editItem} from '../actions/dashActions'
+import {editItem, deleteItem} from '../actions/dashActions'
 import {connect} from 'react-redux'
 import {
     Accordion,
@@ -17,9 +17,9 @@ import { deleteProduct, setEditing } from "../actions/dashActions";
 
 class AccordionLibrary extends React.Component {
 
-deleteButton (values) {
+deleteButton (number, kind) {
     const authToken = this.props.authToken
-    this.props.dispatch(deleteProduct(values, authToken))
+    this.props.dispatch(deleteItem(number, kind, authToken))
 }
 
 editButton(number, kind) {
@@ -37,18 +37,19 @@ editButton(number, kind) {
                     return `${product.brand} ${product.category}, ${product.name}, ${product.shade}`
                })
             }
+       
            return (
 
                 <AccordionItem key={index}>
                   <AccordionItemTitle > 
- { this.props.type === 'products' ? `${item.brand} ${item.category} ${item.shade}` : item.name }
+             { this.props.type === 'products' ? `${item.brand} ${item.category} ${item.shade}` : item.name }
         
                   </AccordionItemTitle>
                   <AccordionItemBody> 
  
                   { this.props.type === 'products' ? `Full Product Name: ${item.name}` : `Items used: ${productList}` }
  
-                  <button onClick={() => this.deleteButton(`${item.id}`)}>Delete</button> <button onClick={() => this.editButton(`${item.id}`, `${this.props.type}`)}>Edit</button>
+                  <button onClick={() => this.deleteButton(`${item.id}`, `${this.props.type}`)}>Delete</button> <button onClick={() => this.editButton(`${item.id}`, `${this.props.type}`)}>Edit</button>
                   </AccordionItemBody>
                   </AccordionItem>
  
