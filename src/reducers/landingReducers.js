@@ -1,6 +1,6 @@
 import { FETCH_PRODUCTS_REQUEST, FETCH_LOOKS_SUCCESS, CHANGE_LANDING, FETCH_PRODUCTS_SUCCESS, SET_FOOTER_EXPAND, } from '../actions/landingActions'
 import { LOG_OUT_STORE } from '../actions/auth'
-import { ADD_TO_LOOK_SEARCH, NEW_LOOK_SUCCESS, NEW_PRODUCT_SUCCESS, PRODUCT_DELETE_SUCCESS, ITEM_DELETE_SUCCESS } from '../actions/dashActions'
+import { ADD_TO_LOOK_SEARCH, NEW_LOOK_SUCCESS, NEW_PRODUCT_SUCCESS, PRODUCT_DELETE_SUCCESS, UPDATE_LOOK_SUCCESS, ITEM_DELETE_SUCCESS } from '../actions/dashActions'
 
 const initialState = {
     display: 'landing',
@@ -14,6 +14,9 @@ const initialState = {
 
 export const mainReducer = (state=initialState, action) => {
     switch(action.type){
+        case UPDATE_LOOK_SUCCESS:
+            console.log(action)
+            return Object.assign( {} , state, {looks: [... state.looks.filter(item => item.id != action.values.id), action.values] })
         case  LOG_OUT_STORE:
             return  Object.assign( {}, state, {products: []}, {looks: []})
         case CHANGE_LANDING:
@@ -27,7 +30,6 @@ export const mainReducer = (state=initialState, action) => {
         case NEW_PRODUCT_SUCCESS: 
             return Object.assign({}, state, {products: [...state.products, action.values]})
         case NEW_LOOK_SUCCESS:
-        console.log('NLS reducer', action)
             return Object.assign({}, state, {looks: [... state.looks, action.values]})
         case FETCH_LOOKS_SUCCESS:
             return Object.assign({}, state, {looks: [...action.looks]},{loading: 'complete'} )

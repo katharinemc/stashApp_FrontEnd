@@ -14,8 +14,8 @@ export const dashReducer = (state=initialState, action) => {
         case SET_EDITING:
             return Object.assign( {}, state, {editing: action.status})
         case EDIT_ITEM:
-            console.log(action)
             return Object.assign( {}, state, {editNumber: action.number}, {editKind: action.kind})
+
       }
 
 return state;

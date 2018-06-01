@@ -7,44 +7,34 @@ import './userdash.css'
 import AddProduct  from './AddProduct';
 import AddLook from './AddLook'
 import {BrowserRouter as Route, Redirect} from 'react-router-dom'
-import {
-  Accordion,
-  AccordionItem,
-  AccordionItemTitle,
-  AccordionItemBody,
-} from 'react-accessible-accordion';
 
-import { loadCurrentUser } from '../local-storage';
-import {authSuccess} from '../actions/auth'
 import AccordionLibrary from './AccordionLibrary';
 
 export class UserDash extends React.Component {
   render() {
-    console.log('UD', this.props)
     if (this.props.authToken === null) {
       return <Redirect to={"/"}/>;
-
-    }
-
-    if (this.props.editing === 'addProduct') {
+    } else if (this.props.editing === 'addProduct') {
       return (
         <div>
            <AddProduct currentUser={this.props.currentUser} authToken={this.props.authToken}/>
           <Footer/>
         </div>
       )
-    } else if (this.props.editing === 'editItem'){
-     if(this.props.editKind ==='products'){
+    } else if (this.props.editing === 'editproducts'){
       return (
         <div>
         <AddProduct currentUser={this.props.currentUser} authToken={this.props.authToken}/>
        <Footer/>
      </div>
-  
-      )
-
-     } 
-    }else if (this.props.editing === 'addLook') {
+      )} else if (this.props.editing === 'editlooks'){
+        return (
+          <div>
+            <AddLook authToken = {this.props.authToken} />
+            <Footer />
+            </div>
+        )
+      } else if (this.props.editing === 'addLook') {
       return (
         <div>
         <AddLook currentUser={this.props.currentUser} authToken={this.props.authToken}/>
@@ -56,8 +46,8 @@ export class UserDash extends React.Component {
     } else  {
       return (
 <div className="Dash">
-<AccordionLibrary type='products' />
-<AccordionLibrary type='looks' />
+<AccordionLibrary kind='products' />
+<AccordionLibrary kind='looks' />
 
           <Footer/>
   

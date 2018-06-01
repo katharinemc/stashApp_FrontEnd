@@ -1,7 +1,7 @@
 import React from 'react'
 // import './loginbox.css';
 import {Field, reduxForm} from 'redux-form'
-import {setEditing, addToLookSearch, sendNewLook} from '../actions/dashActions'
+import {setEditing, sendEditLook, addToLookSearch, sendNewLook} from '../actions/dashActions'
 import { connect } from 'react-redux';
 
 
@@ -10,8 +10,11 @@ export class AddLook extends React.Component {
     super(props);
 
     this.state = {
-      resultProducts: [],
-      selectedProducts: []
+      resultProducts: [],     
+
+      chosenLook: this.props.editNumber ? this.props.looks.filter( look => look.id === this.props.editNumber)[0] : '',
+      selectedProducts: this.props.editNumber ? (this.props.looks.filter( look => look.id === this.props.editNumber)[0]).products : []
+
     }
   }
 
@@ -19,7 +22,13 @@ export class AddLook extends React.Component {
   onSubmit(values, products) {
     const authToken = this.props.authToken
     const productIds = products.map(product => product.id)
-    this.props.dispatch(sendNewLook(values, productIds, authToken))
+
+    if(this.props.editNumber === null) {
+      this.props.dispatch(sendNewLook(values, productIds, authToken))
+    } else if (this.props.editNumber != null) {
+      let number = this.props.editNumber
+      this.props.dispatch(sendEditLook(values, productIds, authToken, number))
+    }
 
   }
 
@@ -30,7 +39,6 @@ export class AddLook extends React.Component {
   }
 
   onChange(event){
-    console.log('foobar')
     if(event.target.value != '')
     {
       let resultProducts = this.props.products.filter(product => {
@@ -62,13 +70,14 @@ export class AddLook extends React.Component {
     })
   }
 
+
+
   render() {
-    console.log('addlook')
     return (
       <form  className="addLook" onSubmit={this
               .props
               .handleSubmit(values => this.onSubmit(values, this.state.selectedProducts))}>
-        <h1>Add a Look!</h1>
+        <h1>{this.props.editNumber === null ? `Add a Look!` : `Edit Look`}</h1>
         <span>{this.props.error} </span>
         <label htmlFor="name">Look Name</label>
         <Field
@@ -76,12 +85,12 @@ export class AddLook extends React.Component {
           type="text"
           name="name"
           id="name"
-          placeholder="Date Night"/>
+          placeholder={this.props.editNumber === null ? `Date Night` : `${this.state.chosenLook.name}`}
+           />
 
           <h3>Current Products</h3>
-          {/* //added products go here */}
-          {this.state.selectedProducts.map(product =>{
-return (<li onClick={() => this.removeFromLook(product)}> `{product.brand}, {product.category}, {product.name}, {product.shade} `</li>)
+          {this.state.selectedProducts.map((product, index) =>{
+return (<li key={index} onClick={() => this.removeFromLook(product)}> `{product.brand}, {product.category}, {product.name}, {product.shade} `</li>)
           })}
 <label htmlFor="productSearch">Choose your products</label>
           <Field
@@ -94,8 +103,7 @@ return (<li onClick={() => this.removeFromLook(product)}> `{product.brand}, {pro
 
               <h3>Product Search Results</h3>
 
-      
-
+    
 <ul>
 {this.state.resultProducts.map(product => {
 
@@ -105,7 +113,8 @@ return (<li onClick={() => this.addProductToLook(product)}> `{product.brand}, {p
 
 
         <button type="submit">
-          Add Look</button>
+        {this.props.editNumber === null ? `Add Look` : `Edit Look`}
+          </button>
         <button onClick={() => this.changeDisplay('false')}>
           Cancel</button>
       </form>
@@ -114,8 +123,11 @@ return (<li onClick={() => this.addProductToLook(product)}> `{product.brand}, {p
 }
 
 const mapStateToProps = (main) => ({
+  looks:main.main.looks,
     products: main.main.products,
-    error: main.auth.error
+    error: main.auth.error,
+    editNumber: main.dash.editNumber 
+
         // ...
 });
 

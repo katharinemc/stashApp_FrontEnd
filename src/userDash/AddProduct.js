@@ -12,7 +12,6 @@ export class AddProduct extends React.Component {
     const authToken = this.props.authToken
     const currentUser = this.props.currentUser;
   
-
    if(this.props.editNumber ===  null) {
     this.props.dispatch(sendNewProduct(values, authToken))
    } else{

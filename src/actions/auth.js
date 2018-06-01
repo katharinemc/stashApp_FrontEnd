@@ -28,9 +28,7 @@ export const setLoginStatus = (loginStatus) => ({type: SET_LOGIN_STATUS, loginSt
 export const logOutStore = () => ({type: LOG_OUT_STORE})
 
 const storeAuthInfo = (authToken, dispatch, username) => {
-  console.log('SAI', authToken, username)
   const decodedToken = jwtDecode(authToken);
-console.log('dt', decodedToken)
   dispatch(setAuthToken(authToken));
   dispatch(authSuccess(decodedToken.user.username));
   saveAuthToken(authToken);
@@ -69,8 +67,6 @@ export const registerSequence = (values) => async dispatch => {
   if(res.status === 422){
     dispatch(caughtError(data.message))
   } else {
-    console.log('big success!', data)
-
     const {authToken} = data
     const storeAuth = await storeAuthInfo(authToken, dispatch, username)
   }

@@ -23,17 +23,18 @@ deleteButton (number, kind) {
 }
 
 editButton(number, kind) {
-    console.log('commence edit', number, kind)
-    this.props.dispatch(setEditing('editItem'))
+    this.props.dispatch(setEditing(`edit${kind}`))
     this.props.dispatch(editItem(number, kind))
 }
     
     render() {
-        console.log('AL', this.props.results)
+        console.log('AL', this.props)
         const results = this.props.results.map((item, index) =>{
             let productList;
-            if(this.props.type==='looks'){
+            if(this.props.kind==='looks'){
+                console.log('mapping looks', item)
                 productList = item.products.map( product => {
+                    console.log('products in looks mapping', product)
                     return `${product.brand} ${product.category}, ${product.name}, ${product.shade}`
                })
             }
@@ -42,14 +43,14 @@ editButton(number, kind) {
 
                 <AccordionItem key={index}>
                   <AccordionItemTitle > 
-             { this.props.type === 'products' ? `${item.brand} ${item.category} ${item.shade}` : item.name }
+             { this.props.kind === 'products' ? `${item.brand} ${item.category} ${item.shade}` : item.name }
         
                   </AccordionItemTitle>
                   <AccordionItemBody> 
  
-                  { this.props.type === 'products' ? `Full Product Name: ${item.name}` : `Items used: ${productList}` }
+                  { this.props.kind === 'products' ? `Full Product Name: ${item.name}` : `Items used: ${productList}` }
  
-                  <button onClick={() => this.deleteButton(`${item.id}`, `${this.props.type}`)}>Delete</button> <button onClick={() => this.editButton(`${item.id}`, `${this.props.type}`)}>Edit</button>
+                  <button onClick={() => this.deleteButton(`${item.id}`, `${this.props.kind}`)}>Delete</button> <button onClick={() => this.editButton(`${item.id}`, `${this.props.kind}`)}>Edit</button>
                   </AccordionItemBody>
                   </AccordionItem>
  
@@ -59,7 +60,7 @@ editButton(number, kind) {
         return (
 
             <Accordion>
-                <h4>{this.props.type}</h4>
+                <h4>{this.props.kind}</h4>
  {results}
         </Accordion>
     
@@ -69,6 +70,6 @@ editButton(number, kind) {
 const mapStateToProps = (main, ownProps) => ({currentUser: main.main.currentUser,
     authToken: main.auth.authToken,
     editing: main.main.editing,
-     results: main.main[ownProps.type]})
+     results: main.main[ownProps.kind]})
  
 export default connect(mapStateToProps)(AccordionLibrary)
