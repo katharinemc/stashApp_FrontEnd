@@ -57,7 +57,8 @@ export class AddLook extends React.Component {
 
   removeFromLook(item) {
     this.setState({
-      selectedProducts: this.state.selectedProducts.filter(product => product != item )
+      selectedProducts: this.state.selectedProducts.filter(product => product != item ),
+      resultProducts: [ ... this.state.resultProducts, item]
     })
   }
 

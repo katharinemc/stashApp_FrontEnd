@@ -7,6 +7,7 @@ import {setEditing, sendNewProduct} from '../actions/dashActions'
 export class AddProduct extends React.Component {
   
   onSubmit(values) {
+    //TODO dispatch different action based on update or create
     console.log('AP1', values)
     const authToken = this.props.authToken
     const currentUser = this.props.currentUser;
@@ -22,11 +23,12 @@ export class AddProduct extends React.Component {
 
 
   render() {
-   CompositionEvent
    
+   let chosenProduct;
     if(this.props.editNumber != null){
       console.log(this.props.products)
-      this.props.products.filter( product => product.id === this.props.editNumber)
+      chosenProduct = (this.props.products.filter( product => product.id === this.props.editNumber))[0]
+console.log('chosen', chosenProduct)
     }
 
     return (
@@ -41,28 +43,28 @@ export class AddProduct extends React.Component {
           type="text"
           name="category"
           id="category"
-          placeholder="Lipstick"/>
+          placeholder={this.props.editNumber === null ? `Lipstick` : `${chosenProduct.category}`} />
         <label htmlFor="brand">Brand</label>
         <Field
           component="input"
           type="text"
           name="brand"
           id="brand"
-          placeholder="M.A.C."/>
+          placeholder={this.props.editNumber === null ? `M.A.C` : `${chosenProduct.brand}`}/>
         <label htmlFor="name">Name</label>
         <Field
           component="input"
           type="text"
           name="name"
           id="name"
-          placeholder="Matte Lipstick"/>
+          placeholder={this.props.editNumber === null ? `Matte Lipstick` : `${chosenProduct.name}`}/>
         <label htmlFor="shade">Shade</label>
         <Field
           component="input"
           type="text"
           name="shade"
           id="shade"
-          placeholder="Russian Red"/>
+          placeholder={this.props.editNumber === null ? `Shade` : `${chosenProduct.shade}`}/>
 
         <button type="submit">
           Add Product</button>
