@@ -27,6 +27,7 @@ export const mainReducer = (state=initialState, action) => {
         case NEW_PRODUCT_SUCCESS: 
             return Object.assign({}, state, {products: [...state.products, action.values]})
         case NEW_LOOK_SUCCESS:
+        console.log('NLS reducer', action)
             return Object.assign({}, state, {looks: [... state.looks, action.values]})
         case FETCH_LOOKS_SUCCESS:
             return Object.assign({}, state, {looks: [...action.looks]},{loading: 'complete'} )

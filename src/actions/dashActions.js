@@ -27,7 +27,13 @@ export const newProductSuccess = (values) => {
 //  ({type: NEW_PRODUCT_SUCCESS, values})
 
 export const productDeleteSuccess = (itemId) => ({type: PRODUCT_DELETE_SUCCESS, itemId})
-export const newLookSuccess = (values) => ({type: NEW_LOOK_SUCCESS, values})
+export const newLookSuccess = (values) =>
+{
+  console.log('nLS', values)
+  return {type: NEW_LOOK_SUCCESS, values}
+}
+
+// ({type: NEW_LOOK_SUCCESS, values})
 
 export const sendNewProduct = (values, currentUser, authToken) => async dispatch => {
   const {brand, category, name, shade} = values
@@ -100,7 +106,7 @@ export const sendNewLook = (values, products, authToken) => async dispatch => {
  
  if(res.status === 200){
    console.log('yaaay')
-   dispatch(newLookSuccess(res))
+   dispatch(newLookSuccess(data))
    dispatch(setEditing('false'))
  } else {
   dispatch(caughtError('You already have a Look with this name'))
