@@ -15,9 +15,11 @@ import ReduxSearch  from "./ReduxSearch";
 
 export class Authenticated extends React.Component {
 
+  //JON - WANT RERENDER AFTER SEARCH COMPLETED
 
   render() {
     if(this.props.search === false){
+      console.log('false all right!')
       if(this.props.products.length === 0)
 {      if(this.props.authenticated !=true ){
         this.props.dispatch(fetchProducts(this.props.requestedUser))

@@ -21,10 +21,11 @@ logOut() {
 
     render() {
 
-      return (
+if(this.props.requestedUser === this.props.currentUser){      return (
         <div >
             
             <ul >
+              
 <li onClick={()=>this.addNew('addProduct') } >Add Product</li>
 <li onClick={()=>this.addNew('addLook') } >Add Look</li>
 <li onClick={()=>this.logOut() }>Log Out  </li>
@@ -33,13 +34,22 @@ logOut() {
 
             </div>
 
-      );
+      );}
+      else{
+        return (
+<li onClick={()=>this.logOut() }>Log Out  </li>
+
+
+        )
+      }
     }
   }
   
 
   const mapStateToProps = main => ({
-    editing: main.dash.editing, 
+    editing: main.dash.editing, requestedUser: main.dash.requestedUser,
+    currentUser: main.auth.currentUser,
+  
 })
 
 export default connect(mapStateToProps)(ExpandedFooter)
