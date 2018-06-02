@@ -1,4 +1,5 @@
 import {API_BASE_URL} from '../config'
+import {setSearch} from './dashActions'
 
 export const FETCH_LOOKS_SUCCESS='FETCH_LOOKS_SUCCESS'
 export const CHANGE_DISPLAY = 'CHANGE_DISPLAY';
@@ -37,8 +38,16 @@ export const fetchLooksSuccess = (looks) => ({
   looks
 })
 
+
+export const searchProductsSequence =(editState, requestedUser, values) => dispatch => {
+console.log('inside sequence', requestedUser, values)
+  dispatch(setSearch(editState));
+  dispatch(fetchProducts(requestedUser, values))
+
+}
+
+
 export const fetchProducts = (user, query) => dispatch => {
-  console.log('inside fP', user, query)
   var url = new URL(`${API_BASE_URL}/api/products/${user}`),
   params = query
 if (params != null){

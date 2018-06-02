@@ -19,7 +19,6 @@ export const mainReducer = (state=initialState, action) => {
         return Object.assign( {} , state, {products: [... state.products.filter(item => item.id != action.values.id), action.values] })
 
         case UPDATE_LOOK_SUCCESS:
-            console.log(action)
             return Object.assign( {} , state, {looks: [... state.looks.filter(item => item.id != action.values.id), action.values] })
         case  LOG_OUT_STORE:
             return  Object.assign( {}, state, {products: []}, {looks: []})

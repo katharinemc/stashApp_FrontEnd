@@ -1,9 +1,9 @@
 import React from 'react'
 // import './loginbox.css';
 import {Field, reduxForm} from 'redux-form'
-import {setEditing, sendEditLook, addToLookSearch, sendNewLook} from '../actions/dashActions'
+import {setEditing, sendEditLook, addToLookSearch, sendNewLook, setSearch} from '../actions/dashActions'
 import {connect} from 'react-redux';
-import {fetchProducts} from '../actions/landingActions'
+import {fetchProducts, searchProductsSequence} from '../actions/landingActions'
 
 export class ReduxSearch extends React.Component {
   constructor(props) {
@@ -18,8 +18,16 @@ export class ReduxSearch extends React.Component {
     this.setState({searchString: values})
   }
 
-  onSubmit(values) {
-    console.log(values)
+  onClick(values) {
+    console.log('onclick values', values)
+    this.props.dispatch(setSearch(false))
+  }
+
+  onSubmit(editState, values) {
+debugger
+// this.props.dispatch(searchProductsSequence(editState, values, this.props.requestedUser))   
+
+this.props.dispatch(setSearch(editState))
     this
         .props
         .dispatch(fetchProducts(this.props.requestedUser, values))
@@ -27,13 +35,51 @@ export class ReduxSearch extends React.Component {
  }
 
   render() {
-      console.log(this.props.products, this.props.search, this.props.requestedUser)
     return (
 
-<form onSubmit = {this.props.handleSubmit(values => this.onSubmit(this.state.searchString))}>
+<form onSubmit = {this.props.handleSubmit(values => this.onSubmit(true, this.state.searchString))}>
 <h2>Search by Brand</h2>
 <input type="search" ref={input => (this.input = input)} onChange={(e) => this.onChange(e.target.value)} />
-  <button type="submit" >Search</button>
+
+ <label>
+            <Field
+              name="searchType"
+              component="input"
+              type="radio"
+              value="brand"
+            />{' '}
+            Brand
+          </label>
+          <label>
+            <Field
+              name="searchType"
+              component="input"
+              type="radio"
+              value="name"
+            />{' '}
+            Product Name
+          </label>
+          <label>
+            <Field
+              name="searchType"
+              component="input"
+              type="radio"
+              value="category"
+            />{' '}
+           Category
+          </label>
+          <label>
+            <Field
+              name="searchType"
+              component="input"
+              type="radio"
+              value="shade"
+            />{' '}
+            Shade
+          </label>
+  <button type="submit" >Search</button> <button  type="button" onClick={() => this.onClick(false)}>
+          Clear Search</button>
+
 </form>
 )
 }
@@ -42,7 +88,7 @@ export class ReduxSearch extends React.Component {
           
  
 const mapStateToProps = (main) => ({
-  products: main.main.products,   requestedUser: main.dash.requestedUser
+search:main.dash.search,  products: main.main.products,   requestedUser: main.dash.requestedUser
 });
 
 ReduxSearch = connect(mapStateToProps)(ReduxSearch);
