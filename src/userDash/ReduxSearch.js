@@ -1,6 +1,6 @@
 import React from 'react'
 // import './loginbox.css';
-import {Field, reduxForm} from 'redux-form'
+import {Field, isPristine, reduxForm} from 'redux-form'
 import {setEditing, sendEditLook, addToLookSearch, sendNewLook, setSearch} from '../actions/dashActions'
 import {connect} from 'react-redux';
 import {fetchProducts, searchProductsSequence} from '../actions/landingActions'
@@ -23,21 +23,20 @@ export class ReduxSearch extends React.Component {
     this.props.dispatch(setSearch(false))
   }
 
-  onSubmit(editState, values) {
-debugger
-// this.props.dispatch(searchProductsSequence(editState, values, this.props.requestedUser))   
+  onSubmit(editState, string, values) {
+console.log('reduxForm vlaues', values)
 
 this.props.dispatch(setSearch(editState))
     this
         .props
-        .dispatch(fetchProducts(this.props.requestedUser, values))
+        .dispatch(fetchProducts(this.props.requestedUser, string, values))
 
  }
 
   render() {
     return (
 
-<form onSubmit = {this.props.handleSubmit(values => this.onSubmit(true, this.state.searchString))}>
+<form onSubmit = {this.props.handleSubmit(values => this.onSubmit(true, this.state.searchString, values))}>
 <h2>Search by Brand</h2>
 <input type="search" ref={input => (this.input = input)} onChange={(e) => this.onChange(e.target.value)} />
 

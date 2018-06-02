@@ -39,20 +39,13 @@ export const fetchLooksSuccess = (looks) => ({
 })
 
 
-export const searchProductsSequence =(editState, requestedUser, values) => dispatch => {
-console.log('inside sequence', requestedUser, values)
-  dispatch(setSearch(editState));
-  dispatch(fetchProducts(requestedUser, values))
-
-}
-
-
-export const fetchProducts = (user, query) => dispatch => {
+export const fetchProducts = (user, string, query) => dispatch => {
+console.log(query)
   var url = new URL(`${API_BASE_URL}/api/products/${user}`),
-  params = query
+  params = string
 if (params != null){
 
-url.searchParams.append('brand', params)
+url.searchParams.append( query.searchType, params)
 }
 
 fetch( url, {

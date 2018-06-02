@@ -15,21 +15,18 @@ import ReduxSearch  from "./ReduxSearch";
 
 export class Authenticated extends React.Component {
 
-  componentDidMount(){
-
-  }
 
   render() {
     if(this.props.search === false){
-      if(this.props.authenticated !=true ){
+      if(this.props.products.length === 0)
+{      if(this.props.authenticated !=true ){
         this.props.dispatch(fetchProducts(this.props.requestedUser))
       } else {
         this.props.dispatch(fetchProducts(this.props.currentUser))
       }
-    
+}    
       }
     
-    console.log('authenticated search', this.props.search)
     if (!this.props.dispatch) return <h1>UNCONNECTED</h1>
 
     if (this.props.authToken === null) {
