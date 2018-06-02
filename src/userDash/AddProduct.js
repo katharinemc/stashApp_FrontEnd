@@ -7,7 +7,6 @@ import {setEditing, updateProduct, sendNewProduct} from '../actions/dashActions'
 export class AddProduct extends React.Component {
   
   onSubmit(values) {
-    console.log('AP1', values)
     const authToken = this.props.authToken
     const currentUser = this.props.currentUser;
   
@@ -30,9 +29,7 @@ export class AddProduct extends React.Component {
    
    let chosenProduct;
     if(this.props.editNumber != null){
-      console.log(this.props.products)
       chosenProduct = (this.props.products.filter( product => product.id === this.props.editNumber))[0]
-      console.log('chosen', chosenProduct, 'initial', this.props.initialValues.name, 'props', this.props)
     }
 
     return (
@@ -98,7 +95,6 @@ AddProduct = reduxForm({
 AddProduct = connect(mapStateToProps,
   state =>
   {
-    console.log('here is state', state, 'here is mSTP', mapStateToProps)
     return ({
       initialValues:{
         name: 'foobar',

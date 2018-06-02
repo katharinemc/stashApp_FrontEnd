@@ -30,7 +30,7 @@ if (currentUser) {
 if (authToken) {
     const token = authToken;
     store.dispatch(setAuthToken(token));
-    store.dispatch(fetchProducts(currentUser))
+    // store.dispatch(fetchProducts(currentUser))
     // store.dispatch(fetchLooks(currentUser))
 
 }

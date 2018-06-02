@@ -29,7 +29,6 @@ export const logOutStore = () => ({type: LOG_OUT_STORE})
 
 const storeAuthInfo = (authToken, dispatch, username) => {
   const decodedToken = jwtDecode(authToken);
-  console.log(decodedToken.user)
   dispatch(setAuthToken(authToken));
   dispatch(authSuccess(decodedToken.user.username));
   saveAuthToken(authToken);

@@ -37,10 +37,16 @@ export const fetchLooksSuccess = (looks) => ({
   looks
 })
 
-export const fetchProducts = (user) => dispatch => {
-  
-  console.log('play fetch!', user)
-  fetch(`${API_BASE_URL}/api/products/${user}`, {
+export const fetchProducts = (user, query) => dispatch => {
+  console.log('inside fP', user, query)
+  var url = new URL(`${API_BASE_URL}/api/products/${user}`),
+  params = query
+if (params != null){
+
+url.searchParams.append('brand', params)
+}
+
+fetch( url, {
       method: 'get',
       headers: {
         "Content-Type": "application/json",
@@ -50,20 +56,18 @@ export const fetchProducts = (user) => dispatch => {
       if (!res.ok){
           return Promise.reject(res.statusText)
       }
-      
-      console.log(res);
       return res.json()
   }) 
   .then (products => {
-    
-    console.log(products)
     dispatch(fetchProductsSuccess(products))})
   .catch(err => console.log(err));
 };
 
 export const fetchLooks = (authToken) => dispatch => {
+//MISSING CODE KRM
   fetch(`${API_BASE_URL}/api/looks/`, {
       method: 'get',
+      // body: JSON.stringify(newObj),
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${authToken}`  

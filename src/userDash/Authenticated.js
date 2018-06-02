@@ -6,20 +6,31 @@ import {connect} from 'react-redux'
 import './userdash.css'
 import {fetchProducts} from '../actions/landingActions'
 
+import Search from './SearchFilter'
 import AddProduct  from './AddProduct';
 import AddLook from './AddLook'
 import { Redirect} from 'react-router-dom'
 
 import AccordionLibrary from './AccordionLibrary';
+import ReduxSearch  from "./ReduxSearch";
 
 export class Authenticated extends React.Component {
+
   componentDidMount(){
-    if(this.props.authenticated !=true){
-this.props.dispatch(fetchProducts(this.props.requestedUser))}}
+console.log('component mounted, has products', this.props.products)
 
+if(this.props.products.length === 0){
+  if(this.props.authenticated !=true ){
+    this.props.dispatch(fetchProducts(this.props.requestedUser))
+  } else {
+    this.props.dispatch(fetchProducts(this.props.currentUser))
+  }
 
-  //KRM LOG OUT STRING FROM REDIRECT 
+  }
+  }
+
   render() {
+    console.log('authenticated', this.props.products)
     if (!this.props.dispatch) return <h1>UNCONNECTED</h1>
 
     if (this.props.authToken === null) {
@@ -56,6 +67,7 @@ this.props.dispatch(fetchProducts(this.props.requestedUser))}}
     } else  {
       return (
 <div className="Dash">
+<ReduxSearch />
 <AccordionLibrary authenticated={this.props.authenticated} kind='products' />
 {/* <AccordionLibrary authenticated={this.props.authenticated} kind='looks' /> */}
 
@@ -80,7 +92,9 @@ const mapStateToProps = main => (
   editNumber: main.dash.editNumber,
 editKind: main.dash.editKind,
 display: main.main.display,
+requestedUser: main.dash.requestedUser,
   currentUser: main.auth.currentUser,
+  search: main.dash.search,
 authToken: main.auth.authToken})
 
 export default connect(mapStateToProps)(Authenticated)

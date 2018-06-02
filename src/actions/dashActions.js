@@ -1,8 +1,9 @@
 import {API_BASE_URL} from '../config';
 import {fetchProductsRequest} from './landingActions'
 import {caughtError} from './auth'
-
+export const SET_REQUESTED_USER='SET_REQUESTED_USER'
 export const EDIT_ITEM ='EDIT_ITEM'
+export const SET_SEARCH='SET_SEARCH'
 export const SHOW_DETAIL = 'SHOW_DETAIL';
 export const SET_EDITING = 'SET_EDITING';
 export const NEW_PRODUCT_SUCCESS = 'NEW_PRODUCT_SUCCESS';
@@ -26,6 +27,18 @@ export const newProductSuccess = (values) => ({type: NEW_PRODUCT_SUCCESS, values
 
 export const itemDeleteSuccess = (number, kind) => ({type: ITEM_DELETE_SUCCESS, number, kind})
 export const newLookSuccess = (values) => ({type: NEW_LOOK_SUCCESS, values})
+
+export const setSearch = (values) => ({type:SET_SEARCH, values})
+
+export const setRequestedUser = (user) => {
+
+return ({
+  type: SET_REQUESTED_USER,
+  user
+})
+}
+
+
 
 
 export const updateProduct = (values, authToken, number) => async dispatch => {
@@ -149,7 +162,6 @@ export const sendNewLook = (values, products, authToken) => async dispatch => {
   const data = await res.json()
  
  if(res.status === 200){
-   console.log('yaaay')
    dispatch(newLookSuccess(data))
    dispatch(setEditing('false'))
  } else {

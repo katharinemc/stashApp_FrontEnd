@@ -9,16 +9,15 @@ import AddLook from './AddLook'
 import {BrowserRouter as Route, Redirect} from 'react-router-dom'
 
 import Authenticated from "./Authenticated";
+import { setRequestedUser } from "../actions/dashActions";
 
 export class UserDash extends React.Component {
+
+
   render() {
 
-    console.log(this.props.match.params.userId === this.props.currentUser )
-    // if (this.props.match.params.userId === this.props.currentUser) {
-    //   console.log('we have a match')
-    //   return (<Authenticated authenticated ='foobar'/>)
-    // } 
-  return    <Authenticated requestedUser={this.props.match.params.userId} authenticated = {(this.props.match.params.userId === this.props.currentUser)} />
+this.props.dispatch(setRequestedUser(this.props.match.params.userId))
+  return    <Authenticated authenticated = {(this.props.match.params.userId === this.props.currentUser)} />
 
 
   
@@ -33,7 +32,8 @@ const mapStateToProps = main => ({
   editKind: main.dash.editKind,
   display: main.main.display,
   currentUser: main.auth.currentUser,
-  authToken: main.auth.authToken
+  authToken: main.auth.authToken,
+  requestedUser: main.auth.requestedUser
 })
 
 export default connect(mapStateToProps)(UserDash)

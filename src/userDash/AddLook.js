@@ -3,19 +3,19 @@ import React from 'react'
 import {Field, reduxForm} from 'redux-form'
 import {setEditing, sendEditLook, addToLookSearch, sendNewLook} from '../actions/dashActions'
 import { connect } from 'react-redux';
-
+import {caughtError} from '../actions/auth'
 
 export class AddLook extends React.Component {
   constructor(props) {
     super(props);
 
-//can creat echosen variable here KRM
+const chosenLook =this.props.looks.filter( look => look.id === this.props.editNumber)[0] 
 
     this.state = {
       resultProducts: [],     
 
-      chosenLook: this.props.editNumber ? this.props.looks.filter( look => look.id === this.props.editNumber)[0] : '',
-      selectedProducts: this.props.editNumber ? (this.props.looks.filter( look => look.id === this.props.editNumber)[0]).products : []
+      chosenLook:  this.props.editNumber ?  chosenLook : '',
+      selectedProducts: this.props.editNumber ? chosenLook.products : []
 
     }
   }
@@ -25,12 +25,15 @@ export class AddLook extends React.Component {
     const authToken = this.props.authToken
     const productIds = products.map(product => product.id)
 
+if(this.state.selectedProducts < 1){
+  this.props.dispatch(caughtError('Looks must have at least one product'))
+} else {
     if(this.props.editNumber === null) {
       this.props.dispatch(sendNewLook(values, productIds, authToken))
     } else if (this.props.editNumber != null) {
       let number = this.props.editNumber
       this.props.dispatch(sendEditLook(values, productIds, authToken, number))
-    }
+    }}
 
   }
 

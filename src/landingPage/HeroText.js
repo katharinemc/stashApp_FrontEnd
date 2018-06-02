@@ -12,16 +12,13 @@ export class HeroText extends React.Component {
   render() {
 
     if (this.props.loading === 'true') {
- 
- console.log(this.props.currentUser)
-      this.props.dispatch(fetchProducts(this.props.currentUser))
+      // this.props.dispatch(fetchProducts(this.props.currentUser))
       // this.props.dispatch(fetchLooks(this.props.currentUser))
       return <h1>Here's some stuff, loading</h1>
 
     } 
     else if (this.props.loading === 'complete' && this.props.authToken != null) {
       //LOG OUT USERS USERNAME
-      console.log('current user is', this.props.currentUser)
       return <Redirect to={`/users/${this.props.currentUser}`}/>;
   }
    else if (this.props.display === 'login') {
