@@ -28,6 +28,7 @@ editButton(number, kind) {
 }
     
     render() {
+        console.log('al', this.props.kind, this.props.results)
         const results = this.props.results.map((item, index) =>{
             let productList;
             if(this.props.kind==='looks'){

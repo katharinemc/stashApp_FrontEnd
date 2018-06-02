@@ -3,19 +3,20 @@ import React from 'react'
 import '../landingPage/footer.css';
 import { connect } from 'react-redux';
 
-import {setFooterExpand} from '../actions/landingActions'
+import {setFooterExpand, changeDisplay} from '../actions/landingActions'
 export class MainFooter extends React.Component {
-    changeDisplay(){
+    expandFooter(){
         this.props.dispatch(setFooterExpand(!this.props.expandFooter))
     }
 
 render () {
+    console.log('footer dos[', this.props.display)
     return (
 
         <span className="main ">     
-        <button type="button" onClick={(e) => this.changeDisplay('products') }>Products</button>
-        <button className="projectName" onClick={(e) => this.changeDisplay()}>^</button>
-        <button type="button" onClick={(e) => this.changeDisplay('looks')}>Looks</button> 
+        <button type="button" onClick={(e) => this.props.dispatch(changeDisplay('products')) }>Products</button>
+        <button className="projectName" onClick={(e) => this.expandFooter()}>^</button>
+        <button type="button" onClick={(e) => this.props.dispatch(changeDisplay('looks'))}>Looks</button> 
       </span> 
     );
 }

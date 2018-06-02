@@ -65,14 +65,13 @@ fetch( url, {
   .catch(err => console.log(err));
 };
 
-export const fetchLooks = (authToken) => dispatch => {
-//MISSING CODE KRM
-  fetch(`${API_BASE_URL}/api/looks/`, {
+export const fetchLooks = (user) => dispatch => {
+console.log('lets fetch looks')
+
+  fetch(`${API_BASE_URL}/api/looks/${user}`, {
       method: 'get',
-      // body: JSON.stringify(newObj),
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${authToken}`  
       }
   })
   .then(res => {

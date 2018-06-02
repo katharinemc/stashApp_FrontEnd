@@ -4,95 +4,117 @@ import React from 'react';
 import Footer from './Footer'
 import {connect} from 'react-redux'
 import './userdash.css'
-import {fetchProducts} from '../actions/landingActions'
+import {fetchProducts, fetchLooks} from '../actions/landingActions'
 
-import AddProduct  from './AddProduct';
+import AddProduct from './AddProduct';
 import AddLook from './AddLook'
-import { Redirect} from 'react-router-dom'
+import {Redirect} from 'react-router-dom'
 
 import AccordionLibrary from './AccordionLibrary';
-import ReduxSearch  from "./ReduxSearch";
+import ReduxSearch from "./ReduxSearch";
 
 export class Authenticated extends React.Component {
 
   //JON - WANT RERENDER AFTER SEARCH COMPLETED
 
   render() {
-    if(this.props.search === false){
-      console.log('false all right!')
-      if(this.props.products.length === 0)
-{      if(this.props.authenticated !=true ){
-        this.props.dispatch(fetchProducts(this.props.requestedUser))
-      } else {
-        this.props.dispatch(fetchProducts(this.props.currentUser))
+    if (this.props.search === false) {
+
+      if (this.props.products.length === 0) {
+        if (this.props.authenticated != true) {
+          this
+            .props
+            .dispatch(fetchProducts(this.props.requestedUser))
+            this
+            .props
+            .dispatch(fetchLooks(this.props.requestedUser))
+          } else {
+          this
+            .props
+            .dispatch(fetchProducts(this.props.currentUser))
+            this
+            .props
+            .dispatch(fetchLooks(this.props.currentUser))
+          }
       }
-}    
-      }
-    
-    if (!this.props.dispatch) return <h1>UNCONNECTED</h1>
+    }
+    console.log('Authenticated Display', this.props.display)
+    if (!this.props.dispatch) 
+      return <h1>UNCONNECTED</h1>
 
     if (this.props.authToken === null) {
       return <Redirect to={"/"}/>;
     } else if (this.props.editing === 'addProduct') {
       return (
         <div>
-           <AddProduct currentUser={this.props.currentUser} authToken={this.props.authToken}/>
+          <AddProduct
+            currentUser={this.props.currentUser}
+            authToken={this.props.authToken}/>
           <Footer/>
         </div>
       )
-    } else if (this.props.editing === 'editproducts'){
+    } else if (this.props.editing === 'editproducts') {
       return (
         <div>
-        <AddProduct currentUser={this.props.currentUser} authToken={this.props.authToken}/>
-       <Footer/>
-     </div>
-      )} else if (this.props.editing === 'editlooks'){
-        return (
-          <div>
-            <AddLook authToken = {this.props.authToken} />
-            <Footer />
-            </div>
-        )
-      } else if (this.props.editing === 'addLook') {
+          <AddProduct
+            currentUser={this.props.currentUser}
+            authToken={this.props.authToken}/>
+          <Footer/>
+        </div>
+      )
+    } else if (this.props.editing === 'editlooks') {
       return (
         <div>
-        <AddLook currentUser={this.props.currentUser} authToken={this.props.authToken}/>
-       <Footer/>
-     </div>
-  
+          <AddLook authToken={this.props.authToken}/>
+          <Footer/>
+        </div>
+      )
+    } else if (this.props.editing === 'addLook') {
+      return (
+        <div>
+          <AddLook currentUser={this.props.currentUser} authToken={this.props.authToken}/>
+          <Footer/>
+        </div>
+
       )
 
-    } else  {
+    } else if (this.props.display === 'looks') {
+      console.log('lets go to the looks')
       return (
-<div className="Dash">
-<ReduxSearch />
-<AccordionLibrary authenticated={this.props.authenticated} kind='products' />
-{/* <AccordionLibrary authenticated={this.props.authenticated} kind='looks' /> */}
-
+        <div className="Dash">
+          <ReduxSearch/>
+          <AccordionLibrary authenticated={this.props.authenticated} kind='looks'/>
           <Footer/>
-  
+        </div>
+      )
+    } else {
+      return (
+        <div className="Dash">
+          <ReduxSearch/>
+          <AccordionLibrary authenticated={this.props.authenticated} kind='products'/>
+          <Footer/>
+
         </div>
       );
     }
-    
-  }
 
+  }
 
 }
 
-const mapStateToProps = main => (
-  
-  {expandFooter: main.main.expandFooter, 
+const mapStateToProps = main => ({
+  expandFooter: main.main.expandFooter,
   editing: main.dash.editing,
   auth: main.auth,
   looks: main.main.looks,
   products: main.main.products,
   editNumber: main.dash.editNumber,
-editKind: main.dash.editKind,
-display: main.main.display,
-requestedUser: main.dash.requestedUser,
+  editKind: main.dash.editKind,
+  display: main.main.display,
+  requestedUser: main.dash.requestedUser,
   currentUser: main.auth.currentUser,
   search: main.dash.search,
-authToken: main.auth.authToken})
+  authToken: main.auth.authToken
+})
 
 export default connect(mapStateToProps)(Authenticated)

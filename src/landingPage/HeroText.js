@@ -3,7 +3,7 @@ import './herotext.css';
 import SignUpBox from './SignUpBox'
 import {connect} from 'react-redux'
 import {BrowserRouter as Route, Redirect} from 'react-router-dom'
-import {fetchProducts, changeDisplay, fetchLooks} from '../actions/landingActions'
+import {fetchProducts, changeDisplay, fetchLooks, CHANGE_DISPLAY} from '../actions/landingActions'
 import ReduxLogin from './ReduxLogin'
 import ReduxRegister  from './ReduxRegister';
 
@@ -12,13 +12,15 @@ export class HeroText extends React.Component {
   render() {
 
     if (this.props.loading === 'true') {
-      // this.props.dispatch(fetchProducts(this.props.currentUser))
-      // this.props.dispatch(fetchLooks(this.props.currentUser))
+      console.log(this.props.currentUser)
+      this.props.dispatch(fetchProducts(this.props.currentUser))
+      this.props.dispatch(fetchLooks(this.props.currentUser))
       return <h1>Here's some stuff, loading</h1>
 
     } 
-    else if (this.props.loading === 'complete' && this.props.authToken != null) {
-      //LOG OUT USERS USERNAME
+    else 
+    if (this.props.loading === 'complete' && this.props.authToken != null) {
+this.props.dispatch(changeDisplay('products'))
       return <Redirect to={`/users/${this.props.currentUser}`}/>;
   }
    else if (this.props.display === 'login') {
