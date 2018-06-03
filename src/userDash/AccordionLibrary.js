@@ -23,7 +23,7 @@ deleteButton (number, kind) {
 if(this.props.kind === 'looks' || this.props.warning)
 { this.props.dispatch(deleteItem(number, kind, authToken))
 } else {
-this.props.dispatch(searchProducts(this.props.currentUser, number))
+this.props.dispatch(searchProducts(this.props.currentUser, number, authToken))
 }
 
 }
