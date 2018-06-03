@@ -12,7 +12,6 @@ export class HeroText extends React.Component {
   render() {
 
     if (this.props.loading === 'true') {
-      console.log(this.props.currentUser)
       this.props.dispatch(fetchProducts(this.props.currentUser))
       this.props.dispatch(fetchLooks(this.props.currentUser))
       return <h1>Here's some stuff, loading</h1>

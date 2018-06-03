@@ -38,7 +38,6 @@ export class Authenticated extends React.Component {
           }
       }
     }
-    console.log('Authenticated Display', this.props.display)
     if (!this.props.dispatch) 
       return <h1>UNCONNECTED</h1>
 
@@ -79,10 +78,9 @@ export class Authenticated extends React.Component {
       )
 
     } else if (this.props.display === 'looks') {
-      console.log('lets go to the looks')
       return (
         <div className="Dash">
-          <ReduxSearch/>
+          <ReduxSearch kind='Looks'/>
           <AccordionLibrary authenticated={this.props.authenticated} kind='looks'/>
           <Footer/>
         </div>
@@ -90,7 +88,7 @@ export class Authenticated extends React.Component {
     } else {
       return (
         <div className="Dash">
-          <ReduxSearch/>
+          <ReduxSearch kind='Products'/>
           <AccordionLibrary authenticated={this.props.authenticated} kind='products'/>
           <Footer/>
 

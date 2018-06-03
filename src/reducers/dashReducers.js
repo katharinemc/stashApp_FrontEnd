@@ -12,7 +12,6 @@ search: false,
 export const dashReducer = (state=initialState, action) => {
     switch(action.type){
         case SET_SEARCH:
-        console.log('search value', action.values)
             return Object.assign ({}, state, {search: action.values} )
         case SHOW_DETAIL:
             return Object.assign( {}, state, {detailView: action.key})

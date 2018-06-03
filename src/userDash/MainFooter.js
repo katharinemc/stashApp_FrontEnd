@@ -10,7 +10,6 @@ export class MainFooter extends React.Component {
     }
 
 render () {
-    console.log('footer dos[', this.props.display)
     return (
 
         <span className="main ">     

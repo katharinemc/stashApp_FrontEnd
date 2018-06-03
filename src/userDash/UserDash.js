@@ -15,7 +15,6 @@ export class UserDash extends React.Component {
 
 
   render() {
-
 this.props.dispatch(setRequestedUser(this.props.match.params.userId))
   return    <Authenticated authenticated = {(this.props.match.params.userId === this.props.currentUser)} />
 

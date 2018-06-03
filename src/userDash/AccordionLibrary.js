@@ -10,6 +10,7 @@ import {
     AccordionItemBody,
 } from 'react-accessible-accordion';
 
+import {searchProducts } from '../actions/landingActions'
 // Demo styles, see 'Styles' section below for some notes on use.
 import 'react-accessible-accordion/dist/fancy-example.css';
 import { deleteProduct, setEditing } from "../actions/dashActions";
@@ -19,7 +20,12 @@ class AccordionLibrary extends React.Component {
 
 deleteButton (number, kind) {
     const authToken = this.props.authToken
-    this.props.dispatch(deleteItem(number, kind, authToken))
+if(this.props.kind === 'looks' || this.props.warning)
+{ this.props.dispatch(deleteItem(number, kind, authToken))
+} else {
+this.props.dispatch(searchProducts(this.props.currentUser, number))
+}
+
 }
 
 editButton(number, kind) {
@@ -28,7 +34,7 @@ editButton(number, kind) {
 }
     
     render() {
-        console.log('al', this.props.kind, this.props.results)
+        console.log('AL has warning', this.props.warning)
         const results = this.props.results.map((item, index) =>{
             let productList;
             if(this.props.kind==='looks'){
@@ -44,8 +50,8 @@ editButton(number, kind) {
              { this.props.kind === 'products' ? `${item.brand} ${item.category} ${item.shade}` : item.name }
         
                   </AccordionItemTitle>
-                  <AccordionItemBody> 
- 
+                  <AccordionItemBody>
+                       {this.props.warning != null ? <span> {this.props.warning } <button type='button' onClick={() => this.deleteButton(`${item.id}`, `${this.props.kind}`) }>Yes, Delete</button> </span> : ''} <br />
                   { this.props.kind === 'products' ? `Full Product Name: ${item.name}` : `Items used: ${productList}` }
  
 
@@ -67,12 +73,13 @@ editButton(number, kind) {
     }
 }
 const mapStateToProps = (main, ownProps) => 
-     ({currentUser: main.main.currentUser,
+     ({currentUser: main.auth.currentUser,
     authToken: main.auth.authToken,
     editing: main.main.editing,
     display: main.main.display,
     loggedIn: main.main[ownProps.loggedIn],
     products: main.main.products,
+    warning: main.main.warning,
      results: main.main[ownProps.kind]})
  
 export default connect(mapStateToProps)(AccordionLibrary)

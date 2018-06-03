@@ -3,7 +3,7 @@ import React from 'react'
 import {Field, isPristine, reduxForm} from 'redux-form'
 import {setEditing, sendEditLook, addToLookSearch, sendNewLook, setSearch} from '../actions/dashActions'
 import {connect} from 'react-redux';
-import {fetchProducts, searchProductsSequence} from '../actions/landingActions'
+import {fetchProducts, fetchLooks} from '../actions/landingActions'
 
 export class ReduxSearch extends React.Component {
   constructor(props) {
@@ -19,28 +19,32 @@ export class ReduxSearch extends React.Component {
   }
 
   onClick(values) {
-    console.log('onclick values', values)
     this.props.dispatch(setSearch(false))
   }
 
   onSubmit(editState, string, values) {
-console.log('reduxForm vlaues', values)
-
 this.props.dispatch(setSearch(editState))
-    this
-        .props
-        .dispatch(fetchProducts(this.props.requestedUser, string, values))
+
+if(this.props.kind === "Products"){
+  this
+  .props
+  .dispatch(fetchProducts(this.props.requestedUser, string, values))
+} else {
+  console.log('search looks')
+  this.props.dispatch(fetchLooks(this.props.requestedUser, string, values))
+}
 
  }
 
   render() {
+    console.log(this.props.results)
     return (
 
 <form onSubmit = {this.props.handleSubmit(values => this.onSubmit(true, this.state.searchString, values))}>
-<h2>Search by Brand</h2>
+<h2>Search {this.props.kind}</h2>
 <input type="search" ref={input => (this.input = input)} onChange={(e) => this.onChange(e.target.value)} />
 
- <label>
+{this.props.kind === 'Products' ? <div> <label>
             <Field
               name="searchType"
               component="input"
@@ -75,7 +79,24 @@ this.props.dispatch(setSearch(editState))
               value="shade"
             />{' '}
             Shade
+          </label> </div> :   <div>  <label>
+            <Field
+              name="searchType"
+              component="input"
+              type="radio"
+              value="name"
+            />{' '}
+           Look Name
           </label>
+          <label>
+            <Field
+              name="searchType"
+              component="input"
+              type="radio"
+              value="products"
+            />{' '}
+            Products Used
+          </label></div>}
   <button type="submit" >Search</button> <button  type="button" onClick={() => this.onClick(false)}>
           Clear Search</button>
 

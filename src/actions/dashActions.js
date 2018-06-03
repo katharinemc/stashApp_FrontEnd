@@ -1,5 +1,5 @@
 import {API_BASE_URL} from '../config';
-import {fetchProductsRequest} from './landingActions'
+import {fetchProductsRequest, setWarning} from './landingActions'
 import {caughtError} from './auth'
 export const SET_REQUESTED_USER='SET_REQUESTED_USER'
 export const EDIT_ITEM ='EDIT_ITEM'
@@ -137,6 +137,7 @@ export const deleteItem = (number, kind, authToken) => dispatch => {
 
     else if(res.status ===204) {
       dispatch(itemDeleteSuccess(number, kind))
+      dispatch(setWarning(null))
     }
 
 
