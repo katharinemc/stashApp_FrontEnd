@@ -26,12 +26,7 @@ export class AddProduct extends React.Component {
 
 
   render() {
-   
-   let chosenProduct;
-    if(this.props.editNumber != null){
-      chosenProduct = (this.props.products.filter( product => product.id === this.props.editNumber))[0]
-    }
-
+    console.log(this.props.initialValues)
     return (
             <form  className="addProduct" onSubmit={this
               .props
@@ -44,29 +39,32 @@ export class AddProduct extends React.Component {
           type="text"
           name="category"
           id="category"
-          value={this.props.initialValues.category}
-          placeholder={this.props.editNumber === null ? `Lipstick` : `${chosenProduct.category}`} />
+                    placeholder='Lip Color'
+           />
         <label htmlFor="brand">Brand</label>
         <Field
           component="input"
           type="text"
           name="brand"
           id="brand"
-          value={this.props.editNumber === null ? `M.A.C` : `${chosenProduct.brand}`}/>
+          placeholder="M.A.C."
+              value="foobar"
+/>
         <label htmlFor="name">Name</label>
         <Field
           component="input"
           type="text"
-          name={this.props.initialValues.name}
+          name='name'
           id="name"
-          value={this.props.editNumber === null ? `Matte Lipstick` : `${chosenProduct.name}`}/>
+          placeholder="Matte Lipstick"
+          />
         <label htmlFor="shade">Shade</label>
         <Field
           component="input"
           type="text"
           name="shade"
           id="shade"
-          value={this.props.editNumber === null ? `Shade` : `${chosenProduct.shade}`}/>
+placeholder="Russian Red"          />
 
         <button type="submit">
           Add Product</button>
@@ -78,7 +76,6 @@ export class AddProduct extends React.Component {
 }
 
 const mapStateToProps = (main) => {
-  
 
 return  ({
   error: main.auth.error,
@@ -89,20 +86,17 @@ return  ({
 
 
 AddProduct = reduxForm({
-  form: 'AddProduct' // a unique identifier for this form
+  form: 'AddProduct', // a unique identifier for this form
+  enableReinitialize: true
 })(AddProduct)
 
-AddProduct = connect(mapStateToProps,
-  state =>
-  {
-    return ({
-      initialValues:{
-        name: 'foobar',
-        // category: [ownProps.editNumber]
-      }
-    })
-  }
-  
+AddProduct =connect( (main) => ({
+  products: main.main.products,
+  editNumber: main.dash.editNumber, // pull initial values from account reducer
+  initialValues: main.main.products.filter( product => product.id === main.dash.editNumber)[0],
+  }),
+ // bind account loading action creator
+
   
 )(AddProduct)
 

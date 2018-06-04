@@ -21,6 +21,7 @@ export class ReduxLogin extends React.Component {
         .handleSubmit(values => this.onSubmit(values))}>
         <h1>Welcome Back!</h1>
         <span>{this.props.error}</span>
+  <div className="inUse">
         <label htmlFor="userName">UserName</label>
         <Field type="text"
           component={Input}
@@ -36,6 +37,7 @@ export class ReduxLogin extends React.Component {
           validate={[passwordsMatch, required, nonEmpty]} />
 
         <button className="hrCenter" disabled={this.props.pristine || this.props.submitting} type="submit">Log In</button>
+</div>
       </form>
       ); } } 
       

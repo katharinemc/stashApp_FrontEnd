@@ -3,7 +3,7 @@ import React from 'react';
 
 import Footer from './Footer'
 import {connect} from 'react-redux'
-import './userdash.css'
+import './authenticated.css'
 import {fetchProducts, fetchLooks} from '../actions/landingActions'
 
 import AddProduct from './AddProduct';
@@ -80,6 +80,7 @@ export class Authenticated extends React.Component {
     } else if (this.props.display === 'looks') {
       return (
         <div className="Dash">
+        <h1 className="banner">Looks</h1>
           <ReduxSearch kind='Looks'/>
           <AccordionLibrary authenticated={this.props.authenticated} kind='looks'/>
           <Footer/>
@@ -88,6 +89,7 @@ export class Authenticated extends React.Component {
     } else {
       return (
         <div className="Dash">
+        <h1 className="banner">Products</h1>
           <ReduxSearch kind='Products'/>
           <AccordionLibrary authenticated={this.props.authenticated} kind='products'/>
           <Footer/>

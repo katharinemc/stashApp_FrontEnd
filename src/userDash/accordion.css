@@ -1,0 +1,43 @@
+.accordion__body {
+    display: block;
+}
+
+.accordion__body--hidden {
+    display: none;
+}
+.itemHeading {
+   margin: 0 auto;
+    padding:2% 5%;
+    background-color: #FF8977;
+    border: .5px solid black;
+}
+
+.accordionBody {
+    border: 5px solid #DB2B39;
+
+
+    padding: 0 5%;
+
+}
+
+.accordionButtons  {
+    margin-top: 15%;
+    border-top: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    align-content: space-evenly;
+}
+
+.accordionButtons button {
+    margin: 3% auto;
+    display: inline;
+      letter-spacing: .2em;
+    padding: 3%;
+    font-size: .9em;
+    font-family: inherit;
+    font-weight: bolder;
+    background-color: #DB2B39;
+    color: white;
+    border: transparent;
+
+}

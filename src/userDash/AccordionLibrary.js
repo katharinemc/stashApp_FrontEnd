@@ -12,7 +12,8 @@ import {
 
 import {searchProducts } from '../actions/landingActions'
 // Demo styles, see 'Styles' section below for some notes on use.
-import 'react-accessible-accordion/dist/fancy-example.css';
+import 'react-accessible-accordion/dist/minimal-example.css';
+import './accordion.css'
 import { deleteProduct, setEditing } from "../actions/dashActions";
 
 
@@ -46,16 +47,16 @@ editButton(number, kind) {
            return (
 
                 <AccordionItem key={index}>
-                  <AccordionItemTitle > 
+                  <AccordionItemTitle className="itemHeading" > 
              { this.props.kind === 'products' ? `${item.brand} ${item.category} ${item.shade}` : item.name }
         
                   </AccordionItemTitle>
-                  <AccordionItemBody>
+                  <AccordionItemBody className="accordionBody">
                        {this.props.warning != null ? <span> {this.props.warning } <button type='button' onClick={() => this.deleteButton(`${item.id}`, `${this.props.kind}`) }>Yes, Delete</button> </span> : ''} <br />
-                  { this.props.kind === 'products' ? `Full Product Name: ${item.name}` : `Items used: ${productList}` }
- 
+                  { this.props.kind === 'products' ? `Product Name: ${item.name}` : `Items used: ${productList}` } <br />
+                    Notes: 
 
-                {this.props.authenticated ? <span> <button onClick={() => this.deleteButton(`${item.id}`, `${this.props.kind}`)} >Delete</button> <button onClick={() => this.editButton(`${item.id}`, `${this.props.kind}`)}>Edit</button> </span> : ''}
+                {this.props.authenticated ? <div className ="accordionButtons"> <button onClick={() => this.deleteButton(`${item.id}`, `${this.props.kind}`)} >Delete</button> <button onClick={() => this.editButton(`${item.id}`, `${this.props.kind}`)}>Edit</button> </div> : ''}
                   </AccordionItemBody>
                   </AccordionItem>
  
@@ -65,7 +66,6 @@ editButton(number, kind) {
         return (
 
             <Accordion>
-                <h4>{this.props.kind}</h4>
  {results}
         </Accordion>
     
