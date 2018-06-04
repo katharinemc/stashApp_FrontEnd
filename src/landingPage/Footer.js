@@ -1,5 +1,4 @@
 import React from 'react'
-import './footer.css';
 import {connect} from 'react-redux';
 import {changeDisplay} from '../actions/landingActions'
 
@@ -13,7 +12,7 @@ export class Footer extends React.Component {
 
   render() {
     return (
-      <footer className="landing">
+      <footer>
 
         <button type="button" onClick={(e) => this.changeDisplay('login')}>Login</button>
         <span className="projectName" onClick={(e) => this.changeDisplay('landing')}>|</span>

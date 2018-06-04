@@ -1,5 +1,4 @@
 import React  from 'react';
-import './expandedfooter.css'
 import {connect} from 'react-redux'
 import { setEditing } from '../actions/dashActions';
 import {setFooterExpand} from '../actions/landingActions'

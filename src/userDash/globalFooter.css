@@ -1,12 +1,12 @@
 
- footer.dash  {
+ footer  {
     position: fixed;
     bottom: 0;
     font-size: .75em;
     width: 100%;
     height: 10%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-evenly;
     background-color: #503047;
     color: oldlace;
@@ -62,7 +62,7 @@ footer.expanded ul {
     color: black;
   }
 
-.expandedFooter  button {
+button {
   margin: 2% auto;
   display: inline;
     letter-spacing: .2em;

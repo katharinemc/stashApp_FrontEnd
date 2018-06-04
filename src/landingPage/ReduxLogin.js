@@ -1,5 +1,4 @@
 import React from 'react'
-// import './loginbox.css';
 import {submitLogin, login_sequence, setLoginStatus} from '../actions/auth';
 import {Field, reduxForm} from 'redux-form'
 import Input from '../Input.js'
@@ -16,14 +15,14 @@ export class ReduxLogin extends React.Component {
   render() {
     return (
       <form
-        className="login"
+        className="centeredContent"
         onSubmit={this
         .props
         .handleSubmit(values => this.onSubmit(values))}>
         <h1>Welcome Back!</h1>
         <span>{this.props.error}</span>
         <label htmlFor="userName">UserName</label>
-        <Field
+        <Field type="text"
           component={Input}
           name='username'
           validate={[required, nonEmpty]} />
@@ -31,11 +30,12 @@ export class ReduxLogin extends React.Component {
           htmlFor="password">Password</label>
 
         <Field
+        type="password"
           component={Input}
           name='password'
           validate={[passwordsMatch, required, nonEmpty]} />
 
-        <button disabled={this.props.pristine || this.props.submitting} type="submit">Log In</button>
+        <button className="hrCenter" disabled={this.props.pristine || this.props.submitting} type="submit">Log In</button>
       </form>
       ); } } 
       

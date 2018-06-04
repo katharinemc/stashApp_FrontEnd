@@ -28,7 +28,7 @@ this.props.dispatch(changeDisplay('products'))
       return <ReduxRegister/>
     } else  {
       return (
-        <div className="HeroText">
+        <div className="centeredContent">
           <h1>Stash App</h1>
           <p>
             Being gorgeous with belly side up favor packaging over toy i could pee on this

@@ -16,8 +16,8 @@ export class ReduxRegister extends React.Component {
   render() {
    return (
       <form
-        className="login"
-        onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}
+      className="centeredContent"
+      onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}
         >
         <h1>Welcome to Our Community!</h1>
         <h2>{this.props.error != null ? this.props.error : ''}</h2>
@@ -44,7 +44,7 @@ export class ReduxRegister extends React.Component {
           name='passwordconfirm'
           validate={[passwordsMatch, passwordLength, required, nonEmpty]} />
 
-        <button type="submit">Log In</button>
+        <button className="hrCenter" type="submit">Log In</button>
       </form>
     );
   }

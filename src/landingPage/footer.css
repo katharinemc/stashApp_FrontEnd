@@ -1,4 +1,4 @@
-
+/* 
  footer.landing  {
     position: fixed;
     bottom: 0;
@@ -41,9 +41,7 @@
   font-family: inherit;
   font-weight: bold;
   background-color: transparent;
-  /* color: white;
-  border: transparent; */
-}
+ }
 
 .projectName {
   margin: 5% 0;
@@ -53,4 +51,4 @@
 .expandFooter {
   flex-direction: column;
   height: 45%;
-}
+} */

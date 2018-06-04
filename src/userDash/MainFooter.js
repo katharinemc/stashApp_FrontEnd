@@ -1,6 +1,5 @@
 
 import React from 'react'
-import '../landingPage/footer.css';
 import { connect } from 'react-redux';
 
 import {setFooterExpand, changeDisplay} from '../actions/landingActions'

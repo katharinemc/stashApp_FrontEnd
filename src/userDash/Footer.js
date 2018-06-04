@@ -3,7 +3,7 @@ import '../landingPage/footer.css';
 import {connect} from 'react-redux';
 import ExpandedFooter from './ExpandedFooter'
 import MainFooter from './MainFooter'
-import './expandedfooter.css'
+import '../userDash/globalFooter.css';
 
 import {setFooterExpand} from '../actions/landingActions'
 export class Footer extends React.Component {
