@@ -30,17 +30,6 @@ body {
 margin-top: 15%;
 }
 
-h1, h2, h3 {
-font-family: 'Tangerine', cursive;
-font-weight: 700;
-margin: 0;
-text-align: center;
-}
-
-h4 {
-  font-family: 'Raleway', sans-serif;
- 
-}
 .centeredContent {
   background-color: #FF8977;
   width: 90%;
@@ -60,6 +49,17 @@ h4 {
   font-style: o
 }
 
+h1, h2, h3 {
+  font-family: 'Tangerine', cursive;
+  font-weight: 700;
+  margin: 0;
+  text-align: center;
+  }
+  
+  h4 {
+    font-family: 'Raleway', sans-serif;   
+  }
+  
 .hrCenter{
   /* margin: 0 auto; */
   text-align: center;
@@ -89,11 +89,20 @@ font-size: .75em;
 
   }
 
-/* .fullHeight {
-  max-width: 100%;
-  min-height: 100vh;
+
+/* TABLET */
+
+@media only screen 
+  and (min-device-width: 768px) 
+  /* and (max-device-width: 1024px)  */
+  and (-webkit-min-device-pixel-ratio: 1) {
+body {
+  font-size: 36px;
 }
 
-#root {
-  min-height: 100vh;
-} */
+header {
+padding: 0;
+  font-size: 1em;
+}
+
+}
