@@ -44,7 +44,6 @@ export class ReduxSearch extends React.Component {
   }
 
   render() {
-    console.log(this.state.searchString, ' do you haeve kind? ', this.props.kind)
     return (
 
       <form

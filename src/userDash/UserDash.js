@@ -12,14 +12,15 @@ import { setRequestedUser } from "../actions/dashActions";
 
 export class UserDash extends React.Component {
 
-componentDidMount() {
+componentWillMount() {
+ console.log( "did you mount?", this.props.match.params)
   this.props.dispatch(setRequestedUser(this.props.match.params.userId))
 }
 
   render() {
 
 
-return   (<div className="Dash">
+return   (<div>
 <Authenticated authenticated = {(this.props.match.params.userId === this.props.currentUser)} /> 
 <Footer />
 </div>

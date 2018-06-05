@@ -17,9 +17,10 @@ export class Authenticated extends React.Component {
 
 componentDidMount() {
   if (this.props.search === false) {
-
+console.log('who is requested?', this.props.requestedUser, 'what are params?')
     if (this.props.products.length === 0 && this.props.newUser != true) {
       if (this.props.authenticated != true) {
+       console.log('lets get req stuff')
         this
           .props
           .dispatch(fetchProducts(this.props.requestedUser))
@@ -27,6 +28,7 @@ componentDidMount() {
           .props
           .dispatch(fetchLooks(this.props.requestedUser))
         } else {
+          console.log('lets get our stuff')
         this
           .props
           .dispatch(fetchProducts(this.props.currentUser))
@@ -39,10 +41,6 @@ componentDidMount() {
 
 }
   render() {
-    console.log(this.props.newUser)
-    if (!this.props.dispatch) 
-      return <h1>UNCONNECTED</h1>
-
     if (this.props.authToken === null) {
       return <Redirect to={"/"}/>;
 
@@ -104,7 +102,7 @@ componentDidMount() {
     //  )  } 
     else  {
       return (
-        <div className="Dash">
+        <div>
 
         <h1 className="banner">Products</h1>
           <ReduxSearch kind='Products'/>

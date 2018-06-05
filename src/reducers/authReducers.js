@@ -37,7 +37,6 @@ export const authReducer = (state = initialState, action) => {
     case SET_AUTH_TOKEN:
       return Object.assign({}, state, {authToken: action.authToken})
     case AUTH_SUCCESS:
-    console.log('setting current user', action)
       return Object.assign({}, state, {currentUser: action.currentUser})
   }
 
