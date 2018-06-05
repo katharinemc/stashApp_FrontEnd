@@ -16,7 +16,7 @@ export class ReduxSearch extends React.Component {
 
   onChange(values) {
     console.log(values)
-    // if(values.length === 0) hide, otherwise setState
+  values.length === 0 ? this.setState({searchString: null}) :
     this.setState({searchString: values})
   }
 
@@ -78,7 +78,7 @@ export class ReduxSearch extends React.Component {
               </label>
             </div>
           : ''}
-        {this.state.searchString && this.props.kind === 'Looks'
+        {/* {this.state.searchString && this.props.kind === 'Looks'
           ? <div className="radioContainer">
               <label>
                 <Field name="searchType" component="input" type="radio" value="name"/>{' '}
@@ -89,7 +89,7 @@ export class ReduxSearch extends React.Component {
                 Products Used
               </label>
             </div>
-          : ''}
+          : ''} */}
         {this.state.searchString != undefined
           ? <span className="hrCenter searchButtons">
               <button  type="submit">Search</button>

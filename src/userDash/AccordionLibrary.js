@@ -90,8 +90,9 @@ if(this.props.results.length === 0 ) {
               <br/> {this.props.kind === 'products'
                 ? <span> {`Product Name: ${item.name}`} <br /> 
                  {`Notes: ${item.notes}`}</span> 
-                :<span>Products Used: <ul>
-                  {productList}</ul></span>}
+                :<span>Products Used: <ul className="lookList">
+                  {productList}</ul>
+                  {`Notes: ${item.notes}`}  </span>}
               <br/>
               {this.props.authenticated && this.props.warning === null
                 ? <div className="accordionButtons">

@@ -47,7 +47,9 @@ padding: 3% 0;
     justify-content: space-evenly;
 }
 
-
+.lookList {
+    margin: 0 3%;
+}
 .warningButtons  {
     padding: 3% 0;
         display: flex;
