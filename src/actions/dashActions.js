@@ -97,13 +97,14 @@ if(res.status === 200){
 }
 
 export const sendNewProduct = (values, authToken) => async dispatch => {
-  const {brand, category, name, shade} = values
+  const {brand, category, name, shade, notes} = values
 
   let newObj = {
     brand,
     category,
     name,
-    shade
+    shade,
+    notes
   }
 const res= await  fetch(`${API_BASE_URL}/api/products/`, {
     method: 'post',

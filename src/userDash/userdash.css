@@ -7,10 +7,10 @@
 }
 
 .Dash {
-    min-width: 100%;
+    /* min-width: 100%; */
     display: flex;
+    min-height: 100%;
+border: 5px solid green;
     flex-direction: column;
-    position: fixed;
-    top: 0;
 
 }

@@ -16,6 +16,7 @@ export class ReduxSearch extends React.Component {
 
   onChange(values) {
     console.log(values)
+    // if(values.length === 0) hide, otherwise setState
     this.setState({searchString: values})
   }
 

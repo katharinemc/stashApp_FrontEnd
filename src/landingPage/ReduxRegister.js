@@ -8,6 +8,7 @@ import Input from '../Input'
 import {required, isEmail, nonEmpty, passwordLength, passwordsMatch} from '../validators'
 export class ReduxRegister extends React.Component {
   onSubmit(values) {
+    console.log('registration about to happen')
     this
       .props
       .dispatch(registerSequence(values))

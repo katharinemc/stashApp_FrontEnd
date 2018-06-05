@@ -10,16 +10,10 @@ import ReduxRegister  from './ReduxRegister';
 export class HeroText extends React.Component {
 
   render() {
-
-    if (this.props.loading === 'true') {
-      this.props.dispatch(fetchProducts(this.props.currentUser))
-      this.props.dispatch(fetchLooks(this.props.currentUser))
-      return <h1>Here's some stuff, loading</h1>
-
-    } 
-    else 
-    if (this.props.loading === 'complete' && this.props.authToken != null) {
-this.props.dispatch(changeDisplay('products'))
+ 
+    if (this.props.authToken != null) {
+console.log('about to redirect', this.props.currentUser, 'current display, ', this.props.display)
+      this.props.dispatch(changeDisplay('products'))
       return <Redirect to={`/users/${this.props.currentUser}`}/>;
   }
    else if (this.props.display === 'login') {

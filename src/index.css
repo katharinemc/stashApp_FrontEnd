@@ -43,6 +43,13 @@ h4 {
   border-radius: 10px;
 } 
 
+.container {
+  flex-direction: column;
+  display: flex;
+height: 100%;
+border: 5px solid orange;
+min-height: 100%;  
+}
 .errorMessage{
   display: block;
   text-transform: uppercase;

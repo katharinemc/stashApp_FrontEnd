@@ -1,5 +1,4 @@
 import React from 'react'
-import '../landingPage/footer.css';
 import {connect} from 'react-redux';
 import ExpandedFooter from './ExpandedFooter'
 import MainFooter from './MainFooter'

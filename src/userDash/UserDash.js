@@ -6,19 +6,24 @@ import {connect} from 'react-redux'
 import './userdash.css'
 import AddProduct from './AddProduct';
 import AddLook from './AddLook'
-import {BrowserRouter as Route, Redirect} from 'react-router-dom'
 
 import Authenticated from "./Authenticated";
 import { setRequestedUser } from "../actions/dashActions";
 
 export class UserDash extends React.Component {
 
+componentDidMount() {
+  this.props.dispatch(setRequestedUser(this.props.match.params.userId))
+}
 
   render() {
-this.props.dispatch(setRequestedUser(this.props.match.params.userId))
-console.log('UD', this.props.error)
-return    <Authenticated authenticated = {(this.props.match.params.userId === this.props.currentUser)} />
 
+
+return   (<div className="Dash">
+<Authenticated authenticated = {(this.props.match.params.userId === this.props.currentUser)} /> 
+<Footer />
+</div>
+);
 
   
 }

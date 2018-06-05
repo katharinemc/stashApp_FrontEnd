@@ -10,9 +10,10 @@ export const SET_LOGIN_STATUS = 'SET_LOGIN_STATUS';
 export const SET_AUTH_TOKEN = 'SET_AUTH_TOKEN';
 export const LOG_OUT_STORE = 'LOG_OUT_STORE';
 export const  CAUGHT_ERROR = 'CAUGHT_ERROR';
+export const NEW_USER ='NEW_USER'
 
 export const setAuthToken = authToken => ({type: SET_AUTH_TOKEN, authToken});
-
+export const newUser = (status) => ({type: NEW_USER, status})
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 
 export const caughtError = (error) => ({type: CAUGHT_ERROR, error})
@@ -46,10 +47,11 @@ const res = await fetch(`http://localhost:8080/api/login/`, {
       })
 const data = await res.json()
 if (res.status===200){
-  const {authToken} = data
+    dispatch(authSuccess(username))
+
+    const {authToken} = data
   const storeAuth = await storeAuthInfo(authToken, dispatch, username )
-  authSuccess(username)
-  dispatch(fetchProductsRequest('true'))
+//   dispatch(fetchProductsRequest('true'))
 } else {
   dispatch(caughtError(data.message))
 } }
@@ -68,6 +70,9 @@ export const registerSequence = (values) => async dispatch => {
   if(res.status === 422){
     dispatch(caughtError(data.message))
   } else {
+      console.log('registration success')
+    dispatch(authSuccess(username))
+    dispatch(newUser(true))
     const {authToken} = data
     const storeAuth = await storeAuthInfo(authToken, dispatch, username)
   }

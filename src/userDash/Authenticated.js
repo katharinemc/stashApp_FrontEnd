@@ -15,41 +15,52 @@ import ReduxSearch from "./ReduxSearch";
 
 export class Authenticated extends React.Component {
 
-  //JON - WANT RERENDER AFTER SEARCH COMPLETED
+componentDidMount() {
+  if (this.props.search === false) {
 
-  render() {
-    if (this.props.search === false) {
-
-      if (this.props.products.length === 0) {
-        if (this.props.authenticated != true) {
+    if (this.props.products.length === 0 && this.props.newUser != true) {
+      if (this.props.authenticated != true) {
+        this
+          .props
+          .dispatch(fetchProducts(this.props.requestedUser))
           this
-            .props
-            .dispatch(fetchProducts(this.props.requestedUser))
-            this
-            .props
-            .dispatch(fetchLooks(this.props.requestedUser))
-          } else {
+          .props
+          .dispatch(fetchLooks(this.props.requestedUser))
+        } else {
+        this
+          .props
+          .dispatch(fetchProducts(this.props.currentUser))
           this
-            .props
-            .dispatch(fetchProducts(this.props.currentUser))
-            this
-            .props
-            .dispatch(fetchLooks(this.props.currentUser))
-          }
-      }
+          .props
+          .dispatch(fetchLooks(this.props.currentUser))
+        }
     }
+  }
+
+}
+  render() {
+    console.log(this.props.newUser)
     if (!this.props.dispatch) 
       return <h1>UNCONNECTED</h1>
 
     if (this.props.authToken === null) {
       return <Redirect to={"/"}/>;
-    } else if (this.props.editing === 'addProduct') {
+
+    } else if (this.props.newUser === true){
+      return (
+        <div className="centeredContent">
+        <h2>Welcome to Our Community!</h2>
+        <p>To get started, click below to add your first product.</p>
+          </div>
+      )
+      
+    } else if (this.props.editing === 'addProduct' ) {
       return (
         <div>
           <AddProduct
             currentUser={this.props.currentUser}
             authToken={this.props.authToken}/>
-          <Footer/>
+           
         </div>
       )
     } else if (this.props.editing === 'editproducts') {
@@ -58,45 +69,47 @@ export class Authenticated extends React.Component {
           <AddProduct
             currentUser={this.props.currentUser}
             authToken={this.props.authToken}/>
-          <Footer/>
+           
         </div>
       )
     } else if (this.props.editing === 'editlooks') {
       return (
         <div>
           <AddLook authToken={this.props.authToken}/>
-          <Footer/>
+           
         </div>
       )
     } else if (this.props.editing === 'addLook') {
       return (
         <div>
           <AddLook currentUser={this.props.currentUser} authToken={this.props.authToken}/>
-          <Footer/>
+           
         </div>
 
       )
 
     } else if (this.props.display === 'looks') {
       return (
-        <div className="Dash">
+        <div>
         <h1 className="banner">Looks</h1>
           <ReduxSearch kind='Looks'/>
           <AccordionLibrary authenticated={this.props.authenticated} kind='looks'/>
-          <Footer/>
+           
         </div>
       )
-    } else if (this.props.error){
-      return( <div><div className="centeredContent hrCenter"> {this.props.error}</div>
-      <Footer /> </div>
-     ) } else  {
+    } 
+    // else if (this.props.error){
+    //   return( <div><div className="centeredContent hrCenter"> {this.props.error}</div>
+    //   <Footer /> </div>
+    //  )  } 
+    else  {
       return (
         <div className="Dash">
 
         <h1 className="banner">Products</h1>
           <ReduxSearch kind='Products'/>
           <AccordionLibrary authenticated={this.props.authenticated} kind='products'/>
-          <Footer/>
+           
 
         </div>
       );
@@ -119,6 +132,7 @@ const mapStateToProps = main => ({
   requestedUser: main.dash.requestedUser,
   currentUser: main.auth.currentUser,
   search: main.dash.search,
+  newUser: main.auth.newUser,
   authToken: main.auth.authToken
 })
 

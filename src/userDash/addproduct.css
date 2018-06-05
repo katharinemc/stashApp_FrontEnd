@@ -23,3 +23,17 @@
 .addProduct h1 {
     margin-bottom: 5%;
 }
+
+
+textarea {
+ 
+
+    width: 90%;
+      border-radius: 13px;
+      margin: 3% auto 5% auto;
+      display: block;
+    padding: 1.5% 3%;
+  font-size: .85em; 
+font-family: inherit;  
+    }
+  

@@ -37,17 +37,28 @@ class AccordionLibrary extends React.Component {
   }
 
   render() {
-    console.log('AL has warning', this.props.warning)
+
+if(this.props.results.length === 0 ) {
+  return (
+<div className="container">
+<div className="centeredContent">
+    <p>It looks like you need to add some content!  Click below to add Products and then to categorize them in a look.</p>
+    </div>
+    </div>
+  )
+}
+
     const results = this
       .props
       .results
       .map((item, index) => {
+
         let productList;
         if (this.props.kind === 'looks') {
           productList = item
             .products
-            .map(product => {
-              return <li>{product.brand} {product.category}, {product.name}, {product.shade}</li>
+            .map( (product, index) => {
+              return <li key={index}>{product.brand} {product.category}, {product.name}, {product.shade}<br /></li>
             })
         }
 
@@ -57,7 +68,7 @@ class AccordionLibrary extends React.Component {
             <AccordionItemTitle className="itemHeading">
               {this.props.kind === 'products'
                 ? `${item.brand} ${item.category} ${item.shade}`
-                : item.name}
+                : item.name} <i className="fas fa-angle-down"></i>
 
             </AccordionItemTitle>
             <AccordionItemBody className="accordionBody">
@@ -70,12 +81,13 @@ class AccordionLibrary extends React.Component {
                   </span>
                 : ''}
               <br/> {this.props.kind === 'products'
-                ? `Product Name: ${item.name}`
+                ? <span> {`Product Name: ${item.name}`} <br /> 
+                 {`Notes: ${item.notes}`}</span> 
                 :<span>Products Used: <ul>
                   {productList}</ul></span>}
               <br/>
-              Notes: {this.props.authenticated
-                ? <div className="hrCenter accordionButtons">
+              {this.props.authenticated
+                ? <div className="accordionButtons">
                     <button onClick={() => this.deleteButton(`${item.id}`, `${this.props.kind}`)}>Delete</button>
                     <button onClick={() => this.editButton(`${item.id}`, `${this.props.kind}`)}>Edit</button>
                   </div>

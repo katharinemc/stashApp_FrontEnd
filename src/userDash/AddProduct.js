@@ -1,8 +1,10 @@
 import React from 'react'
 import './addproduct.css';
-import {Field, reduxForm} from 'redux-form'
+import {Field,  reduxForm} from 'redux-form'
 import { connect } from 'react-redux';
 import {setEditing, updateProduct, sendNewProduct} from '../actions/dashActions'
+
+const  { DOM: { input, select, textarea } } = React
 
 export class AddProduct extends React.Component {
   
@@ -33,7 +35,7 @@ console.log( 'on form', values)
               .props
               .handleSubmit(values => this.onSubmit(values))}>
         <h1>{this.props.editNumber === null ? `Add a Product!` : `Edit Product`}</h1>
-        <span>{this.props.error}</span>
+        <span><h6>hello: {this.props.error}</h6></span>
         <label htmlFor="category">Category</label>
         <Field
           component="input"
@@ -65,8 +67,14 @@ console.log( 'on form', values)
           type="text"
           name="shade"
           id="shade"
-placeholder="Russian Red"          />
-
+placeholder="Ruby Woo"          />
+        <label htmlFor="notes">Notes</label>
+        <Field
+          component="textarea"
+          type="textarea"
+          name="notes"
+          // id="notes"
+placeholder="An iconic classic with a chalky finish"          />
  <span className="addProductButtons">       <button type="submit">
  {this.props.editNumber === null ? `Add Product` : `Edit Product`}</button>
         <button onClick={() => this.changeDisplay('false')}>
@@ -94,6 +102,7 @@ AddProduct = reduxForm({
 
 AddProduct =connect( (main) => ({
   products: main.main.products,
+  error: main.auth.error,
   editNumber: main.dash.editNumber, // pull initial values from account reducer
   initialValues: main.main.products.filter( product => product.id === main.dash.editNumber)[0],
   }),
