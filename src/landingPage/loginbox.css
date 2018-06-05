@@ -1,20 +1,4 @@
-/* form{
-    background-color: #FF8977;
-    padding: 5% 1%;
-    margin: 0 10%;
-    border: 5px solid  #DB2B39;
-    border-radius: 10px;
 
-}
-
-input[type=text] {
-    margin: 3%;
-    padding: 2%;
-    border-radius: 5px;
-    font-size: .75em
-
-}
-*/
 
 .login button:hover {
     background-color: #DB2B39;
@@ -28,8 +12,22 @@ input[type=text] {
     padding: 5% 7%;
     font-size: 1.1em;
     font-family: inherit;
+    /* width: 100%; */
     font-weight: bold;
     background-color: transparent;
     color: white;
-    border: transparent;
+    border: 4px solid #DB2B39;
 }
+
+@media screen 
+  and (min-device-width: 1200px) 
+
+  and (-webkit-min-device-pixel-ratio: 1) {
+ 
+    .login button  {
+        margin: 0;
+        background-color: orange;
+        padding: 10%;
+    }
+
+  }

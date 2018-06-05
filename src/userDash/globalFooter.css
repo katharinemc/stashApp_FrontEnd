@@ -52,7 +52,8 @@ footer.expanded ul {
      background-color: #957186;
      width: 100%;
      margin: 0;
-     padding: 5%;
+padding: 0;
+     /* padding: 5%; */
      color: black;
      font-weight: bold;
      border: 0.5px solid black;
@@ -101,6 +102,21 @@ footer button {
  
 footer.expanded {
   height: 45%;
-}
 
+}
+footer li {
+  padding: 10%;
+  }
+
+  }
+
+  @media screen 
+  and (min-device-width: 1200px) 
+  /* and (max-device-width: 1024px)  */
+  and (-webkit-min-device-pixel-ratio: 1) {
+    footer li {
+      padding: 10%;
+      }
+  
+  
   }

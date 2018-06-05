@@ -70,3 +70,21 @@ padding: 3% 0;
     border: transparent;
 
 }
+
+@media screen 
+  and (min-device-width: 1200px) 
+{
+    .accordionButtons {
+        margin-top: 5%;
+        padding: 1%;
+    }
+
+    .accordionButtons button {
+        width: 15%;
+        padding: 2% 1%;
+    }
+
+    .accordionBody {
+        padding: 1% 5%;
+    }
+}

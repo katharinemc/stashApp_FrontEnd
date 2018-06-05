@@ -106,3 +106,28 @@ padding: 0;
 }
 
 }
+
+@media screen 
+  and (min-device-width: 1200px) 
+{ 
+body {
+  font-size: 26px;
+}
+
+.centeredContent {
+  margin: 5% auto;
+  width: 66%;
+  padding: 5%;
+}
+
+
+.products h1 {
+  margin:0;
+  padding: 2%;
+}
+.looks h1 {
+  margin:0;
+  padding: 2%;
+}
+
+}

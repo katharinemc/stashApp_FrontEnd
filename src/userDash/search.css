@@ -78,3 +78,30 @@ padding: 3% 0 ;
     border: transparent;
 
 }
+
+@media screen 
+  and (min-device-width: 1200px) 
+{ 
+
+.searchContainer input {
+margin: 0;
+}
+
+.searchContainer {
+    padding: 1% 0;
+    margin: 0;
+}
+
+.radioContainer{
+    margin: 0 auto;
+    padding: 0;
+    width: 95%;
+    padding-bottom: 1%;
+}
+
+.hrCenter.searchButtons button {
+    margin: 1% 0;
+}
+
+
+}

@@ -80,7 +80,7 @@ console.log('who is requested?', this.props.requestedUser, 'what are params?')
 
     } else if (this.props.display === 'looks') {
       return (
-        <div>
+        <div className="looks">
         <h1 className="banner">Looks</h1>
           <ReduxSearch kind='Looks'/>
           <AccordionLibrary authenticated={this.props.authenticated} kind='looks'/>
@@ -94,7 +94,7 @@ console.log('who is requested?', this.props.requestedUser, 'what are params?')
     //  )  } 
     else  {
       return (
-        <div>
+        <div className="products">
 
         <h1 className="banner">Products</h1>
           <ReduxSearch kind='Products'/>
