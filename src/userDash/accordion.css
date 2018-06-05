@@ -14,12 +14,27 @@
     flex-direction: row;
     justify-content: space-between;
 }
+.warning {
+ display: flex;
+ flex-direction: column; 
+    width: 100%;
+}
+.warning button {
+    letter-spacing: .2em;
+  padding: 4%;
+  margin: 5% auto;
+  font-size: .9em;
+  font-family: inherit;
+  font-weight: bolder;
+background-color: white;
+    border: 3px solid #DB2B39 ;
+}
 
 .accordionBody {
     border: 5px solid #DB2B39;
 background-color: white;
 
-    padding: 0 5%;
+    padding: 3% 5%;
 
 }
 
@@ -31,6 +46,15 @@ padding: 3% 0;
     flex-direction: row;
     justify-content: space-evenly;
 }
+
+
+.warningButtons  {
+    padding: 3% 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+    
 
 .accordionButtons button {
       letter-spacing: .2em;

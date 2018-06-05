@@ -5,6 +5,8 @@
   box-sizing: border-box;
 }
 
+
+
 html {
   min-height: 100%;
 overflow-x: hidden;
@@ -15,24 +17,18 @@ overflow-x: hidden;
 body {
   font-size: 20px;
   margin: 0;
-  border: 5px solid green;
   padding: 0;
   min-height: 100vh;
   font-family: 'Raleway', sans-serif;
-  /* background-image: url('./images/brushes.jpg');
+  background-image: url('./images/brushes.jpg');
   background-size: cover;
-  background-repeat: no-repeat; */
+  background-repeat: no-repeat;
    
 }
 
-/* .container {
-  border: 5px solid orange;
-  min-height: 70vh;
-   display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-} */
+.container {
+margin-top: 15%;
+}
 
 h1, h2, h3 {
 font-family: 'Tangerine', cursive;

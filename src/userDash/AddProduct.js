@@ -35,7 +35,7 @@ console.log( 'on form', values)
               .props
               .handleSubmit(values => this.onSubmit(values))}>
         <h1>{this.props.editNumber === null ? `Add a Product!` : `Edit Product`}</h1>
-        <span><h6>hello: {this.props.error}</h6></span>
+        <span><h6>{this.props.error}</h6></span>
         <label htmlFor="category">Category</label>
         <Field
           component="input"

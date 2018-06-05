@@ -13,7 +13,6 @@ import { setRequestedUser } from "../actions/dashActions";
 export class UserDash extends React.Component {
 
 componentWillMount() {
- console.log( "did you mount?", this.props.match.params)
   this.props.dispatch(setRequestedUser(this.props.match.params.userId))
 }
 

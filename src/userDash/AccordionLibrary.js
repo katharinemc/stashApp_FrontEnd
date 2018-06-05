@@ -5,7 +5,7 @@ import {editItem, deleteItem} from '../actions/dashActions'
 import {connect} from 'react-redux'
 import {Accordion, AccordionItem, AccordionItemTitle, AccordionItemBody} from 'react-accessible-accordion';
 
-import {searchProducts} from '../actions/landingActions'
+import {searchProducts, setWarning} from '../actions/landingActions'
 // Demo styles, see 'Styles' section below for some notes on use.
 import 'react-accessible-accordion/dist/minimal-example.css';
 import './accordion.css'
@@ -13,6 +13,9 @@ import {deleteProduct, setEditing} from "../actions/dashActions";
 
 class AccordionLibrary extends React.Component {
 
+  cancelDeleteButton (value) {
+    this.props.dispatch(setWarning(value))
+  }
   deleteButton(number, kind) {
     const authToken = this.props.authToken
     if (this.props.kind === 'looks' || this.props.warning) {
@@ -73,11 +76,15 @@ if(this.props.results.length === 0 ) {
             </AccordionItemTitle>
             <AccordionItemBody className="accordionBody">
               {this.props.warning != null
-                ? <span>
+                ? <span className="warning">
                     {this.props.warning}
-                    <button
+
+                   <span className="warningButtons"> <button 
                       type='button'
                       onClick={() => this.deleteButton(`${item.id}`, `${this.props.kind}`)}>Yes, Delete</button>
+                 <button type='button' onClick={() =>this.cancelDeleteButton(null)}>Cancel </button>
+                 </span>
+                 
                   </span>
                 : ''}
               <br/> {this.props.kind === 'products'
@@ -86,7 +93,7 @@ if(this.props.results.length === 0 ) {
                 :<span>Products Used: <ul>
                   {productList}</ul></span>}
               <br/>
-              {this.props.authenticated
+              {this.props.authenticated && this.props.warning === null
                 ? <div className="accordionButtons">
                     <button onClick={() => this.deleteButton(`${item.id}`, `${this.props.kind}`)}>Delete</button>
                     <button onClick={() => this.editButton(`${item.id}`, `${this.props.kind}`)}>Edit</button>

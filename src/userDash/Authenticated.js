@@ -44,14 +44,6 @@ console.log('who is requested?', this.props.requestedUser, 'what are params?')
     if (this.props.authToken === null) {
       return <Redirect to={"/"}/>;
 
-    } else if (this.props.newUser === true){
-      return (
-        <div className="centeredContent">
-        <h2>Welcome to Our Community!</h2>
-        <p>To get started, click below to add your first product.</p>
-          </div>
-      )
-      
     } else if (this.props.editing === 'addProduct' ) {
       return (
         <div>

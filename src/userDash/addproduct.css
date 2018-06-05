@@ -5,6 +5,10 @@
     align-content: space-evenly;
 }
 
+.addProduct {
+    margin-top: 15%;
+}
+
 
 .addProductButtons button {
     margin: 3% auto;

@@ -5,6 +5,9 @@
     align-content: space-evenly;
 }
 
+.addLook {
+    margin-top: 15%;
+}
 
 .addLookButtons button {
     margin: 3% auto;

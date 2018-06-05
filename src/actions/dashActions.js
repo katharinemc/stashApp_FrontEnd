@@ -168,6 +168,7 @@ export const sendNewLook = (values, products, authToken) => async dispatch => {
  if(res.status === 200){
    dispatch(newLookSuccess(data))
    dispatch(setEditing('false'))
+   dispatch(caughtError(null))
  } else {
   dispatch(caughtError('You already have a Look with this name'))
 }

@@ -10,16 +10,12 @@ export class AddLook extends React.Component {
     super(props);
 
 const chosenLook =this.props.looks.filter( look => look.id === this.props.editNumber)[0] 
-
     this.state = {
       resultProducts: [],     
-
       chosenLook:  this.props.editNumber ?  chosenLook : '',
       selectedProducts: this.props.editNumber ? chosenLook.products : []
-
     }
   }
-
 
   onSubmit(values, products) {
     const authToken = this.props.authToken
@@ -78,6 +74,7 @@ if(this.state.selectedProducts < 1){
 
 
   render() {
+    console.log('addlook props', this.props)
     return (
       <form  className="addLook centeredContent" onSubmit={this
               .props
