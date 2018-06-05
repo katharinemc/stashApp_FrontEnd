@@ -86,9 +86,13 @@ export class Authenticated extends React.Component {
           <Footer/>
         </div>
       )
-    } else {
+    } else if (this.props.error){
+      return( <div><div className="centeredContent hrCenter"> {this.props.error}</div>
+      <Footer /> </div>
+     ) } else  {
       return (
         <div className="Dash">
+
         <h1 className="banner">Products</h1>
           <ReduxSearch kind='Products'/>
           <AccordionLibrary authenticated={this.props.authenticated} kind='products'/>
@@ -105,6 +109,7 @@ export class Authenticated extends React.Component {
 const mapStateToProps = main => ({
   expandFooter: main.main.expandFooter,
   editing: main.dash.editing,
+  error: main.auth.error,
   auth: main.auth,
   looks: main.main.looks,
   products: main.main.products,

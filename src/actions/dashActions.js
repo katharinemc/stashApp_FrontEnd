@@ -114,7 +114,9 @@ const res= await  fetch(`${API_BASE_URL}/api/products/`, {
     }
   })
   const data = await res.json()  
-  if (res.error && res.error.code === 11000) {
+  console.log('res and data', res, data)
+  if (res.status === 400) {
+    console.log('gotcha!')
   dispatch(caughtError('This product already exists in your collection!'))
 } else {
   dispatch(newProductSuccess(data))

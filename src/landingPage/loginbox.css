@@ -14,13 +14,12 @@ input[type=text] {
     font-size: .75em
 
 }
+*/
 
-.login {
-
-}
 .login button:hover {
     background-color: #DB2B39;
-}
+} 
+
 .login button  {
     margin: 5% auto;
     margin-top: 10%;
@@ -33,4 +32,4 @@ input[type=text] {
     background-color: transparent;
     color: white;
     border: transparent;
-} */
+}

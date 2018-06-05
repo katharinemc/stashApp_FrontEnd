@@ -1,5 +1,5 @@
 import React from 'react'
-import './loginbox.css';
+import './register.css';
 import { connect } from 'react-redux';
 
 import { registerSequence } from '../actions/auth';
@@ -16,7 +16,7 @@ export class ReduxRegister extends React.Component {
   render() {
    return (
       <form
-      className="centeredContent"
+      className="register centeredContent"
       onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}
         >
         <h1>Welcome to Our Community!</h1>
@@ -44,7 +44,9 @@ export class ReduxRegister extends React.Component {
           name='passwordconfirm'
           validate={[passwordsMatch, passwordLength, required, nonEmpty]} />
 
-        <button className="hrCenter" type="submit">Log In</button>
+       <span className="hrCenter"> 
+        <button  type="submit">Register</button>
+        </span>
       </form>
     );
   }

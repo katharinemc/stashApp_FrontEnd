@@ -3,4 +3,14 @@
     margin: 0;
     width: 100%;
     border: 1px solid black;
+
+}
+
+.Dash {
+    min-width: 100%;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+
 }

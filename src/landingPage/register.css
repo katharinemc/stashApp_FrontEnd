@@ -1,0 +1,17 @@
+.register button:hover {
+    background-color: #DB2B39;
+} 
+
+.register button  {
+    margin: 5% auto;
+    margin-top: 10%;
+    display: inline;
+    letter-spacing: .2em;
+    padding: 5% ;
+    font-size: .55em;
+    font-family: inherit;
+    font-weight: bold;
+    border: 2px solid #DB2B39;
+    background-color: transparent;
+    color: white;
+}

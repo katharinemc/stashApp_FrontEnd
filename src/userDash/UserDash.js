@@ -16,7 +16,8 @@ export class UserDash extends React.Component {
 
   render() {
 this.props.dispatch(setRequestedUser(this.props.match.params.userId))
-  return    <Authenticated authenticated = {(this.props.match.params.userId === this.props.currentUser)} />
+console.log('UD', this.props.error)
+return    <Authenticated authenticated = {(this.props.match.params.userId === this.props.currentUser)} />
 
 
   
@@ -32,7 +33,8 @@ const mapStateToProps = main => ({
   display: main.main.display,
   currentUser: main.auth.currentUser,
   authToken: main.auth.authToken,
-  requestedUser: main.auth.requestedUser
+  requestedUser: main.auth.requestedUser,
+  error: main.auth.error
 })
 
 export default connect(mapStateToProps)(UserDash)

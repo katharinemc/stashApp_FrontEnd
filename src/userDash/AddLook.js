@@ -1,5 +1,5 @@
 import React from 'react'
-// import './loginbox.css';
+import './addLook.css';
 import {Field, reduxForm} from 'redux-form'
 import {setEditing, sendEditLook, addToLookSearch, sendNewLook} from '../actions/dashActions'
 import { connect } from 'react-redux';
@@ -79,12 +79,14 @@ if(this.state.selectedProducts < 1){
 
   render() {
     return (
-      <form  className="addLook" onSubmit={this
+      <form  className="addLook centeredContent" onSubmit={this
               .props
               .handleSubmit(values => this.onSubmit(values, this.state.selectedProducts))}>
         <h1>{this.props.editNumber === null ? `Add a Look!` : `Edit Look`}</h1>
-        <span>{this.props.error} </span>
+        <span className="errorMessage">{this.props.error} </span>
+
         <label htmlFor="name">Look Name</label>
+      
         <Field
           component="input"
           type="text"
@@ -94,9 +96,9 @@ if(this.state.selectedProducts < 1){
           placeholder={this.props.editNumber === null ? `Date Night` : `${this.state.chosenLook.name}`}
            />
 
-          <h3>Current Products</h3>
+          {this.state.selectedProducts.length > 0 ? <h4>Current Products</h4> : ''}
           {this.state.selectedProducts.map((product, index) =>{
-return (<li key={index} onClick={() => this.removeFromLook(product)}> `{product.brand}, {product.category}, {product.name}, {product.shade} `</li>)
+return (<li key={index} onClick={() => this.removeFromLook(product)}> {product.brand} {product.category} {product.name} {product.shade} </li>)
           })}
 <label htmlFor="productSearch">Choose your products</label>
           <Field
@@ -107,22 +109,24 @@ return (<li key={index} onClick={() => this.removeFromLook(product)}> `{product.
           onChange={(values) => this.onChange(values)}
           placeholder="Nars HeatWave"/>
 
-              <h3>Product Search Results</h3>
+          {this.state.resultProducts > 0 ? <h4>Search Result</h4> : ''}
+
 
     
 <ul>
 {this.state.resultProducts.map(product => {
 
-return (<li onClick={() => this.addProductToLook(product)}> `{product.brand}, {product.category}, {product.name}, {product.shade} `</li>)
+return (<li onClick={() => this.addProductToLook(product)}> {product.brand} {product.category} {product.name} {product.shade} </li>)
               } )}
   </ul>
 
-
+ <span className="addLookButtons"> 
         <button type="submit">
         {this.props.editNumber === null ? `Add Look` : `Edit Look`}
           </button>
         <button onClick={() => this.changeDisplay('false')}>
           Cancel</button>
+          </span>
       </form>
     );
   }

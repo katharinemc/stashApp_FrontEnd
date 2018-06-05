@@ -48,7 +48,7 @@ footer.expanded ul {
   footer li {
     display: inline;
      list-style-type: none;
-     background-color: #FF8977;
+     background-color: #957186;
      width: 100%;
      margin: 0;
      padding: 5%;
@@ -59,11 +59,17 @@ footer.expanded ul {
 
   
   footer a {
-    color: black;
+    /* color: black; */
   }
 
+.main {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
 footer button {
-  margin: 2% auto;
+  /* margin: 2% auto; */
   display: inline;
     letter-spacing: .2em;
   padding: 3%;
@@ -76,6 +82,13 @@ footer button {
 }
 
 .projectName {
-  margin: 5% 0;
-  font-size: 1.5em;
+  color: white;
+}
+
+
+.landingPage span {
+  display: flex;
+  font-size: 2em;
+  flex-direction: column;
+  justify-content: center;
 }

@@ -43,7 +43,7 @@ export class ReduxSearch extends React.Component {
   }
 
   render() {
-    console.log(this.state.searchString,' do you haeve kind? ', this.props.kind)
+    console.log(this.state.searchString, ' do you haeve kind? ', this.props.kind)
     return (
 
       <form
@@ -58,8 +58,8 @@ export class ReduxSearch extends React.Component {
             ref={input => (this.input = input)}
             onChange={(e) => this.onChange(e.target.value)}/>
         </div>
-        {this.state.searchString != undefined && this.props.kind === 'Products' ? 
-        <div className="radioContainer">
+        {this.state.searchString != undefined && this.props.kind === 'Products'
+          ? <div className="radioContainer">
               <label>
                 <Field name="searchType" component="input" type="radio" value="brand"/>{' '}
                 Brand
@@ -77,22 +77,26 @@ export class ReduxSearch extends React.Component {
                 Shade
               </label>
             </div>
-          : '' }
-          {this.props.searchString && this.props.kind === 'Looks' ? <div>
-            <label>
-              <Field name="searchType" component="input" type="radio" value="name"/>{' '}
-              Look Name
-            </label>
-            <label>
-              <Field name="searchType" component="input" type="radio" value="products"/>{' '}
-              Products Used
-            </label>
-          </div> : '' }
-          {this.state.searchString != undefined ?
- <span className="hrCenter searchButtons">
-        <button className="hrCenter" type="submit">Search</button>
-        <button type="button" onClick={() => this.onClick(false)}>
-          Clear</button> </span>: '' }
+          : ''}
+        {this.state.searchString && this.props.kind === 'Looks'
+          ? <div className="radioContainer">
+              <label>
+                <Field name="searchType" component="input" type="radio" value="name"/>{' '}
+                Look Name
+              </label>
+              <label>
+                <Field name="searchType" component="input" type="radio" value="products"/>{' '}
+                Products Used
+              </label>
+            </div>
+          : ''}
+        {this.state.searchString != undefined
+          ? <span className="hrCenter searchButtons">
+              <button  type="submit">Search</button>
+              <button type="button" onClick={() => this.onClick(false)}>
+                Clear</button>
+            </span>
+          : ''}
 
       </form>
     )

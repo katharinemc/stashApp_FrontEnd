@@ -4,7 +4,7 @@ import {Field, reduxForm} from 'redux-form'
 import Input from '../Input.js'
 import {required, passwordsMatch, nonEmpty} from '../validators'
 import { connect } from 'react-redux';
-
+import './loginbox.css'
 export class ReduxLogin extends React.Component {
   onSubmit(values) {
     this
@@ -15,7 +15,7 @@ export class ReduxLogin extends React.Component {
   render() {
     return (
       <form
-        className="centeredContent"
+        className="login centeredContent"
         onSubmit={this
         .props
         .handleSubmit(values => this.onSubmit(values))}>
@@ -36,7 +36,7 @@ export class ReduxLogin extends React.Component {
           name='password'
           validate={[passwordsMatch, required, nonEmpty]} />
 
-        <button className="hrCenter" disabled={this.props.pristine || this.props.submitting} type="submit">Log In</button>
+      <div className="hrCenter login">  <button  disabled={this.props.pristine || this.props.submitting} type="submit">Log In</button></div>
 </div>
       </form>
       ); } } 

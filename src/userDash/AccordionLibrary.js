@@ -75,7 +75,7 @@ class AccordionLibrary extends React.Component {
                   {productList}</ul></span>}
               <br/>
               Notes: {this.props.authenticated
-                ? <div className="accordionButtons">
+                ? <div className="hrCenter accordionButtons">
                     <button onClick={() => this.deleteButton(`${item.id}`, `${this.props.kind}`)}>Delete</button>
                     <button onClick={() => this.editButton(`${item.id}`, `${this.props.kind}`)}>Edit</button>
                   </div>

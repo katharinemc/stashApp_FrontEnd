@@ -7,6 +7,13 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Raleway', sans-serif;
+  background-image: url('./images/brushes.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
 }
 
@@ -21,6 +28,10 @@ margin: 0;
 text-align: center;
 }
 
+h4 {
+  font-family: 'Raleway', sans-serif;
+ 
+}
 .centeredContent {
   background-color: #FF8977;
   width: 90%;
@@ -32,10 +43,21 @@ text-align: center;
   border-radius: 10px;
 } 
 
-.hrCenter{
-  margin: 0 auto;
-  text-align: center;
+.errorMessage{
   display: block;
+  text-transform: uppercase;
+  text-align: center;
+  font-style: o
+}
+
+.hrCenter{
+  /* margin: 0 auto; */
+  text-align: center;
+  /* display: block; */
+display: flex;
+flex-direction: row;
+align-content: space-evenly;
+justify-content: space-evenly;
 }
 
 input  {
@@ -56,3 +78,4 @@ input[type="password"] {
 font-size: .75em;
 
   }
+

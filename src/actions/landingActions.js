@@ -1,5 +1,6 @@
 import {API_BASE_URL} from '../config'
 import {setSearch, deleteItem} from './dashActions'
+import { caughtError } from './auth';
 
 export const FETCH_LOOKS_SUCCESS='FETCH_LOOKS_SUCCESS'
 export const CHANGE_DISPLAY = 'CHANGE_DISPLAY';
@@ -99,7 +100,10 @@ fetch( url, {
   }) 
   .then (products => {
     dispatch(fetchProductsSuccess(products))})
-  .catch(err => console.log(err));
+  .catch(err => {
+    console.log('hey, an error!', err)
+    dispatch(caughtError(err))
+  });
 };
 
 export const fetchLooks = (user, string, query) => dispatch => {

@@ -13,7 +13,7 @@ render () {
 
         <span className="main ">     
         <button type="button" onClick={(e) => this.props.dispatch(changeDisplay('products')) }>Products</button>
-        <button className="projectName" onClick={(e) => this.expandFooter()}>^</button>
+        <button className="projectName" onClick={(e) => this.expandFooter()}><i className="fas fa-chevron-circle-up"></i></button>
         <button type="button" onClick={(e) => this.props.dispatch(changeDisplay('looks'))}>Looks</button> 
       </span> 
     );

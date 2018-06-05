@@ -1,5 +1,5 @@
 import React from 'react'
-// import './loginbox.css';
+import './addproduct.css';
 import {Field, reduxForm} from 'redux-form'
 import { connect } from 'react-redux';
 import {setEditing, updateProduct, sendNewProduct} from '../actions/dashActions'
@@ -11,6 +11,7 @@ export class AddProduct extends React.Component {
     const currentUser = this.props.currentUser;
   
    if(this.props.editNumber ===  null) {
+console.log( 'on form', values)
     this.props.dispatch(sendNewProduct(values, authToken))
    } else{
     let number = this.props.editNumber
@@ -26,9 +27,9 @@ export class AddProduct extends React.Component {
 
 
   render() {
-    console.log(this.props.initialValues)
+    console.log(this.props)
     return (
-            <form  className="addProduct" onSubmit={this
+            <form  className="addProduct centeredContent" onSubmit={this
               .props
               .handleSubmit(values => this.onSubmit(values))}>
         <h1>{this.props.editNumber === null ? `Add a Product!` : `Edit Product`}</h1>
@@ -66,10 +67,11 @@ export class AddProduct extends React.Component {
           id="shade"
 placeholder="Russian Red"          />
 
-        <button type="submit">
-          Add Product</button>
+ <span className="addProductButtons">       <button type="submit">
+ {this.props.editNumber === null ? `Add Product` : `Edit Product`}</button>
         <button onClick={() => this.changeDisplay('false')}>
           Cancel</button>
+          </span>
       </form>
     );
   }
