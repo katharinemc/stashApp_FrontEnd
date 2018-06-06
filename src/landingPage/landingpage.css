@@ -2,10 +2,10 @@
     background-image: url('../images/brushes.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-    min-height: 90vh;
+    min-height: 100vh;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: column ;
+    justify-content: flex-end;
   
 }
 

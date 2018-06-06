@@ -2,7 +2,8 @@ import React from 'react'
 import './addproduct.css';
 import {Field,  reduxForm} from 'redux-form'
 import { connect } from 'react-redux';
-import {setEditing, updateProduct, sendNewProduct} from '../actions/dashActions'
+import {setEditing, updateProduct, sendNewProduct, editItem} from '../actions/dashActions'
+import { caughtError } from '../actions/auth';
 
 const  { DOM: { input, select, textarea } } = React
 
@@ -21,27 +22,30 @@ console.log( 'on form', values)
    }
   }
 
-  changeDisplay(status) {
+  cancelButton() {
     this
       .props
-      .dispatch(setEditing(status))
+      .dispatch(setEditing(false))
+      this.props.dispatch(editItem(null, null))
+      this.props.dispatch(caughtError(null))
   }
 
 
   render() {
-    console.log(this.props)
+    console.log('whole fomr props', this.props)
     return (
             <form  className="addProduct centeredContent" onSubmit={this
               .props
               .handleSubmit(values => this.onSubmit(values))}>
         <h1>{this.props.editNumber === null ? `Add a Product!` : `Edit Product`}</h1>
-        <span><h6>{this.props.error}</h6></span>
+        <span><h6>{this.props.myerror}</h6></span>
         <label htmlFor="category">Category</label>
         <Field
           component="input"
           type="text"
           name="category"
           id="category"
+
                     placeholder='Lip Color'
            />
         <label htmlFor="brand">Brand</label>
@@ -77,7 +81,7 @@ placeholder="Ruby Woo"          />
 placeholder="An iconic classic with a chalky finish"          />
  <span className="addProductButtons">       <button type="submit">
  {this.props.editNumber === null ? `Add Product` : `Edit Product`}</button>
-        <button onClick={() => this.changeDisplay('false')}>
+        <button onClick={() => this.cancelButton()}>
           Cancel</button>
           </span>
       </form>
@@ -85,14 +89,14 @@ placeholder="An iconic classic with a chalky finish"          />
   }
 }
 
-const mapStateToProps = (main) => {
-
-return  ({
-  error: main.auth.error,
-  products: main.main.products,
-  editNumber: main.dash.editNumber    // ...
-})};
-
+// const mapStateToProps = (main) => {
+// let chosenProduct = main.main.products.filter( product => product.id === main.dash.editNumber)[0];
+//   return  ({
+//   error: main.auth.error,
+//   products: main.main.products,
+//   editNumber: main.dash.editNumber,
+//   initialValues: chosenProduct
+// })};
 
 
 AddProduct = reduxForm({
@@ -100,15 +104,20 @@ AddProduct = reduxForm({
   enableReinitialize: true
 })(AddProduct)
 
-AddProduct =connect( (main) => ({
+AddProduct =connect( main => {
+let chosenProduct = main.main.products.filter( product => product.id === main.dash.editNumber)[0];
+console.log('main in connect', main)
+  return {
+  casey: main,
+    myerror: main.auth.error,
   products: main.main.products,
-  error: main.auth.error,
-  editNumber: main.dash.editNumber, // pull initial values from account reducer
-  initialValues: main.main.products.filter( product => product.id === main.dash.editNumber)[0],
-  }),
- // bind account loading action creator
+  editNumber: main.dash.editNumber,
+  initialValues: main.main.products.filter( product => product.id === main.dash.editNumber)[0]
 
-  
-)(AddProduct)
+  }
+
+})(AddProduct)
+
+
 
 export default AddProduct
