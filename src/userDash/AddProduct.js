@@ -10,6 +10,8 @@ const  { DOM: { input, select, textarea } } = React
 export class AddProduct extends React.Component {
   
   onSubmit(values) {
+    console.log('sumitting', values, 'what is', this.props.editNumber)
+    debugger
     const authToken = this.props.authToken
     const currentUser = this.props.currentUser;
   
@@ -18,6 +20,8 @@ console.log( 'on form', values)
     this.props.dispatch(sendNewProduct(values, authToken))
    } else{
     let number = this.props.editNumber
+
+    console.log('lets edit stuff', values, authToken, number)
      this.props.dispatch(updateProduct(values, authToken, number))
    }
   }

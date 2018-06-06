@@ -42,16 +42,18 @@ return ({
 
 
 export const updateProduct = (values, authToken, number) => async dispatch => {
-  const {brand, category, name, shade} = values
+  const {brand, category, name, notes, shade} = values
   const itemId = number
-
+console.log('in update,', values, authToken, number)
   let newObj = {
     brand,
     category,
     name,
+    notes, 
     shade
   }
 
+  console.log('update obj', newObj)
   const res= await  fetch(`${API_BASE_URL}/api/products/${itemId}`, {
     method: 'put',
     body: JSON.stringify(newObj),
@@ -62,6 +64,7 @@ export const updateProduct = (values, authToken, number) => async dispatch => {
   })
 
   const data = await res.json()  
+console.log('update', res, data)
   if(res.status === 200){
     dispatch(updateProductSuccess(data))
     dispatch(setEditing('false'))  

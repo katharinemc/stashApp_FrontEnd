@@ -9,8 +9,9 @@
 .Dash {
 width: 100%;
     display: flex;
-    min-height: 100%;
-border: 5px solid green;
+    min-height: 100vh;
     flex-direction: column;
+    justify-content: space-between;
 
 }
+

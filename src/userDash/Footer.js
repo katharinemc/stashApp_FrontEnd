@@ -22,9 +22,9 @@ export class Footer extends React.Component {
       );
 
     }
-
+ 
     return (
-      <footer className="dash">
+      <footer>
         <MainFooter/>
 
       </footer>

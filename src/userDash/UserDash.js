@@ -19,7 +19,7 @@ componentWillMount() {
   render() {
 
 
-return   (<div>
+return   (<div className="Dash">
 <Authenticated authenticated = {(this.props.match.params.userId === this.props.currentUser)} /> 
 <Footer />
 </div>

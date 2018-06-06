@@ -10,7 +10,7 @@ import {
   CAUGHT_ERROR,
   NEW_USER
 } from '../actions/auth'
-
+  
 const initialState = {
   login: false,
   authToken: null, // authToken !== null does not mean it has been validated
