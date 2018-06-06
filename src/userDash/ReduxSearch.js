@@ -20,10 +20,21 @@ export class ReduxSearch extends React.Component {
     this.setState({searchString: values})
   }
 
-  onClick(values) {
+  clearSearch() {
     this
       .props
       .dispatch(setSearch(false))
+      if (this.props.kind === "Products") {
+        this
+          .props
+          .dispatch(fetchProducts(this.props.requestedUser))
+      } else {
+        this
+          .props
+          .dispatch(fetchLooks(this.props.requestedUser))
+      }
+  
+
   }
 
   onSubmit(editState, string, values) {
@@ -93,7 +104,7 @@ export class ReduxSearch extends React.Component {
         {this.state.searchString != undefined
           ? <span className="hrCenter searchButtons">
               <button  type="submit">Search</button>
-              <button type="button" onClick={() => this.onClick(false)}>
+              <button type="button" onClick={() => this.clearSearch()}>
                 Clear</button>
             </span>
           : ''}
