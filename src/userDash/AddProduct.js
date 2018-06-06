@@ -32,7 +32,6 @@ console.log( 'on form', values)
 
 
   render() {
-    console.log('whole fomr props', this.props)
     return (
             <form  className="addProduct centeredContent" onSubmit={this
               .props
@@ -77,7 +76,7 @@ placeholder="Ruby Woo"          />
           component="textarea"
           type="textarea"
           name="notes"
-          // id="notes"
+          id="notes"
 placeholder="An iconic classic with a chalky finish"          />
  <span className="addProductButtons">       <button type="submit">
  {this.props.editNumber === null ? `Add Product` : `Edit Product`}</button>
@@ -89,16 +88,6 @@ placeholder="An iconic classic with a chalky finish"          />
   }
 }
 
-// const mapStateToProps = (main) => {
-// let chosenProduct = main.main.products.filter( product => product.id === main.dash.editNumber)[0];
-//   return  ({
-//   error: main.auth.error,
-//   products: main.main.products,
-//   editNumber: main.dash.editNumber,
-//   initialValues: chosenProduct
-// })};
-
-
 AddProduct = reduxForm({
   form: 'AddProduct', // a unique identifier for this form
   enableReinitialize: true
@@ -106,13 +95,11 @@ AddProduct = reduxForm({
 
 AddProduct =connect( main => {
 let chosenProduct = main.main.products.filter( product => product.id === main.dash.editNumber)[0];
-console.log('main in connect', main)
   return {
-  casey: main,
     myerror: main.auth.error,
   products: main.main.products,
   editNumber: main.dash.editNumber,
-  initialValues: main.main.products.filter( product => product.id === main.dash.editNumber)[0]
+  initialValues: chosenProduct
 
   }
 

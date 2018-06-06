@@ -109,7 +109,7 @@ fetch( url, {
 export const fetchLooks = (user, string, query) => dispatch => {
 var url = new URL(`${API_BASE_URL}/api/looks/${user}`);
 if(string !=null)
-{url.searchParams.append(query.searchType,  string)
+{url.searchParams.append('name',  string)
 }
 console.log(url)
   fetch(url, {
