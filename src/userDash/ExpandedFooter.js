@@ -1,6 +1,7 @@
 import React  from 'react';
 import {connect} from 'react-redux'
 import { setEditing } from '../actions/dashActions';
+import {  Link } from "react-router-dom";
 import {setFooterExpand} from '../actions/landingActions'
 import { logOutSequence } from '../actions/auth';
 export  class ExpandedFooter extends React.Component {
@@ -19,7 +20,7 @@ logOut() {
 
 
     render() {
-
+console.log('this', this.props.location)
 if(this.props.requestedUser === this.props.currentUser){      return (
         <div >
             
@@ -35,9 +36,11 @@ if(this.props.requestedUser === this.props.currentUser){      return (
 
       );}
       else{
-        return (
+        return ( <ul>
+          {/* <li><Link to={`/`} > Show my Stuff </Link></li> */}
 <li onClick={()=>this.logOut() }>Log Out  </li>
 
+</ul>
 
         )
       }

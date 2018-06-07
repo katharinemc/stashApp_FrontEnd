@@ -11,8 +11,8 @@ import 'react-accessible-accordion/dist/minimal-example.css';
 import './accordion.css'
 import {deleteProduct, setEditing} from "../actions/dashActions";
 
-class AccordionLibrary extends React.Component {
-
+export class AccordionLibrary extends React.Component {
+  
   cancelDeleteButton (value) {
     this.props.dispatch(setWarning(value))
   }

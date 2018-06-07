@@ -1,16 +1,12 @@
 import React from 'react';
 import Footer from './Footer'
 import HeroText from './HeroText'
-import UserDash from '../userDash/UserDash'
 import {connect} from 'react-redux'
 import './landingpage.css'
 
 export  class LandingPage extends React.Component {
 
   render() {
-
-
-    
     return (
       <div className="landingPage">
       <HeroText />

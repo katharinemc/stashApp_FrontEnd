@@ -12,9 +12,9 @@ render () {
     return (
 
         <span className="main ">     
-        <button type="button" onClick={(e) => this.props.dispatch(changeDisplay('products')) }>Products</button>
-        <button className="projectName" onClick={(e) => this.expandFooter()}><i className="fas fa-chevron-circle-up"></i></button>
-        <button type="button" onClick={(e) => this.props.dispatch(changeDisplay('looks'))}>Looks</button> 
+        <button name="showProducts" type="button" onClick={(e) => this.props.dispatch(changeDisplay('products')) }>Products</button>
+        <button name="showMenu" className="projectName" onClick={(e) => this.expandFooter()}><i className="fas fa-chevron-circle-up"></i></button>
+        <button name="showLooks" type="button" onClick={(e) => this.props.dispatch(changeDisplay('looks'))}>Looks</button> 
       </span> 
     );
 }

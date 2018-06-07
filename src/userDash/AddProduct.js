@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import {setEditing, updateProduct, sendNewProduct, editItem} from '../actions/dashActions'
 import { caughtError } from '../actions/auth';
 
-const  { DOM: { input, select, textarea } } = React
 
 export class AddProduct extends React.Component {
   

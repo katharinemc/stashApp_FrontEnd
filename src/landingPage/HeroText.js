@@ -1,6 +1,5 @@
 import React from 'react'
 import './herotext.css';
-import SignUpBox from './SignUpBox'
 import {connect} from 'react-redux'
 import {BrowserRouter as Route, Redirect} from 'react-router-dom'
 import {fetchProducts, changeDisplay, fetchLooks, CHANGE_DISPLAY} from '../actions/landingActions'
@@ -14,8 +13,17 @@ export class HeroText extends React.Component {
       .dispatch(changeDisplay('landing2'))
   }
 
+// componentDidMount() {
+//   if (this.props.authToken != null) {
+//     console.log('about to redirect', this.props.currentUser, 'current display, ', this.props.display)
+//     this
+//       .props
+//       .dispatch(changeDisplay('products'))
+
+// }}
+
   render() {
-    console.log(this.props)
+    // console.log(this.props)
     if (this.props.authToken != null) {
       console.log('about to redirect', this.props.currentUser, 'current display, ', this.props.display)
       this
@@ -60,7 +68,7 @@ export class HeroText extends React.Component {
           <p>Stash App lets you catalog your makeup collection so that it can be searched
             by brand, category, color, and product name. Include notes about the formulation
             or your likelihood to rebuy for easy future reference.</p>
-          <span>IMAGE HERE</span>
+          <span><img src="%PUBLIC_URL%/images/add.png" alt="view of addProduct form" /></span>
           <p>
             You can organize your makeup into Looks so that you can easily remember what you
             wore to brunch or which products you plan to take on vacation.

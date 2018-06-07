@@ -14,15 +14,14 @@ export class Footer extends React.Component {
     return (
       <footer>
 
-        <button type="button" onClick={(e) => this.changeDisplay('login')}>Login</button>
-        <span className="projectName" onClick={(e) => this.changeDisplay('landing')}>|</span>
-        <button type="button" onClick={(e) => this.changeDisplay('register')}>Register</button>
+        <button name="login" type="button" onClick={(e) => this.changeDisplay('login')}>Login</button>
+        <span >|</span>
+        <button type="button" name="register" onClick={(e) => this.changeDisplay('register')}>Register</button>
       </footer>
     );
   }
 
 }
 
-const mapStateToProps = main => ({display: main.main.display});
 
-export default connect(mapStateToProps)(Footer);
+export default connect()(Footer);

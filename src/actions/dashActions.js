@@ -93,13 +93,16 @@ export const sendEditLook = (values, productIds, authToken, number) => async dis
 if(res.status === 200){
   dispatch(updateLookSuccess(data))
   dispatch(setEditing('false'))  
+} else {
+  dispatch(caughtError('This Look already exists!'))
+
 }
 
-//KRM NEEDS ERROR HANDLING
 
 }
 
 export const sendNewProduct = (values, authToken) => async dispatch => {
+console.log(values, 'sNP valuess')
   const {brand, category, name, shade, notes} = values
 
   let newObj = {
@@ -109,6 +112,9 @@ export const sendNewProduct = (values, authToken) => async dispatch => {
     shade,
     notes
   }
+
+  console.log(newObj, 'new obj')
+  debugger
 const res= await  fetch(`${API_BASE_URL}/api/products/`, {
     method: 'post',
     body: JSON.stringify(newObj),
