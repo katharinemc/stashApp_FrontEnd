@@ -38,9 +38,17 @@ console.log('who is requested?', this.props.requestedUser, 'what are params?')
         }
     }
   }
-
 }
  
+componentWillUpdate(nextProps, nextState) {
+console.log('will update', nextProps, nextState, 'old pros?', this.props)
+if(this.props.requestedUser != nextProps.requestedUser) {
+  console.log('go!')
+  this.props.dispatch(fetchProducts(nextProps.requestedUser))
+this.props.dispatch(fetchLooks(nextProps.requestedUser))
+}
+}
+
   render() {
     if (this.props.authToken === null  && this.props.requestedUser !="Katharine") {
       return <Redirect to={"/"}/>;

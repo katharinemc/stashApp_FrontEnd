@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import {setFooterExpand, changeDisplay} from '../actions/landingActions'
 export class MainFooter extends React.Component {
     expandFooter(){
+        console.log('boom!')
+        debugger
         this.props.dispatch(setFooterExpand(!this.props.expandFooter))
     }
 
