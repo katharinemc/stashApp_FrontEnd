@@ -43,9 +43,6 @@ const looks = [
 
 let productList;
 
-   it('should work', () => {
-    expect (true).toEqual(true)
-   })
     it('Renders without crashing', () => {
         shallow(<AccordionLibrary results={["foobar", "barfoo", "binbaz"]} />);
     });

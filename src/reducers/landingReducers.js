@@ -12,11 +12,10 @@ const initialState = {
     addToLookResults: [],
     warning: null,
 };
-
+ 
 export const mainReducer = (state=initialState, action) => {
     switch(action.type){
         case SET_WARNING:
-        console.log(action)
         return Object.assign( {}, state, {warning: action.warning} )
 
         case UPDATE_PRODUCT_SUCCESS:

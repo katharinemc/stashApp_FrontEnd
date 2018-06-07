@@ -30,13 +30,8 @@ export const newLookSuccess = (values) => ({type: NEW_LOOK_SUCCESS, values})
 
 export const setSearch = (values) => ({type:SET_SEARCH, values})
 
-export const setRequestedUser = (user) => {
+export const setRequestedUser = (user) => ({type: SET_REQUESTED_USER, user})
 
-return ({
-  type: SET_REQUESTED_USER,
-  user
-})
-}
 
 
 

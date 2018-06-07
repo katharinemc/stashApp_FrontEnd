@@ -1,5 +1,6 @@
 import React from 'react';
 import {shallow, mount} from 'enzyme';
+import {fetchProducts, changeDisplay, fetchLooks, CHANGE_DISPLAY} from '../actions/landingActions'
 
 import {ReduxLogin} from '../landingPage/ReduxLogin'
 import {HeroText} from '../landingPage/HeroText';
@@ -13,17 +14,12 @@ describe('<HeroText/>', () => {
         shallow(<HeroText />);
     });
 
-    // it('Should change the display property when showMore method invoked', () => {
+    // it('dispatches changeDisplay from showMore ', () => {
     //     const callback = jest.fn();
-    //     const wrapper = mount(<HeroText display="landing" dispatch={callback} />)
-    //     const value = 'landing2'
-    //     wrapper.instance().showMore(value)
-    //     wrapper.update()
-    //     expect(wrapper.props().display).toEqual(value);
-
-// expect(callback).toHaveBeenCalledWith(changeDisplay())
-
-    })
+    //     const wrapper = mount(<HeroText dispatch={callback} />)
+    //     wrapper.instance().changeDisplay(value)
+    //     expect(callback).toHaveBeenCalledWith(changeDisplay(value))
+    // })
 
     it('Should render the landing1 component when display is landing', () => {
         const wrapper = shallow( <HeroText display="landing" />);
@@ -38,3 +34,4 @@ describe('<HeroText/>', () => {
 
     })
 
+})

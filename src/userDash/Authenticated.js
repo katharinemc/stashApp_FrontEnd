@@ -40,8 +40,9 @@ console.log('who is requested?', this.props.requestedUser, 'what are params?')
   }
 
 }
+ 
   render() {
-    if (this.props.authToken === null) {
+    if (this.props.authToken === null  && this.props.requestedUser !="Katharine") {
       return <Redirect to={"/"}/>;
 
     } else if (this.props.editing === 'addProduct' ) {

@@ -1,5 +1,5 @@
 import React from 'react'
-import {submitLogin, login_sequence, setLoginStatus} from '../actions/auth';
+import {submitLogin, login_sequence} from '../actions/auth';
 import {Field, reduxForm} from 'redux-form'
 import Input from '../Input.js'
 import {required, passwordsMatch, nonEmpty} from '../validators'

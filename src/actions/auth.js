@@ -6,7 +6,6 @@ import {fetchProductsRequest} from './landingActions'
 
 export const SUBMIT_REGISTRATION = 'SUBMIT_REGISTRATION';
 export const SUBMIT_LOGIN = 'SUBMIT_LOGIN';
-export const SET_LOGIN_STATUS = 'SET_LOGIN_STATUS';
 export const SET_AUTH_TOKEN = 'SET_AUTH_TOKEN';
 export const LOG_OUT_STORE = 'LOG_OUT_STORE';
 export const  CAUGHT_ERROR = 'CAUGHT_ERROR';
@@ -23,8 +22,6 @@ export const authSuccess = currentUser => ({type: AUTH_SUCCESS, currentUser});
 export const submitRegistration = (newUserObj) => ({type: SUBMIT_REGISTRATION, newUserObj});
 
 export const submitLogin = (loginObj) => ({type: SUBMIT_LOGIN, loginObj});
-
-export const setLoginStatus = (loginStatus) => ({type: SET_LOGIN_STATUS, loginStatus});
 
 export const logOutStore = () => ({type: LOG_OUT_STORE})
 
