@@ -5,7 +5,7 @@ A multiuser authenticated system for cataloging and categorizing makeup items an
 A short description of the motivation behind the creation and maintenance of the project. This should explain **why** the project exists.
  
 ## Screenshots
-[altText](https://i.imgur.com/uSJrkWW.png)
+[altText](https://i.imgur.com/uSJrkWW.png "description here")
 Include logo/demo screenshot etc.
 
 ## Tech/framework used
