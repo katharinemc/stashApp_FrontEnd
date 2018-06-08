@@ -1,5 +1,5 @@
 import {API_BASE_URL} from '../config'
-import {setSearch, deleteItem} from './dashActions'
+import { deleteItem} from './dashActions'
 import {caughtError} from './auth';
 
 export const FETCH_LOOKS_SUCCESS = 'FETCH_LOOKS_SUCCESS'
@@ -25,7 +25,6 @@ export const fetchLooksRequest = (status) => ({type: FETCH_LOOKS_REQUEST, status
 export const fetchLooksSuccess = (looks) => ({type: FETCH_LOOKS_SUCCESS, looks})
 
 export const searchProducts = (user, number, authToken) => dispatch => {
-  console.log('searching first', user, number)
   var url = new URL(`${API_BASE_URL}/api/products/${user}`),
     params = number
   if (params != null) {
@@ -46,11 +45,9 @@ export const searchProducts = (user, number, authToken) => dispatch => {
     }
     return res.json()
   }).then(res => {
-    console.log('search found', res)
     if (res[0].looksId.length > 0) {
       dispatch(setWarning(`This product appears in ${res[0].looksId.length} looks.  Are you sure you wish to delete? `))
     } else {
-      console.log('ready to delete')
       dispatch(deleteItem(number, 'products', authToken))
     }
   })
@@ -79,7 +76,6 @@ export const fetchProducts = (user, string, query) => dispatch => {
   }).then(products => {
     dispatch(fetchProductsSuccess(products))
   }).catch(err => {
-    console.log('hey, an error!', err)
     dispatch(caughtError(err))
   });
 };
@@ -91,7 +87,6 @@ export const fetchLooks = (user, string, query) => dispatch => {
       .searchParams
       .append('name', string)
   }
-  console.log(url)
   fetch(url, {
     method: 'get',
     headers: {
@@ -103,7 +98,6 @@ export const fetchLooks = (user, string, query) => dispatch => {
     }
     return res.json()
   }).then(looks => {
-    console.log(looks)
     dispatch(fetchLooksSuccess(looks))
   }).catch(err =>     dispatch(caughtError(err))
 );

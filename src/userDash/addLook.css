@@ -27,3 +27,23 @@
     margin-bottom: 10%;
 }
 
+
+@media screen 
+and (min-device-width: 1200px) 
+{ 
+
+.addLook {
+  margin: 5% auto;
+  
+}
+
+.addLook ul{
+margin: 0 auto;
+width: 66%;
+}
+
+.addLook.centeredContent {
+
+  padding: 2% 0 0 2%;
+}
+}

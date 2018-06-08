@@ -1,8 +1,6 @@
-import {API_BASE_URL} from '../config'
-import jwtDecode from 'jwt-decode';
-import {saveAuthToken, clearAuthToken, saveCurrentUser, clearCurrentUser} from '../local-storage';
-import {fetchProductsRequest} from './landingActions'
 
+import {saveAuthToken, saveCurrentUser} from '../local-storage';
+import jwtDecode from 'jwt-decode';
 
 export const SUBMIT_REGISTRATION = 'SUBMIT_REGISTRATION';
 export const SUBMIT_LOGIN = 'SUBMIT_LOGIN';
@@ -48,13 +46,12 @@ if (res.status===200){
 
     const {authToken} = data
   const storeAuth = await storeAuthInfo(authToken, dispatch, username )
-//   dispatch(fetchProductsRequest('true'))
 } else {
   dispatch(caughtError(data.message))
 } }
 
 export const registerSequence = (values) => async dispatch => {
-  const {username, password, userEmail} = values
+  const {username} = values
 
   const res = await fetch(`http://localhost:8080/api/users/`, {
       method: 'post',
@@ -67,7 +64,6 @@ export const registerSequence = (values) => async dispatch => {
   if(res.status === 422){
     dispatch(caughtError(data.message))
   } else {
-      console.log('registration success')
     dispatch(authSuccess(username))
     dispatch(newUser(true))
     const {authToken} = data

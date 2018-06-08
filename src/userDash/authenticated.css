@@ -5,3 +5,12 @@
     padding: 5%;
     color: oldlace;
 }
+
+@media screen 
+  and (min-device-width: 1200px) 
+{ 
+h1.banner {
+  padding: 1%;
+}
+
+}

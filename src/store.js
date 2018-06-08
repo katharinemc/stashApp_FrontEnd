@@ -5,7 +5,6 @@ import {mainReducer} from './reducers/landingReducers';
 import {setAuthToken, authSuccess, refreshAuthToken, } from './actions/auth'
 import {loadAuthToken, loadCurrentUser} from './local-storage'
 import { authReducer } from './reducers/authReducers';
-import { fetchProducts, fetchLooks } from './actions/landingActions';
 import { dashReducer } from './reducers/dashReducers';
 
 const rootReducer=combineReducers({
@@ -30,9 +29,6 @@ if (currentUser) {
 if (authToken) {
     const token = authToken;
     store.dispatch(setAuthToken(token));
-    // store.dispatch(fetchProducts(currentUser))
-    // store.dispatch(fetchLooks(currentUser))
-
 }
 
 

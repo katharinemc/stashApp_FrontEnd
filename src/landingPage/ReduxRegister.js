@@ -8,7 +8,6 @@ import Input from '../Input'
 import {required, isEmail, nonEmpty, passwordLength, passwordsMatch} from '../validators'
 export class ReduxRegister extends React.Component {
   onSubmit(values) {
-    console.log('registration about to happen')
     this
       .props
       .dispatch(registerSequence(values))
@@ -16,33 +15,34 @@ export class ReduxRegister extends React.Component {
 
   render() {
    return (
-      <form
+      <form role="main"
       className="register centeredContent"
       onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}
         >
         <h1>Welcome to Our Community!</h1>
-        <h2>{this.props.error != null ? this.props.error : ''}</h2>
+        {this.props.myerror != null ?     <h2> {this.props.myerror}</h2>  : ''}
 
 
         <label htmlFor="username">UserName</label>
-        <Field component="input" type="text" name="username" id="username"/>
+        <Field component="input" id="username" placeholder="BeautyLover1" type="text" name="username"/>
         <label htmlFor="userEmail">Email</label>
 
         <Field
-          component={Input}
+        type='email'
+          component={Input} id="userEmail"
           name='userEmail' placeholder="user@user.com"
           validate={[isEmail, required, nonEmpty]} />
  
         <label htmlFor="password">Password</label>
         <Field
           component={Input} placeholder="MySecretWord"
-          name='password'
+          name='password' id="password"
           validate={[passwordLength, required, nonEmpty]} />
 
         <label htmlFor="passwordconfirm">Confirm Password</label>
         <Field
           component={Input} placeholder="MySecretWord"
-          name='passwordconfirm'
+          name='passwordconfirm' id="passwordconfirm"
           validate={[passwordsMatch, passwordLength, required, nonEmpty]} />
 
        <span className="hrCenter"> 
@@ -54,7 +54,7 @@ export class ReduxRegister extends React.Component {
 }
 
 const mapStateToProps = (main) => ({
-  error: main.auth.error,
+  myerror: main.auth.error,
       // ...
 });
 

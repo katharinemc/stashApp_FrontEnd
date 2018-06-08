@@ -87,4 +87,14 @@ padding: 3% 0;
     .accordionBody {
         padding: 1% 5%;
     }
+
+    .warningButtons {
+        padding: 0;
+    }
+
+    .warning button {
+      padding: 2%;
+      margin: 2% 0 2% 0;
+    }
+    
 }

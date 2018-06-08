@@ -1,7 +1,7 @@
 import React from 'react'
 import './addLook.css';
 import {Field, reduxForm} from 'redux-form'
-import {setEditing, sendEditLook, addToLookSearch, sendNewLook} from '../actions/dashActions'
+import {setEditing, sendEditLook, sendNewLook} from '../actions/dashActions'
 import { connect } from 'react-redux';
 import {caughtError} from '../actions/auth'
 
@@ -26,7 +26,7 @@ if(this.state.selectedProducts < 1){
 } else {
     if(this.props.editNumber === null) {
       this.props.dispatch(sendNewLook(values, productIds, authToken))
-    } else if (this.props.editNumber != null) {
+    } else if (this.props.editNumber !== null) {
       let number = this.props.editNumber
       this.props.dispatch(sendEditLook(values, productIds, authToken, number))
     }}
@@ -40,7 +40,7 @@ if(this.state.selectedProducts < 1){
   }
 
   onChange(event){
-    if(event.target.value != '')
+    if(event.target.value !== '')
     {
       let resultProducts = this.props.products.filter(product => {
         return product.brand.match(event.target.value) || product.name.match(event.target.value) || product.category.match(event.target.value)
@@ -59,22 +59,21 @@ if(this.state.selectedProducts < 1){
   addProductToLook(product) {
     this.setState({
       selectedProducts: [...this.state.selectedProducts, product],
-      resultProducts: this.state.resultProducts.filter(item => item != product)
+      resultProducts: this.state.resultProducts.filter(item => item !== product)
 
     })
   }
 
   removeFromLook(item) {
     this.setState({
-      selectedProducts: this.state.selectedProducts.filter(product => product != item ),
-      resultProducts: [ ... this.state.resultProducts, item]
+      selectedProducts: this.state.selectedProducts.filter(product => product !== item ),
+      resultProducts: [ ...this.state.resultProducts, item]
     })
   }
 
 
 
   render() {
-    console.log('addlook props', this.props)
     return (
       <form  className="addLook centeredContent" onSubmit={this
               .props

@@ -41,3 +41,30 @@ textarea {
 font-family: inherit;  
     }
   
+
+    @media screen 
+  and (min-device-width: 1200px) 
+{ 
+.addProduct {
+margin: 5% auto;
+}
+
+.addLook {
+    margin: 5% auto;
+    
+}
+
+.addProductButtons {
+    margin: 1% auto;
+}
+
+.addProduct.centeredContent {
+
+    padding: 2% 0 0 2%;
+}
+
+.addLook.centeredContent {
+
+    padding: 2% 0 0 2%;
+}
+}

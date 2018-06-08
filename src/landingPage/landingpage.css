@@ -18,12 +18,20 @@ margin: auto auto;
     margin: 0 3% 6% 3%;
 }
 
-.welcome h3 {
-    text-align: center;
-    margin:0;
-}
-
 .hiddenButton {
     border: transparent;
     background-color: transparent;
 }
+
+
+@media screen 
+  and (min-device-width: 1200px) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+
+    .login button  {
+        margin: 0;
+        padding: 10%;
+    }
+
+
+  }

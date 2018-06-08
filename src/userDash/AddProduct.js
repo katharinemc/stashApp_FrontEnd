@@ -9,18 +9,13 @@ import { caughtError } from '../actions/auth';
 export class AddProduct extends React.Component {
   
   onSubmit(values) {
-    console.log('sumitting', values, 'what is', this.props.editNumber)
-    debugger
     const authToken = this.props.authToken
-    const currentUser = this.props.currentUser;
   
    if(this.props.editNumber ===  null) {
-console.log( 'on form', values)
     this.props.dispatch(sendNewProduct(values, authToken))
    } else{
     let number = this.props.editNumber
 
-    console.log('lets edit stuff', values, authToken, number)
      this.props.dispatch(updateProduct(values, authToken, number))
    }
   }
@@ -36,11 +31,11 @@ console.log( 'on form', values)
 
   render() {
     return (
-            <form  className="addProduct centeredContent" onSubmit={this
+            <form role="main"  className="addProduct centeredContent" onSubmit={this
               .props
               .handleSubmit(values => this.onSubmit(values))}>
-        <h1>{this.props.editNumber === null ? `Add a Product!` : `Edit Product`}</h1>
-        <span><h6>{this.props.myerror}</h6></span>
+      {this.props.editNumber == null ?   <h1>Add a Product!</h1>  : <h1> Edit Product</h1>}
+      {this.props.myerror}  <span><h6>{this.props.myerror}</h6></span>
         <label htmlFor="category">Category</label>
         <Field
           component="input"
@@ -82,7 +77,7 @@ placeholder="Ruby Woo"          />
           id="notes"
 placeholder="An iconic classic with a chalky finish"          />
  <span className="addProductButtons">       <button type="submit">
- {this.props.editNumber === null ? `Add Product` : `Edit Product`}</button>
+ {this.props.editNumber == null ? `Add Product` : `Edit Product`}</button>
         <button onClick={() => this.cancelButton()}>
           Cancel</button>
           </span>

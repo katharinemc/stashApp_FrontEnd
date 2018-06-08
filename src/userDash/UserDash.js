@@ -4,8 +4,6 @@ import React from 'react';
 import Footer from './Footer'
 import {connect} from 'react-redux'
 import './userdash.css'
-import AddProduct from './AddProduct';
-import AddLook from './AddLook'
 
 import Authenticated from "./Authenticated";
 import { setRequestedUser } from "../actions/dashActions";

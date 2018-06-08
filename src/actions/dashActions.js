@@ -1,5 +1,5 @@
 import {API_BASE_URL} from '../config';
-import {fetchProductsRequest, setWarning} from './landingActions'
+import { setWarning} from './landingActions'
 import {caughtError} from './auth'
 export const SET_REQUESTED_USER='SET_REQUESTED_USER'
 export const EDIT_ITEM ='EDIT_ITEM'
@@ -39,7 +39,6 @@ export const setRequestedUser = (user) => ({type: SET_REQUESTED_USER, user})
 export const updateProduct = (values, authToken, number) => async dispatch => {
   const {brand, category, name, notes, shade} = values
   const itemId = number
-console.log('in update,', values, authToken, number)
   let newObj = {
     brand,
     category,
@@ -48,7 +47,6 @@ console.log('in update,', values, authToken, number)
     shade
   }
 
-  console.log('update obj', newObj)
   const res= await  fetch(`${API_BASE_URL}/api/products/${itemId}`, {
     method: 'put',
     body: JSON.stringify(newObj),
@@ -59,12 +57,13 @@ console.log('in update,', values, authToken, number)
   })
 
   const data = await res.json()  
-console.log('update', res, data)
   if(res.status === 200){
     dispatch(updateProductSuccess(data))
     dispatch(setEditing('false'))  
   }
-
+else{
+  dispatch(caughtError(data))
+}
 
 }
 
@@ -97,7 +96,6 @@ if(res.status === 200){
 }
 
 export const sendNewProduct = (values, authToken) => async dispatch => {
-console.log(values, 'sNP valuess')
   const {brand, category, name, shade, notes} = values
 
   let newObj = {
@@ -108,8 +106,6 @@ console.log(values, 'sNP valuess')
     notes
   }
 
-  console.log(newObj, 'new obj')
-  debugger
 const res= await  fetch(`${API_BASE_URL}/api/products/`, {
     method: 'post',
     body: JSON.stringify(newObj),
@@ -119,9 +115,7 @@ const res= await  fetch(`${API_BASE_URL}/api/products/`, {
     }
   })
   const data = await res.json()  
-  console.log('res and data', res, data)
   if (res.status === 400) {
-    console.log('gotcha!')
   dispatch(caughtError('This product already exists in your collection!'))
 } else {
   dispatch(newProductSuccess(data))

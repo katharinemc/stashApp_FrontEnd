@@ -1,7 +1,6 @@
 import "babel-polyfill";
 import React from 'react';
 
-import Footer from './Footer'
 import {connect} from 'react-redux'
 import './authenticated.css'
 import {fetchProducts, fetchLooks} from '../actions/landingActions'
@@ -17,10 +16,8 @@ export class Authenticated extends React.Component {
 
 componentDidMount() {
   if (this.props.search === false) {
-console.log('who is requested?', this.props.requestedUser, 'what are params?')
-    if (this.props.products.length === 0 && this.props.newUser != true) {
-      if (this.props.authenticated != true) {
-       console.log('lets get req stuff')
+    if (this.props.products.length === 0 && this.props.newUser !== true) {
+      if (this.props.authenticated !== true) {
         this
           .props
           .dispatch(fetchProducts(this.props.requestedUser))
@@ -28,7 +25,6 @@ console.log('who is requested?', this.props.requestedUser, 'what are params?')
           .props
           .dispatch(fetchLooks(this.props.requestedUser))
         } else {
-          console.log('lets get our stuff')
         this
           .props
           .dispatch(fetchProducts(this.props.currentUser))
@@ -41,22 +37,20 @@ console.log('who is requested?', this.props.requestedUser, 'what are params?')
 }
  
 componentWillUpdate(nextProps, nextState) {
-console.log('will update', nextProps, nextState, 'old pros?', this.props)
-if(this.props.requestedUser != nextProps.requestedUser) {
-  console.log('go!')
+if(this.props.requestedUser !== nextProps.requestedUser) {
   this.props.dispatch(fetchProducts(nextProps.requestedUser))
-this.props.dispatch(fetchLooks(nextProps.requestedUser))
+  this.props.dispatch(fetchLooks(nextProps.requestedUser))
 }
 }
 
   render() {
-    if (this.props.authToken === null  && this.props.requestedUser !="Katharine") {
+    if (this.props.authToken === null  && this.props.requestedUser !=="Katharine") {
       return <Redirect to={"/"}/>;
 
     } else if (this.props.editing === 'addProduct' ) {
       return (
         <div>
-          <AddProduct
+          <AddProduct role="main"
             currentUser={this.props.currentUser}
             authToken={this.props.authToken}/>
            
@@ -65,7 +59,7 @@ this.props.dispatch(fetchLooks(nextProps.requestedUser))
     } else if (this.props.editing === 'editproducts') {
       return (
         <div>
-          <AddProduct
+          <AddProduct role="main"
             currentUser={this.props.currentUser}
             authToken={this.props.authToken}/>
            
@@ -74,14 +68,14 @@ this.props.dispatch(fetchLooks(nextProps.requestedUser))
     } else if (this.props.editing === 'editlooks') {
       return (
         <div>
-          <AddLook authToken={this.props.authToken}/>
+          <AddLook  role="main" authToken={this.props.authToken}/>
            
         </div>
       )
     } else if (this.props.editing === 'addLook') {
       return (
         <div>
-          <AddLook currentUser={this.props.currentUser} authToken={this.props.authToken}/>
+          <AddLook  role="main" currentUser={this.props.currentUser} authToken={this.props.authToken}/>
            
         </div>
 
@@ -92,24 +86,23 @@ this.props.dispatch(fetchLooks(nextProps.requestedUser))
         <div className="looks">
         <h1 className="banner">Looks</h1>
           <ReduxSearch kind='Looks'/>
+      <main role="main">
           <AccordionLibrary authenticated={this.props.authenticated} kind='looks'/>
-           
+           </main>
         </div>
       )
     } 
-    // else if (this.props.error){
-    //   return( <div><div className="centeredContent hrCenter"> {this.props.error}</div>
-    //   <Footer /> </div>
-    //  )  } 
+
     else  {
       return (
         <div className="products">
 
         <h1 className="banner">Products</h1>
           <ReduxSearch kind='Products'/>
-          <AccordionLibrary authenticated={this.props.authenticated} kind='products'/>
+          <div role="main">
+          <AccordionLibrary    authenticated={this.props.authenticated} kind='products'/>
            
-
+</div>
         </div>
       );
     }

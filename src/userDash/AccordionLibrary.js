@@ -1,6 +1,5 @@
 import "babel-polyfill";
 import React from 'react';
-import ReactDOM from 'react-dom';
 import {editItem, deleteItem} from '../actions/dashActions'
 import {connect} from 'react-redux'
 import {Accordion, AccordionItem, AccordionItemTitle, AccordionItemBody} from 'react-accessible-accordion';
@@ -9,7 +8,7 @@ import {searchProducts, setWarning} from '../actions/landingActions'
 // Demo styles, see 'Styles' section below for some notes on use.
 import 'react-accessible-accordion/dist/minimal-example.css';
 import './accordion.css'
-import {deleteProduct, setEditing} from "../actions/dashActions";
+import { setEditing} from "../actions/dashActions";
 
 export class AccordionLibrary extends React.Component {
   

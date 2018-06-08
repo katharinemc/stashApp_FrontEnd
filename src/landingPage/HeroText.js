@@ -1,11 +1,10 @@
 import React from 'react'
 import './herotext.css';
 import {connect} from 'react-redux'
-import {BrowserRouter as Route, Link,Redirect} from 'react-router-dom'
+import { Link,Redirect} from 'react-router-dom'
 import {changeDisplay} from '../actions/landingActions'
 import ReduxLogin from './ReduxLogin'
 import ReduxRegister from './ReduxRegister';
-import AddImg from '../images/add.png'
 
 export class HeroText extends React.Component {
   showMore() {
@@ -31,10 +30,12 @@ export class HeroText extends React.Component {
       return <ReduxRegister/>
     } else if (this.props.display === 'landing') {
       return (
-        <div className="welcome centeredContent">
+        <div className="welcome centeredContent" role="main">
           <h1>Stash App</h1>
-          <h3>For Makeup Lovers</h3>
+          <h2>For Makeup Lovers</h2>
           <br/>
+          <div className="descriptionRow">
+
           <p>Lauren is a hobbyist who buys every red lipstick on impulse... not realizing
             she has backups for her backups in herotext makeup kit at home.</p>
 
@@ -44,6 +45,7 @@ export class HeroText extends React.Component {
 
           <p>They both need StashApp to catalog their collections and looks for easy
             on-the-go access.</p>
+            </div>
           <p className="right">
             Learn More
             <button
@@ -58,18 +60,19 @@ export class HeroText extends React.Component {
       );
     } else if (this.props.display === 'landing2') {
       return (
-        <div className="welcome centeredContent">
+        <div  role="main"  className="welcome centeredContent">
+<h1 className="right"> How does it work?</h1>
           <div className="descriptionRow">
             <p className="descriptiontext"><strong>Stash App</strong> lets you catalog your makeup collection
               so that it can be searched by brand, category, color, and product name. Include
               notes about the formulation or your likelihood to rebuy for easy future
               reference.</p>
             <div className="thumbnail tint">
-              <img src="https://i.imgur.com/FexILjC.png"/></div>
+              <img alt ="view of add product page" src="https://i.imgur.com/FexILjC.png"/></div>
           </div>
 
           <div className="descriptionRow">
-            <div className="thumbnail"><img src="https://i.imgur.com/iyo8PEr.png"/></div>
+            <div className="thumbnail"><img alt ="view of Looks results" src="https://i.imgur.com/iyo8PEr.png"/></div>
 
             <p className="descriptiontext">
               You can organize your makeup into Looks so that you can easily remember what you
@@ -80,9 +83,9 @@ export class HeroText extends React.Component {
 
             <p className="descriptiontext">You can even peruse your friend's collections and
               looks to see what products they love and how they wear them!</p>
-            <div className="thumbnail"><img src="https://i.imgur.com/mOrxEex.png"/></div>
+            <div className="thumbnail"><img alt="view of products search" src="https://i.imgur.com/mOrxEex.png"/></div>
           </div>
-          <p>To see a collection in action, <Link to="/users/Katharine"> click here </Link>, or click below to get
+          <p>To see a collection in action, <Link className="specialLink" to="/users/Katharine"> click here </Link>, or click below to get
             started</p>
         </div>
       )

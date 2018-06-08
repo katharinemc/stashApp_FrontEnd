@@ -1,5 +1,5 @@
 import React from 'react'
-import {submitLogin, login_sequence} from '../actions/auth';
+import {login_sequence} from '../actions/auth';
 import {Field, reduxForm} from 'redux-form'
 import Input from '../Input.js'
 import {required, passwordsMatch, nonEmpty} from '../validators'
@@ -14,7 +14,7 @@ export class ReduxLogin extends React.Component {
 
   render() {
     return (
-      <form
+      <form role="main"
         className="login centeredContent"
         onSubmit={this
         .props

@@ -25,7 +25,6 @@ export class ExpandedFooter extends React.Component {
   }
 
   render() {
-    console.log('this', this.props.location)
     if (this.props.requestedUser === this.props.currentUser) {
       return (
         <div >
@@ -67,6 +66,6 @@ export class ExpandedFooter extends React.Component {
   }
 }
 
-const mapStateToProps = main => ({editing: main.dash.editing, currentUser: main.auth.currentUser, requestedUser: main.dash.requestedUser, currentUser: main.auth.currentUser, authToken: main.auth.authToken})
+const mapStateToProps = main => ({editing: main.dash.editing, requestedUser: main.dash.requestedUser, currentUser: main.auth.currentUser, authToken: main.auth.authToken})
 
 export default connect(mapStateToProps)(ExpandedFooter)

@@ -1,10 +1,12 @@
-
+.visuallyhidden {
+    display: none;
+}
 
 .search {
     max-width: 100%;
     background-color:  #503047;
-    /* border: 0; */
 }
+
 .searchContainer {
     width: 100%;
     flex-direction: row;

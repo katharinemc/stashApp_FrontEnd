@@ -1,7 +1,7 @@
 import React from 'react'
 import './search.css';
-import {Field, isPristine, reduxForm} from 'redux-form'
-import {setEditing, sendEditLook, addToLookSearch, sendNewLook, setSearch} from '../actions/dashActions'
+import {Field, reduxForm} from 'redux-form'
+import {setSearch} from '../actions/dashActions'
 import {connect} from 'react-redux';
 import {fetchProducts, fetchLooks} from '../actions/landingActions'
 
@@ -15,25 +15,24 @@ export class ReduxSearch extends React.Component {
   }
 
   onChange(values) {
-    console.log(values)
-  values.length === 0 ? this.setState({searchString: null}) :
-    this.setState({searchString: values})
+    values.length === 0
+      ? this.setState({searchString: null})
+      : this.setState({searchString: values})
   }
 
   clearSearch() {
     this
       .props
       .dispatch(setSearch(false))
-      if (this.props.kind === "Products") {
-        this
-          .props
-          .dispatch(fetchProducts(this.props.requestedUser))
-      } else {
-        this
-          .props
-          .dispatch(fetchLooks(this.props.requestedUser))
-      }
-  
+    if (this.props.kind === "Products") {
+      this
+        .props
+        .dispatch(fetchProducts(this.props.requestedUser))
+    } else {
+      this
+        .props
+        .dispatch(fetchLooks(this.props.requestedUser))
+    }
 
   }
 
@@ -55,15 +54,20 @@ export class ReduxSearch extends React.Component {
   }
 
   render() {
+    console.log(this.state)
     return (
-
       <form
         className="search"
         onSubmit=
         {this.props.handleSubmit(values => this.onSubmit(true, this.state.searchString, values))}>
         <div className="searchContainer">
 
+          <label htmlFor="search" className="visuallyhidden">Search:
+          </label>
           <input
+            aria-label="search"
+            id="search"
+            name="search"
             type="search"
             placeholder={`Search ${this.props.kind}`}
             ref={input => (this.input = input)}
@@ -103,7 +107,7 @@ export class ReduxSearch extends React.Component {
           : ''} */}
         {this.state.searchString != undefined
           ? <span className="hrCenter searchButtons">
-              <button  type="submit">Search</button>
+              <button type="submit">Search</button>
               <button type="button" onClick={() => this.clearSearch()}>
                 Clear</button>
             </span>

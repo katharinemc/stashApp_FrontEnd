@@ -1,10 +1,6 @@
 import {
   SET_AUTH_TOKEN,
   AUTH_SUCCESS,
-  SUBMIT_LOGIN,
-  SUBMIT_REGISTRATION,
-  LOGIN_USER,
-  CLEAR_AUTH,
   LOG_OUT_STORE,
   CAUGHT_ERROR,
   NEW_USER
@@ -30,7 +26,8 @@ export const authReducer = (state = initialState, action) => {
       return Object.assign({}, state, {authToken: action.authToken})
     case AUTH_SUCCESS:
       return Object.assign({}, state, {currentUser: action.currentUser})
-  }
+    default: 
+      return state;
+    }
  
-  return state;
 }
