@@ -44,6 +44,7 @@ Check out the backend code [on Github](https://github.com/katharinemc/stashApp)
 - Users can view and search other user's content.
 - Attempting to delete a product used in a look triggers a warning message. If user chooses to delete, the product will be removed from any Looks in which it is included.
 
+[See it live here.](https://objective-stonebraker-c8501a.netlify.com)
 Demo user is Katharine with password "password."  Can view data for user Cecilia.
 
 ## Code Example
