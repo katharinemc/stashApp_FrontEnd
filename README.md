@@ -4,7 +4,7 @@ A multiuser authenticated system for cataloging and categorizing makeup items an
 ## Motivation
 
           Lauren is a hobbyist who buys every red lipstick on impulse... not realizing
-            she has backups for her backups in herotext makeup kit at home.
+            she has backups for her backups in her makeup kit at home.
 
          Leah is professional on-site with a client who wants to recreate a stunning
             look from six months ago, but ...what was the shade she used in the socket that
