@@ -15,7 +15,7 @@ A multiuser authenticated system for cataloging and categorizing makeup items an
  
 ## Screenshots
 ![Welcome Page](https://i.imgur.com/uSJrkWW.png "Welcome Page")
-![Onboarding Guide](https://imgur.com/qCpNkPm "On boarding guide")
+![Onboarding Guide](https://i.imgur.com/AP8iWA2.png "On boarding guide")
 ![Registration](https://i.imgur.com/4rUSysw.png "Registration")
 ![Log In](https://i.imgur.com/dt2jRXE.png "Log In")
 ![Main Products View](https://i.imgur.com/cXQdQu0.png "Main products view")
